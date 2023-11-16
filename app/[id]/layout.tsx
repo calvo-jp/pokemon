@@ -4,12 +4,17 @@ import {
   BreadcrumbSeparator,
   Breadcrumbs,
 } from '@/lib/breadcrumbs';
-import {capitalize} from '@/lib/capitalize';
-import {IconChevronRight} from '@/lib/icons';
+import {
+  IconBarChart2,
+  IconChevronRight,
+  IconLightBulb,
+  IconRotate3D,
+  IconShield,
+  IconVideo,
+} from '@/lib/icons';
 import {Image} from '@/lib/image';
 import {Link} from '@/lib/link';
 import {Box, Flex, styled} from '@/styled-system/jsx';
-import {headers} from 'next/headers';
 import {Fragment, PropsWithChildren} from 'react';
 import {Recent} from './recent';
 
@@ -17,32 +22,33 @@ export default function Layout({
   params,
   children,
 }: PropsWithChildren<{params: {id: string}}>) {
-  const pathname = headers().get('x-pathname');
-
   const links = [
     {
+      icon: IconLightBulb,
       label: 'About',
       path: `/${params.id}`,
     },
     {
+      icon: IconBarChart2,
       label: 'Statistics',
       path: `/${params.id}/statistics`,
     },
     {
+      icon: IconRotate3D,
       label: 'Evolutions',
       path: `/${params.id}/evolutions`,
     },
     {
+      icon: IconShield,
       label: 'Moves',
       path: `/${params.id}/moves`,
     },
     {
+      icon: IconVideo,
       label: 'Videos',
       path: `/${params.id}/videos`,
     },
   ];
-
-  const current = links.find((link) => link.path === pathname) ?? links[0];
 
   return (
     <Fragment>
@@ -68,7 +74,7 @@ export default function Layout({
           </BreadcrumbSeparator>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <BreadcrumbLink currentPage>{capitalize(current.label)}</BreadcrumbLink>
+          <BreadcrumbLink currentPage>About</BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumbs>
 
@@ -80,9 +86,9 @@ export default function Layout({
               alt=""
               width={500}
               height={500}
+              objectFit="cover"
               w="full"
               h="full"
-              objectFit="cover"
             />
           </Box>
           <Recent />
@@ -104,17 +110,30 @@ export default function Layout({
 
           <styled.nav mt={12}>
             <styled.ul display="grid" gridTemplateColumns="repeat(5,1fr)" gap={5}>
-              {links.map((link) => (
-                <styled.li key={link.path} w="full">
+              {links.map(({path, label, icon: SVGIcon}) => (
+                <styled.li key={path} w="full">
                   <Link
-                    href={link.path}
+                    href={path}
                     bg="neutral.800"
                     px={4}
                     py={3}
-                    display="block"
-                    textAlign="center"
+                    display="flex"
+                    alignItems="center"
+                    gap={2.5}
+                    transition="all token(durations.slow)"
+                    _active={{
+                      transform: 'scale(0.95)',
+                    }}
+                    _selected={{
+                      bg: 'orange.500',
+                    }}
+                    _focusVisible={{
+                      outline: '2px solid token(colors.neutral.500)',
+                      outlineOffset: '3px',
+                    }}
                   >
-                    {link.label}
+                    <SVGIcon w={5} h={5} />
+                    {label}
                   </Link>
                 </styled.li>
               ))}
