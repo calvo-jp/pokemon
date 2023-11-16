@@ -1,3 +1,5 @@
+import {Box} from '@/styled-system/jsx';
+
 export default function Videos({params}: {params: {id: string}}) {
-  return null;
+  return <Box>Videos</Box>;
 }

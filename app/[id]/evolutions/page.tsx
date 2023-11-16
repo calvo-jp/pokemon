@@ -1,3 +1,5 @@
+import {Box} from '@/styled-system/jsx';
+
 export default function Evolutions({params}: {params: {id: string}}) {
-	return null;
+  return <Box>Evolutions</Box>;
 }

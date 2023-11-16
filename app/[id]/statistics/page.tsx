@@ -1,3 +1,5 @@
+import {Box} from '@/styled-system/jsx';
+
 export default function Statistics({params}: {params: {id: string}}) {
-	return null;
+  return <Box>Statistics</Box>;
 }
