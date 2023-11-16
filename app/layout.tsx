@@ -30,7 +30,13 @@ export default function RootLayout({children}: PropsWithChildren) {
       colorScheme="dark"
       scrollBehavior="smooth"
     >
-      <styled.body minH="dvh" bg="neutral.900" color="neutral.100" fontFamily="sans">
+      <styled.body
+        bg="neutral.900"
+        color="neutral.100"
+        fontFamily="sans"
+        minH="dvh"
+        minW="breakpoint-lg"
+      >
         <Navbar />
         <styled.main>{children}</styled.main>
         <Footer />
