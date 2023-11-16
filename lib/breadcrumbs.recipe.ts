@@ -12,13 +12,6 @@ export const item = cva({
   base: {
     lineHeight: 'none',
   },
-  variants: {
-    currentPage: {
-      true: {
-        color: 'orange.400',
-      },
-    },
-  },
 });
 
 export const link = cva({
@@ -30,6 +23,10 @@ export const link = cva({
         textDecoration: 'underline',
         textUnderlineOffset: '4px',
       },
+    },
+
+    '&:not([href])': {
+      cursor: 'not-allowed',
     },
   },
   variants: {
@@ -43,6 +40,8 @@ export const link = cva({
 
 export const separator = cva({
   base: {
+    w: 4,
+    h: 4,
     color: 'neutral.600',
   },
 });
