@@ -1,5 +1,5 @@
 {
-  "name": "pokedex",
+  "name": "pokemon",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -25,9 +25,9 @@
     "@graphql-codegen/add": "5.0.0",
     "@graphql-codegen/cli": "5.0.0",
     "@graphql-codegen/typescript": "4.0.1",
-    "@graphql-codegen/typescript-graphql-request": "6.0.0",
+    "@graphql-codegen/typescript-graphql-request": "6.0.1",
     "@graphql-codegen/typescript-operations": "4.0.1",
-    "@pandacss/dev": "0.18.2",
+    "@pandacss/dev": "0.18.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
