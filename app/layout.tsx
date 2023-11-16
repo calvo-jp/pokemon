@@ -38,7 +38,9 @@ export default function RootLayout({children}: PropsWithChildren) {
         minW="breakpoint-lg"
       >
         <Navbar />
-        <styled.main>{children}</styled.main>
+        <styled.main maxW="breakpoint-lg" mx="auto" px={12} py={16}>
+          {children}
+        </styled.main>
         <Footer />
       </styled.body>
     </styled.html>

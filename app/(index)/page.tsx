@@ -1,12 +1,13 @@
 import {Image} from '@/lib/image';
 import {Link} from '@/lib/link';
 import {AspectRatio, Box, Grid, styled} from '@/styled-system/jsx';
+import {Fragment} from 'react';
 import {BottomNav} from './bottom-nav';
 import {TopNav} from './top-nav';
 
 export default async function Pokemons() {
   return (
-    <Box maxW="breakpoint-lg" mx="auto" px={12} py={16}>
+    <Fragment>
       <TopNav />
 
       <Box mt={12} color="neutral.300" fontSize="sm" fontStyle="italic">
@@ -20,7 +21,7 @@ export default async function Pokemons() {
       </Grid>
 
       <BottomNav />
-    </Box>
+    </Fragment>
   );
 }
 
