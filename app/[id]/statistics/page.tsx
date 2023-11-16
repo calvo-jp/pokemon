@@ -1,34 +1,46 @@
-import {Box, HStack, VStack, styled} from '@/styled-system/jsx';
+import {
+  Progress,
+  ProgressLabel,
+  ProgressValue,
+  ProgressValueText,
+} from '@/components/progress';
+import {Box, VStack, styled} from '@/styled-system/jsx';
 import {Fragment} from 'react';
 
 export default function Statistics({params}: {params: {id: string}}) {
   return (
     <Fragment>
-      <VStack alignItems="stretch" gap={2}>
-        <HStack>
-          <Box w={12}>HP</Box>
-          <Box h={1} w="full" bg="neutral.700" rounded="full" />
-        </HStack>
-        <HStack>
-          <Box w={12}>ATK</Box>
-          <Box h={1} w="full" bg="neutral.700" rounded="full" />
-        </HStack>
-        <HStack>
-          <Box w={12}>DEF</Box>
-          <Box h={1} w="full" bg="neutral.700" rounded="full" />
-        </HStack>
-        <HStack>
-          <Box w={12}>SATK</Box>
-          <Box h={1} w="full" bg="neutral.700" rounded="full" />
-        </HStack>
-        <HStack>
-          <Box w={12}>SDEF</Box>
-          <Box h={1} w="full" bg="neutral.700" rounded="full" />
-        </HStack>
-        <HStack>
-          <Box w={12}>SPD</Box>
-          <Box h={1} w="full" bg="neutral.700" rounded="full" />
-        </HStack>
+      <VStack alignItems="stretch" gap={3}>
+        <Progress value={75}>
+          <ProgressLabel w={12}>HP</ProgressLabel>
+          <ProgressValue />
+          <ProgressValueText w={8} textAlign="right" />
+        </Progress>
+        <Progress value={30}>
+          <ProgressLabel w={12}>ATK</ProgressLabel>
+          <ProgressValue />
+          <ProgressValueText w={8} textAlign="right" />
+        </Progress>
+        <Progress value={44}>
+          <ProgressLabel w={12}>DEF</ProgressLabel>
+          <ProgressValue />
+          <ProgressValueText w={8} textAlign="right" />
+        </Progress>
+        <Progress value={100}>
+          <ProgressLabel w={12}>SATK</ProgressLabel>
+          <ProgressValue />
+          <ProgressValueText w={8} textAlign="right" />
+        </Progress>
+        <Progress value={5}>
+          <ProgressLabel w={12}>SDEF</ProgressLabel>
+          <ProgressValue />
+          <ProgressValueText w={8} textAlign="right" />
+        </Progress>
+        <Progress value={55}>
+          <ProgressLabel w={12}>SPD</ProgressLabel>
+          <ProgressValue />
+          <ProgressValueText w={8} textAlign="right" />
+        </Progress>
       </VStack>
 
       <Box mt={10}>
