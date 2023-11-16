@@ -14,7 +14,7 @@ export default async function Pokemons() {
         Showing 1-20 of 1000
       </Box>
 
-      <Grid columns={4} mt={4} gap={5}>
+      <Grid gridTemplateColumns="repeat(auto-fill,minmax(14rem,1fr))" mt={4} gap={5}>
         {Array.from({length: 20}).map((_, i) => (
           <Pokemon key={i} />
         ))}

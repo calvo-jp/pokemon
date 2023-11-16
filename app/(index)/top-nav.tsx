@@ -45,7 +45,7 @@ export function TopNav() {
       </InputGroup>
 
       <Select
-        w="16rem"
+        w="18rem"
         items={POKEMON_TYPES}
         multiple
         positioning={{
