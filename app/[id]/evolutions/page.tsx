@@ -1,5 +1,5 @@
-import {IconMoveRight} from '@/lib/icons';
-import {Image} from '@/lib/image';
+import {IconMoveRight} from '@/components/icons';
+import {Image} from '@/components/image';
 import {Box, HStack, VStack, styled} from '@/styled-system/jsx';
 import {Fragment} from 'react';
 

@@ -3,7 +3,7 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
   Breadcrumbs,
-} from '@/lib/breadcrumbs';
+} from '@/components/breadcrumbs';
 import {
   IconBarChart2,
   IconChevronRight,
@@ -11,9 +11,9 @@ import {
   IconRotate3D,
   IconShield,
   IconVideo,
-} from '@/lib/icons';
-import {Image} from '@/lib/image';
-import {Link} from '@/lib/link';
+} from '@/components/icons';
+import {Image} from '@/components/image';
+import {Link} from '@/components/link';
 import {css} from '@/styled-system/css';
 import {Box, Flex, styled} from '@/styled-system/jsx';
 import {Fragment, PropsWithChildren} from 'react';

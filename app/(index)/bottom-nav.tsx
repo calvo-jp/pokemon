@@ -1,13 +1,13 @@
 'use client';
 
-import {IconChevronLeft, IconChevronRight} from '@/lib/icons';
+import {IconChevronLeft, IconChevronRight} from '@/components/icons';
 import {
   Pagination,
   PaginationEllipsis,
   PaginationItem,
   PaginationNextTrigger,
   PaginationPrevTrigger,
-} from '@/lib/pagination';
+} from '@/components/pagination';
 import {Fragment} from 'react';
 
 export function BottomNav() {

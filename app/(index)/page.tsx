@@ -1,5 +1,5 @@
-import {Image} from '@/lib/image';
-import {Link} from '@/lib/link';
+import {Image} from '@/components/image';
+import {Link} from '@/components/link';
 import {AspectRatio, Box, Grid, styled} from '@/styled-system/jsx';
 import {Fragment} from 'react';
 import {BottomNav} from './bottom-nav';

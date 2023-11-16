@@ -1,4 +1,4 @@
-import {Link} from '@/lib/link';
+import {Link} from '@/components/link';
 import {Center, styled} from '@/styled-system/jsx';
 
 export function Footer() {

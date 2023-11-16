@@ -12,9 +12,9 @@ import poison from '@/assets/images/poison.svg';
 import rock from '@/assets/images/rock.svg';
 import steel from '@/assets/images/steel.svg';
 import water from '@/assets/images/water.svg';
-import {IconCheck, IconChevronDown, IconSearch, IconX} from '@/lib/icons';
-import {Image} from '@/lib/image';
-import {Input, InputGroup, InputIcon} from '@/lib/input-group';
+import {IconCheck, IconChevronDown, IconSearch, IconX} from '@/components/icons';
+import {Image} from '@/components/image';
+import {Input, InputGroup, InputIcon} from '@/components/input-group';
 import {
   Select,
   SelectClearTrigger,
@@ -28,7 +28,7 @@ import {
   SelectPositioner,
   SelectTrigger,
   SelectValueText,
-} from '@/lib/select';
+} from '@/components/select';
 import {css, cx} from '@/styled-system/css';
 import {Box, Flex, styled} from '@/styled-system/jsx';
 import {Portal} from '@ark-ui/react';

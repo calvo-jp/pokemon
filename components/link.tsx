@@ -2,10 +2,10 @@
 
 import {styled} from '@/styled-system/jsx';
 import {Assign, HTMLStyledProps} from '@/styled-system/types';
+import {dataAttr} from '@/utils/dom';
 import link, {LinkProps} from 'next/link';
 import {usePathname} from 'next/navigation';
 import {forwardRef} from 'react';
-import {dataAttr} from './dom-utils';
 
 export const StyledLink = styled(
   link,

@@ -2,7 +2,7 @@ import {defineConfig} from '@pandacss/dev';
 
 export default defineConfig({
   preflight: true,
-  include: ['./app/**/*.{ts,tsx}', './lib/**/*.{ts,tsx}'],
+  include: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
   exclude: [],
   theme: {
     extend: {
