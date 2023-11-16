@@ -8,6 +8,7 @@ import {
   control,
   indicator,
   item,
+  itemIndicator,
   itemText,
   trigger,
 } from './select.recipe';
@@ -20,7 +21,7 @@ export const SelectIndicator = styled(parts.Indicator, indicator);
 export const SelectItem = styled(parts.Item, item);
 export const SelectItemGroup = styled(parts.ItemGroup);
 export const SelectItemGroupLabel = styled(parts.ItemGroupLabel);
-export const SelectItemIndicator = styled(parts.ItemIndicator);
+export const SelectItemIndicator = styled(parts.ItemIndicator, itemIndicator);
 export const SelectItemText = styled(parts.ItemText, itemText);
 export const SelectLabel = styled(parts.Label);
 export const SelectPositioner = styled(parts.Positioner);

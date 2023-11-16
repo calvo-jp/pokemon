@@ -36,7 +36,7 @@ export const content = cva({
     bg: 'neutral.700',
     overflowY: 'auto',
     _focusVisible: {
-      outline: '2px solid token(colors.neutral.400)',
+      outline: '2px solid token(colors.neutral.500)',
       outlineOffset: '3px',
     },
   },
@@ -72,5 +72,11 @@ export const indicator = cva({
     _open: {
       transform: 'rotate(180deg)',
     },
+  },
+});
+
+export const itemIndicator = cva({
+  base: {
+    color: 'neutral.400',
   },
 });
