@@ -13,7 +13,7 @@ import {useSelectedLayoutSegments} from 'next/navigation';
 
 export function Navbar() {
   const segments = useSelectedLayoutSegments();
-  const segment = segments[0].replace(/[()]/g, '');
+  const segment = segments.at(0)?.replace(/[()]/g, '') ?? 'about';
 
   return (
     <Breadcrumbs>
