@@ -7,6 +7,7 @@ import {
   ChevronRightIcon,
   LightbulbIcon,
   LucideIcon,
+  MoveRightIcon,
   Rotate3DIcon,
   SearchIcon,
   ShieldIcon,
@@ -46,3 +47,4 @@ export const IconBarChart2 = styledIcon(BarChart2Icon);
 export const IconRotate3D = styledIcon(Rotate3DIcon);
 export const IconLightBulb = styledIcon(LightbulbIcon);
 export const IconShield = styledIcon(ShieldIcon);
+export const IconMoveRight = styledIcon(MoveRightIcon);

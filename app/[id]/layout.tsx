@@ -14,6 +14,7 @@ import {
 } from '@/lib/icons';
 import {Image} from '@/lib/image';
 import {Link} from '@/lib/link';
+import {css} from '@/styled-system/css';
 import {Box, Flex, styled} from '@/styled-system/jsx';
 import {Fragment, PropsWithChildren} from 'react';
 import {Recent} from './recent';
@@ -112,26 +113,7 @@ export default function Layout({
             <styled.ul display="grid" gridTemplateColumns="repeat(5,1fr)" gap={5}>
               {links.map(({path, label, icon: SVGIcon}) => (
                 <styled.li key={path} w="full">
-                  <Link
-                    href={path}
-                    bg="neutral.800"
-                    px={4}
-                    py={3}
-                    display="flex"
-                    alignItems="center"
-                    gap={2.5}
-                    transition="all token(durations.slow)"
-                    _active={{
-                      transform: 'scale(0.95)',
-                    }}
-                    _selected={{
-                      bg: 'orange.500',
-                    }}
-                    _focusVisible={{
-                      outline: '2px solid token(colors.neutral.500)',
-                      outlineOffset: '3px',
-                    }}
-                  >
+                  <Link href={path} className={linkClassname}>
                     <SVGIcon w={5} h={5} />
                     {label}
                   </Link>
@@ -146,3 +128,23 @@ export default function Layout({
     </Fragment>
   );
 }
+
+const linkClassname = css({
+  bg: 'neutral.800',
+  px: 4,
+  py: 3,
+  display: 'flex',
+  alignItems: 'center',
+  gap: 2.5,
+  transition: 'all token(durations.slow)',
+  _active: {
+    transform: 'scale(0.95)',
+  },
+  _selected: {
+    bg: 'orange.500',
+  },
+  _focusVisible: {
+    outline: '2px solid token(colors.neutral.500)',
+    outlineOffset: '3px',
+  },
+});
