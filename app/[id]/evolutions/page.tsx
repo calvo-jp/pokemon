@@ -45,7 +45,7 @@ function Item() {
         </Box>
       </Box>
       <VStack flexGrow={1}>
-        <Box>11</Box>
+        <Box fontFamily="mono">11</Box>
         <IconMoveRight w={6} h={6} />
       </VStack>
       <Box w={32} h={32} p={4} bg="neutral.700">

@@ -7,7 +7,7 @@ export function Navbar() {
     <styled.header
       h={24}
       bg="neutral.800"
-      px={8}
+      px={12}
       pos="sticky"
       top={0}
       zIndex="sticky"
@@ -15,7 +15,7 @@ export function Navbar() {
       alignItems="center"
     >
       <Spacer />
-      <Link href="">
+      <Link href="https://github.com/calvo-jp/pokemon">
         <IconGitBranch w={5} h={5} />
         <VisuallyHidden>Github</VisuallyHidden>
       </Link>
