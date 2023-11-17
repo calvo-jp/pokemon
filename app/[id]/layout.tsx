@@ -118,7 +118,7 @@ export default function Layout({
               {links.map(({path, label, icon: SVGIcon}) => (
                 <styled.li key={path} w="full">
                   <Link href={path} className={linkClassname}>
-                    <SVGIcon w={5} h={5} />
+                    <SVGIcon w={5} h={5} pointerEvents="none" />
                     {label}
                   </Link>
                 </styled.li>
@@ -134,9 +134,10 @@ export default function Layout({
 }
 
 const linkClassname = css({
-  bg: 'neutral.800',
+  w: 'full',
   px: 4,
   py: 3,
+  bg: 'neutral.800',
   display: 'flex',
   alignItems: 'center',
   gap: 2.5,
