@@ -6,8 +6,9 @@ import {
   CarouselViewport,
 } from '@/components/carousel';
 import {IconChevronLeft, IconChevronRight} from '@/components/icons';
+import {Link} from '@/components/link';
 import {css} from '@/styled-system/css';
-import {AspectRatio, Grid, GridItem} from '@/styled-system/jsx';
+import {AspectRatio} from '@/styled-system/jsx';
 import {CarouselControl, CarouselNextTrigger} from '@ark-ui/react';
 import Image from 'next/image';
 
@@ -23,21 +24,31 @@ export function Recent() {
       <CarouselViewport flexGrow={1}>
         <CarouselItemGroup>
           {Array.from({length: 3}).map((_, idx0) => (
-            <CarouselItem index={1} key={`0:${idx0}`}>
-              <Grid columns={3} flexGrow={1}>
-                {Array.from({length: 6}).map((_, idx1) => (
-                  <GridItem key={`1:${idx1}`} p={4} bg="neutral.800">
-                    <AspectRatio w="full" ratio={1}>
-                      <Image
-                        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/51.png"
-                        alt=""
-                        width={150}
-                        height={150}
-                      />
-                    </AspectRatio>
-                  </GridItem>
-                ))}
-              </Grid>
+            <CarouselItem
+              key={idx0}
+              index={1}
+              display="grid"
+              gridTemplateColumns="repeat(3,1fr)"
+              gap={3}
+            >
+              {Array.from({length: 6}).map((_, idx1) => (
+                <Link
+                  key={`${idx0}:${idx1}`}
+                  href="/1"
+                  display="block"
+                  p={4}
+                  bg="neutral.800"
+                >
+                  <AspectRatio w="full" ratio={1}>
+                    <Image
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/51.png"
+                      alt=""
+                      width={150}
+                      height={150}
+                    />
+                  </AspectRatio>
+                </Link>
+              ))}
             </CarouselItem>
           ))}
         </CarouselItemGroup>
