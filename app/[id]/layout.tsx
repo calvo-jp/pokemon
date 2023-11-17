@@ -1,12 +1,5 @@
 import {
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-  Breadcrumbs,
-} from '@/components/breadcrumbs';
-import {
   IconBarChart2,
-  IconChevronRight,
   IconLightBulb,
   IconRotate3D,
   IconShield,
@@ -18,6 +11,7 @@ import {css} from '@/styled-system/css';
 import {Box, Flex, styled} from '@/styled-system/jsx';
 import {Fragment, PropsWithChildren} from 'react';
 import {Recent} from './recent';
+import {Trail} from './trail';
 
 export default function Layout({
   params,
@@ -53,31 +47,7 @@ export default function Layout({
 
   return (
     <Fragment>
-      <Breadcrumbs>
-        <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href="/">Pokemons</Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbSeparator asChild>
-            <IconChevronRight />
-          </BreadcrumbSeparator>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href="/1">Bulbasaur</Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbSeparator asChild>
-            <IconChevronRight />
-          </BreadcrumbSeparator>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbLink currentPage>About</BreadcrumbLink>
-        </BreadcrumbItem>
-      </Breadcrumbs>
+      <Trail />
 
       <Flex gap={16} mt={16}>
         <Box w="20rem" flexShrink={0}>
