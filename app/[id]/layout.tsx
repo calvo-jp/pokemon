@@ -17,34 +17,6 @@ export default function Layout({
   params,
   children,
 }: PropsWithChildren<{params: {id: string}}>) {
-  const links = [
-    {
-      icon: IconLightBulb,
-      label: 'About',
-      path: `/${params.id}`,
-    },
-    {
-      icon: IconBarChart2,
-      label: 'Statistics',
-      path: `/${params.id}/statistics`,
-    },
-    {
-      icon: IconRotate3D,
-      label: 'Evolutions',
-      path: `/${params.id}/evolutions`,
-    },
-    {
-      icon: IconShield,
-      label: 'Moves',
-      path: `/${params.id}/moves`,
-    },
-    {
-      icon: IconVideo,
-      label: 'Videos',
-      path: `/${params.id}/videos`,
-    },
-  ];
-
   return (
     <Fragment>
       <Trail />
@@ -87,7 +59,7 @@ export default function Layout({
             >
               {links.map(({path, label, icon: SVGIcon}) => (
                 <styled.li key={path} w="full">
-                  <Link href={path} className={linkClassname}>
+                  <Link href={`/${params.id}${path}`} className={linkClassname}>
                     <SVGIcon w={5} h={5} pointerEvents="none" />
                     {label}
                   </Link>
@@ -102,6 +74,34 @@ export default function Layout({
     </Fragment>
   );
 }
+
+const links = [
+  {
+    icon: IconLightBulb,
+    label: 'About',
+    path: '/',
+  },
+  {
+    icon: IconBarChart2,
+    label: 'Statistics',
+    path: '/statistics',
+  },
+  {
+    icon: IconRotate3D,
+    label: 'Evolutions',
+    path: '/evolutions',
+  },
+  {
+    icon: IconShield,
+    label: 'Moves',
+    path: '/moves',
+  },
+  {
+    icon: IconVideo,
+    label: 'Videos',
+    path: '/videos',
+  },
+];
 
 const linkClassname = css({
   w: 'full',
