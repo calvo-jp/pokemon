@@ -1,4 +1,10 @@
 import {
+  BreadcrumbItem,
+  BreadcrumbItems,
+  BreadcrumbLink,
+  Breadcrumbs,
+} from '@/components/breadcrumbs';
+import {
   IconBarChart2,
   IconLightBulb,
   IconRotate3D,
@@ -8,8 +14,8 @@ import {Image} from '@/components/image';
 import {Link} from '@/components/link';
 import {Box, Flex, styled} from '@/styled-system/jsx';
 import {Fragment, PropsWithChildren} from 'react';
+import {CurrentPageLabel} from './current-page-label';
 import {Recent} from './recent';
-import {Trail} from './trail';
 
 export default function Layout({
   params,
@@ -17,7 +23,25 @@ export default function Layout({
 }: PropsWithChildren<{params: {id: string}}>) {
   return (
     <Fragment>
-      <Trail />
+      <Breadcrumbs>
+        <BreadcrumbItems>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link href="/">Pokemons</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link href="/1">Bulbasaur</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbItem>
+            <BreadcrumbLink currentPage>
+              <CurrentPageLabel />
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+        </BreadcrumbItems>
+      </Breadcrumbs>
 
       <Flex gap={16} mt={16}>
         <Box w="20rem" flexShrink={0}>
