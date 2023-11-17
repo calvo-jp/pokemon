@@ -8,9 +8,6 @@ export function Navbar() {
       h={24}
       bg="neutral.800"
       px={12}
-      pos="sticky"
-      top={0}
-      zIndex="sticky"
       display="flex"
       alignItems="center"
     >
