@@ -1,4 +1,6 @@
-import {styled} from '@/styled-system/jsx';
+import {IconGitBranch} from '@/components/icons';
+import {Link} from '@/components/link';
+import {Spacer, VisuallyHidden, styled} from '@/styled-system/jsx';
 
 export function Navbar() {
   return (
@@ -11,6 +13,12 @@ export function Navbar() {
       zIndex="sticky"
       display="flex"
       alignItems="center"
-    ></styled.header>
+    >
+      <Spacer />
+      <Link href="">
+        <IconGitBranch w={5} h={5} />
+        <VisuallyHidden>Github</VisuallyHidden>
+      </Link>
+    </styled.header>
   );
 }

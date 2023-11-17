@@ -5,6 +5,7 @@ import {
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  GitBranchIcon,
   LightbulbIcon,
   LucideIcon,
   MoveRightIcon,
@@ -48,3 +49,4 @@ export const IconRotate3D = styledIcon(Rotate3DIcon);
 export const IconLightBulb = styledIcon(LightbulbIcon);
 export const IconShield = styledIcon(ShieldIcon);
 export const IconMoveRight = styledIcon(MoveRightIcon);
+export const IconGitBranch = styledIcon(GitBranchIcon);

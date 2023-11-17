@@ -3,7 +3,6 @@ import {styled} from '@/styled-system/jsx';
 import {Metadata} from 'next';
 import {Lato} from 'next/font/google';
 import {PropsWithChildren} from 'react';
-import {Footer} from './footer';
 import {Navbar} from './navbar';
 
 const sans = Lato({
@@ -41,7 +40,6 @@ export default function RootLayout({children}: PropsWithChildren) {
         <styled.main maxW="breakpoint-xl" mx="auto" px={12} py={16}>
           {children}
         </styled.main>
-        <Footer />
       </styled.body>
     </styled.html>
   );

@@ -1,4 +1,4 @@
-import {Box, HStack} from '@/styled-system/jsx';
+import {Box, Divider, HStack} from '@/styled-system/jsx';
 import {Fragment} from 'react';
 
 export default function Pokemon({params}: {params: {id: string}}) {
@@ -9,31 +9,43 @@ export default function Pokemon({params}: {params: {id: string}}) {
         for food.
       </Box>
 
-      <HStack mt={8}>
+      <HStack mt={8} w="fit" bg="neutral.800" px={8} py={6} gap={8}>
         <Box>
-          <Box>Weight</Box>
+          <Box fontSize="xs" color="neutral.400">
+            Weight
+          </Box>
           <Box>120 KG</Box>
         </Box>
+        <Divider orientation="vertical" h={8} color="neutral.700" />
         <Box>
-          <Box>Height</Box>
+          <Box fontSize="xs" color="neutral.400">
+            Height
+          </Box>
           <Box>6 M</Box>
         </Box>
       </HStack>
 
-      <HStack mt={8}>
-        <Box>Breed</Box>
-        <HStack>
-          <Box>Gender</Box>
+      <HStack w="fit" mt={8} bg="neutral.800" px={8} py={6} gap={8}>
+        <Box>
+          <Box fontSize="xs" color="neutral.400">
+            Gender
+          </Box>
           <Box>40% Male</Box>
-        </HStack>
-        <HStack>
-          <Box>Egg Group</Box>
+        </Box>
+        <Divider orientation="vertical" h={8} color="neutral.700" />
+        <Box>
+          <Box fontSize="xs" color="neutral.400">
+            Egg Group
+          </Box>
           <Box>Ground</Box>
-        </HStack>
-        <HStack>
-          <Box>Egg Cycle</Box>
+        </Box>
+        <Divider orientation="vertical" h={8} color="neutral.700" />
+        <Box>
+          <Box fontSize="xs" color="neutral.400">
+            Egg Cycle
+          </Box>
           <Box>20</Box>
-        </HStack>
+        </Box>
       </HStack>
     </Fragment>
   );
