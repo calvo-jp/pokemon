@@ -147,6 +147,7 @@ const linkClassname = css({
   },
   _selected: {
     bg: 'orange.500',
+    color: 'orange.100',
   },
   _focusVisible: {
     outline: '2px solid token(colors.neutral.500)',

@@ -27,6 +27,7 @@ export default function RootLayout({children}: PropsWithChildren) {
       lang="en"
       className={sans.variable}
       colorScheme="dark"
+      overflowY="scroll"
       scrollBehavior="smooth"
     >
       <styled.body
