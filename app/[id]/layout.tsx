@@ -3,11 +3,9 @@ import {
   IconLightBulb,
   IconRotate3D,
   IconShield,
-  IconVideo,
 } from '@/components/icons';
 import {Image} from '@/components/image';
 import {Link} from '@/components/link';
-import {css} from '@/styled-system/css';
 import {Box, Flex, styled} from '@/styled-system/jsx';
 import {Fragment, PropsWithChildren} from 'react';
 import {Recent} from './recent';
@@ -54,12 +52,36 @@ export default function Layout({
           <styled.nav mt={12}>
             <styled.ul
               display="grid"
-              gridTemplateColumns="repeat(5,1fr)"
+              gridTemplateColumns="repeat(4,1fr)"
               gap={5}
             >
               {links.map(({path, label, icon: SVGIcon}) => (
                 <styled.li key={path} w="full">
-                  <Link href={`/${params.id}${path}`} className={linkClassname}>
+                  <Link
+                    href={`/${params.id}${path}`}
+                    css={{
+                      w: 'full',
+                      px: 4,
+                      py: 3,
+                      bg: 'neutral.800',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 2.5,
+                      transition: 'transform, background',
+                      transitionDuration: 'slow',
+                      _active: {
+                        transform: 'scale(0.95)',
+                      },
+                      _selected: {
+                        bg: 'orange.500',
+                        color: 'orange.100',
+                      },
+                      _focusVisible: {
+                        outline: '2px solid token(colors.neutral.500)',
+                        outlineOffset: '3px',
+                      },
+                    }}
+                  >
                     <SVGIcon w={5} h={5} pointerEvents="none" />
                     {label}
                   </Link>
@@ -96,32 +118,4 @@ const links = [
     label: 'Moves',
     path: '/moves',
   },
-  {
-    icon: IconVideo,
-    label: 'Videos',
-    path: '/videos',
-  },
 ];
-
-const linkClassname = css({
-  w: 'full',
-  px: 4,
-  py: 3,
-  bg: 'neutral.800',
-  display: 'flex',
-  alignItems: 'center',
-  gap: 2.5,
-  transition: 'transform, background',
-  transitionDuration: 'slow',
-  _active: {
-    transform: 'scale(0.95)',
-  },
-  _selected: {
-    bg: 'orange.500',
-    color: 'orange.100',
-  },
-  _focusVisible: {
-    outline: '2px solid token(colors.neutral.500)',
-    outlineOffset: '3px',
-  },
-});
