@@ -80,7 +80,7 @@ export default function Layout({
       </Breadcrumbs>
 
       <Flex gap={16} mt={16}>
-        <Box w="20rem">
+        <Box w="20rem" flexShrink={0}>
           <Box bg="neutral.800" h="24rem" p={8}>
             <Image
               src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png"
@@ -136,7 +136,8 @@ const linkClassname = css({
   display: 'flex',
   alignItems: 'center',
   gap: 2.5,
-  transition: 'all token(durations.slow)',
+  transition: 'transform, background',
+  transitionDuration: 'slow',
   _active: {
     transform: 'scale(0.95)',
   },
