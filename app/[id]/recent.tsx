@@ -6,11 +6,11 @@ import {
   CarouselViewport,
 } from '@/components/carousel';
 import {IconChevronLeft, IconChevronRight} from '@/components/icons';
+import {Image} from '@/components/image';
 import {Link} from '@/components/link';
 import {css} from '@/styled-system/css';
 import {AspectRatio} from '@/styled-system/jsx';
 import {CarouselControl, CarouselNextTrigger} from '@ark-ui/react';
-import Image from 'next/image';
 
 export function Recent() {
   return (
@@ -36,8 +36,8 @@ export function Recent() {
                   key={`${idx0}:${idx1}`}
                   href="/1"
                   display="block"
-                  p={4}
                   bg="neutral.800"
+                  p={4}
                 >
                   <AspectRatio w="full" ratio={1}>
                     <Image
