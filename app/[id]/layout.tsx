@@ -100,14 +100,14 @@ export default function Layout({
             Bulbasaur
           </styled.h1>
 
-          <styled.ul display="flex" mt={4} gap={3}>
-            <styled.ol bg="neutral.800" rounded="full" px={4} py={1}>
+          <styled.ol display="flex" mt={4} gap={3}>
+            <styled.li bg="neutral.800" rounded="full" px={4} py={1}>
               Grass
-            </styled.ol>
-            <styled.ol bg="neutral.800" rounded="full" px={4} py={1}>
+            </styled.li>
+            <styled.li bg="neutral.800" rounded="full" px={4} py={1}>
               Fire
-            </styled.ol>
-          </styled.ul>
+            </styled.li>
+          </styled.ol>
 
           <styled.nav mt={12}>
             <styled.ul
