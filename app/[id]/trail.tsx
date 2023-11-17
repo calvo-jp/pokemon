@@ -8,7 +8,7 @@ import {
 } from '@/components/breadcrumbs';
 import {IconChevronRight} from '@/components/icons';
 import {Link} from '@/components/link';
-import {capitalize} from '@/utils/string';
+import {capitalize} from '@/utils/capitalize';
 import {useSelectedLayoutSegment} from 'next/navigation';
 
 export function Trail() {

@@ -4,8 +4,8 @@ import {useInterval} from '@/hooks/use-interval';
 import {cx} from '@/styled-system/css';
 import {styled} from '@/styled-system/jsx';
 import {Assign, HTMLStyledProps} from '@/styled-system/types';
-import {clamp} from '@/utils/number';
-import {createContext} from '@/utils/react';
+import {clamp} from '@/utils/clamp';
+import {createContext} from '@/utils/create-context';
 import {forwardRef, useId, useState} from 'react';
 import {Variants, recipe} from './progress.recipe';
 
