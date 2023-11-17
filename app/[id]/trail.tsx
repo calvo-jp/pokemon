@@ -2,11 +2,10 @@
 
 import {
   BreadcrumbItem,
+  BreadcrumbItems,
   BreadcrumbLink,
-  BreadcrumbSeparator,
   Breadcrumbs,
 } from '@/components/breadcrumbs';
-import {IconChevronRight} from '@/components/icons';
 import {Link} from '@/components/link';
 import {capitalize} from '@/utils/capitalize';
 import {useSelectedLayoutSegment} from 'next/navigation';
@@ -17,29 +16,21 @@ export function Trail() {
 
   return (
     <Breadcrumbs>
-      <BreadcrumbItem>
-        <BreadcrumbLink asChild>
-          <Link href="/">Pokemons</Link>
-        </BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem>
-        <BreadcrumbSeparator asChild>
-          <IconChevronRight />
-        </BreadcrumbSeparator>
-      </BreadcrumbItem>
-      <BreadcrumbItem>
-        <BreadcrumbLink asChild>
-          <Link href="/1">Bulbasaur</Link>
-        </BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem>
-        <BreadcrumbSeparator asChild>
-          <IconChevronRight />
-        </BreadcrumbSeparator>
-      </BreadcrumbItem>
-      <BreadcrumbItem>
-        <BreadcrumbLink currentPage>{capitalize(current)}</BreadcrumbLink>
-      </BreadcrumbItem>
+      <BreadcrumbItems>
+        <BreadcrumbItem>
+          <BreadcrumbLink asChild>
+            <Link href="/">Pokemons</Link>
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink asChild>
+            <Link href="/1">Bulbasaur</Link>
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink currentPage>{capitalize(current)}</BreadcrumbLink>
+        </BreadcrumbItem>
+      </BreadcrumbItems>
     </Breadcrumbs>
   );
 }

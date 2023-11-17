@@ -1,15 +1,14 @@
 'use client';
 
 import {useInterval} from '@/hooks/use-interval';
-import {cx} from '@/styled-system/css';
 import {styled} from '@/styled-system/jsx';
 import {Assign, HTMLStyledProps} from '@/styled-system/types';
 import {clamp} from '@/utils/clamp';
 import {createContext} from '@/utils/create-context';
+import {HTMLArkProps, ark} from '@ark-ui/react';
 import {forwardRef, useId, useState} from 'react';
-import {Variants, recipe} from './progress.recipe';
 
-interface UseProgressProps extends Variants {
+interface UseProgressProps {
   id?: string;
   min?: number;
   max?: number;
@@ -19,7 +18,7 @@ interface UseProgressProps extends Variants {
 type UseProgressReturn = ReturnType<typeof useProgress>;
 
 function useProgress(props: UseProgressProps) {
-  const {id, min = 0, max = 100, value = 0, ...variants} = props;
+  const {id, min = 0, max = 100, value = 0} = props;
 
   const uid = useId();
   const rootId = id ?? uid;
@@ -52,32 +51,15 @@ const [ProgressProvider, useProgressContext] = createContext<UseProgressReturn>(
   },
 );
 
-interface UseProgressStylesProps extends Variants {}
+const StyledArkDiv = styled(ark.div);
 
-type UseProgressStylesReturn = ReturnType<typeof useProgressStyles>;
-
-function useProgressStyles(props: Variants) {
-  return recipe(props);
-}
-
-const [ProgressStylesProvider, useProgressStylesContext] =
-  createContext<UseProgressStylesReturn>({
-    name: 'ProgressStylesContext',
-    hookName: 'useProgressStylesContext',
-    providerName: 'ProgressStylesProvider',
-  });
-
-interface ProgressProps
-  extends Assign<
-    Assign<HTMLStyledProps<'div'>, UseProgressProps>,
-    UseProgressStylesProps
-  > {}
+export type ProgressProps = Assign<
+  Assign<HTMLArkProps<'div'>, HTMLStyledProps<'div'>>,
+  UseProgressProps
+>;
 
 export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
-  ({id, min, max, value, className, ...props}, ref) => {
-    const [variants, others] = recipe.splitVariantProps(props);
-
-    const styles = useProgressStyles(variants);
+  function Progress({id, min, max, value, ...props}, ref) {
     const context = useProgress({
       id,
       min,
@@ -86,29 +68,32 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
     });
 
     return (
-      <ProgressStylesProvider value={styles}>
-        <ProgressProvider value={context}>
-          <styled.div
-            ref={ref}
-            role="progressbar"
-            className={cx(styles.root, className)}
-            aria-valuemin={context.min}
-            aria-valuemax={context.max}
-            aria-valuenow={context.value}
-            aria-labelledby={context.labelId}
-            {...others}
-          />
-        </ProgressProvider>
-      </ProgressStylesProvider>
+      <ProgressProvider value={context}>
+        <StyledArkDiv
+          ref={ref}
+          role="progressbar"
+          display="flex"
+          alignItems="center"
+          gap={2}
+          aria-valuemin={context.min}
+          aria-valuemax={context.max}
+          aria-valuenow={context.value}
+          aria-labelledby={context.labelId}
+          {...props}
+        />
+      </ProgressProvider>
     );
   },
 );
 
-export const ProgressValue = forwardRef<HTMLDivElement, HTMLStyledProps<'div'>>(
-  ({className, ...props}, ref) => {
-    const context = useProgressContext();
-    const styles = useProgressStylesContext();
+export type ProgressValueProps = Assign<
+  Assign<HTMLArkProps<'div'>, HTMLStyledProps<'div'>>,
+  UseProgressProps
+>;
 
+export const ProgressValue = forwardRef<HTMLDivElement, ProgressValueProps>(
+  function ProgressValue({css, style, ...props}, ref) {
+    const context = useProgressContext();
     const [state, setState] = useState(0);
 
     useInterval(
@@ -127,11 +112,36 @@ export const ProgressValue = forwardRef<HTMLDivElement, HTMLStyledProps<'div'>>(
     const width = clamp(state, context.min, context.value);
 
     return (
-      <styled.div
+      <StyledArkDiv
         ref={ref}
-        className={cx(styles.value, className)}
         style={{
           ['--progress-value' as string]: `${width}%`,
+
+          ...style,
+        }}
+        css={{
+          '--progress-value': 0,
+          '--progress-color': 'colors.orange.500',
+
+          h: 1,
+          bg: 'neutral.700',
+          pos: 'relative',
+          rounded: 'full',
+          flexGrow: 1,
+
+          _after: {
+            h: 'full',
+            w: 'var(--progress-value)',
+            bg: 'var(--progress-color)',
+            pos: 'absolute',
+            top: 0,
+            left: 0,
+            rounded: 'full',
+            content: "''",
+            transition: 'all token(durations.normal)',
+          },
+
+          ...css,
         }}
         {...props}
       />
@@ -139,41 +149,46 @@ export const ProgressValue = forwardRef<HTMLDivElement, HTMLStyledProps<'div'>>(
   },
 );
 
+export type ProgressValueTextProps = Assign<
+  Assign<HTMLArkProps<'div'>, HTMLStyledProps<'div'>>,
+  UseProgressProps
+>;
+
 export const ProgressValueText = forwardRef<
   HTMLDivElement,
-  HTMLStyledProps<'div'>
->(({className, ...props}, ref) => {
+  ProgressValueTextProps
+>(function ProgressValueText(props, ref) {
   const context = useProgressContext();
-  const styles = useProgressStylesContext();
 
   return (
-    <styled.div
+    <StyledArkDiv
       ref={ref}
-      className={cx(styles.valueText, className)}
+      color="neutral.300"
+      fontSize="xs"
+      lineHeight="none"
       {...props}
     >
       {context.percentLoaded}%
-    </styled.div>
+    </StyledArkDiv>
   );
 });
 
-export const ProgressLabel = forwardRef<HTMLDivElement, HTMLStyledProps<'div'>>(
-  ({className, ...props}, ref) => {
+export type ProgressLabelProps = Assign<
+  Assign<HTMLArkProps<'div'>, HTMLStyledProps<'div'>>,
+  UseProgressProps
+>;
+
+export const ProgressLabel = forwardRef<HTMLDivElement, ProgressLabelProps>(
+  function ProgressLabel(props, ref) {
     const context = useProgressContext();
-    const styles = useProgressStylesContext();
 
     return (
-      <styled.div
+      <StyledArkDiv
         id={context.labelId}
         ref={ref}
-        className={cx(styles.label, className)}
+        lineHeight="none"
         {...props}
       />
     );
   },
 );
-
-Progress.displayName = 'Progress';
-ProgressLabel.displayName = 'ProgressLabel';
-ProgressValue.displayName = 'ProgressValue';
-ProgressValueText.displayName = 'ProgressValueText';

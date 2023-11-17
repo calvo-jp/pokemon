@@ -11,4 +11,9 @@ export const CarouselItem = styled(parts.Item);
 export const CarouselItemGroup = styled(parts.ItemGroup);
 export const CarouselNextTrigger = styled(parts.NextTrigger);
 export const CarouselPrevTrigger = styled(parts.PrevTrigger);
-export const CarouselViewport = styled(parts.Viewport);
+export const CarouselViewport = styled(parts.Viewport, {
+  base: {
+    pos: 'relative',
+    overflowX: 'hidden',
+  },
+});
