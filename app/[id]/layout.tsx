@@ -110,7 +110,11 @@ export default function Layout({
           </styled.ul>
 
           <styled.nav mt={12}>
-            <styled.ul display="grid" gridTemplateColumns="repeat(5,1fr)" gap={5}>
+            <styled.ul
+              display="grid"
+              gridTemplateColumns="repeat(5,1fr)"
+              gap={5}
+            >
               {links.map(({path, label, icon: SVGIcon}) => (
                 <styled.li key={path} w="full">
                   <Link href={path} className={linkClassname}>

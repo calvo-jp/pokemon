@@ -42,11 +42,13 @@ function useProgress(props: UseProgressProps) {
   };
 }
 
-const [ProgressProvider, useProgressContext] = createContext<UseProgressReturn>({
-  name: 'ProgressContext',
-  hookName: 'useProgressContext',
-  providerName: 'ProgressProvider',
-});
+const [ProgressProvider, useProgressContext] = createContext<UseProgressReturn>(
+  {
+    name: 'ProgressContext',
+    hookName: 'useProgressContext',
+    providerName: 'ProgressProvider',
+  },
+);
 
 interface UseProgressStylesProps extends Variants {}
 
@@ -118,18 +120,23 @@ export const ProgressValue = forwardRef<HTMLDivElement, HTMLStyledProps<'div'>>(
   },
 );
 
-export const ProgressValueText = forwardRef<HTMLDivElement, HTMLStyledProps<'div'>>(
-  ({className, ...props}, ref) => {
-    const context = useProgressContext();
-    const styles = useProgressStylesContext();
+export const ProgressValueText = forwardRef<
+  HTMLDivElement,
+  HTMLStyledProps<'div'>
+>(({className, ...props}, ref) => {
+  const context = useProgressContext();
+  const styles = useProgressStylesContext();
 
-    return (
-      <styled.div ref={ref} className={cx(styles.valueText, className)} {...props}>
-        {context.percentLoaded}%
-      </styled.div>
-    );
-  },
-);
+  return (
+    <styled.div
+      ref={ref}
+      className={cx(styles.valueText, className)}
+      {...props}
+    >
+      {context.percentLoaded}%
+    </styled.div>
+  );
+});
 
 export const ProgressLabel = forwardRef<HTMLDivElement, HTMLStyledProps<'div'>>(
   ({className, ...props}, ref) => {

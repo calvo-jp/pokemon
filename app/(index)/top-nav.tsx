@@ -12,7 +12,12 @@ import poison from '@/assets/images/poison.svg';
 import rock from '@/assets/images/rock.svg';
 import steel from '@/assets/images/steel.svg';
 import water from '@/assets/images/water.svg';
-import {IconCheck, IconChevronDown, IconSearch, IconX} from '@/components/icons';
+import {
+  IconCheck,
+  IconChevronDown,
+  IconSearch,
+  IconX,
+} from '@/components/icons';
 import {Image} from '@/components/image';
 import {Input, InputGroup, InputIcon} from '@/components/input-group';
 import {
@@ -58,10 +63,14 @@ export function TopNav() {
               <SelectTrigger>
                 <SelectValueText flexGrow={1}>
                   <styled.span
-                    className={cx(!ctx.hasSelectedItems && css({color: 'neutral.600'}))}
+                    className={cx(
+                      !ctx.hasSelectedItems && css({color: 'neutral.600'}),
+                    )}
                   >
                     {ctx.hasSelectedItems
-                      ? formatSelectedPokemonTypes(ctx.selectedItems as PokemonType[])
+                      ? formatSelectedPokemonTypes(
+                          ctx.selectedItems as PokemonType[],
+                        )
                       : 'Choose Types'}
                   </styled.span>
                 </SelectValueText>
@@ -173,7 +182,8 @@ const POKEMON_TYPES: PokemonType[] = [
 
 function formatSelectedPokemonTypes(list: PokemonType[]) {
   if (list.length < 0) return null;
-  if (list.length > 1) return `${list[0].label} and ${decrement(list.length)} more`;
+  if (list.length > 1)
+    return `${list[0].label} and ${decrement(list.length)} more`;
   return list[0].label;
 }
 

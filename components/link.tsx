@@ -24,7 +24,11 @@ export const Link = forwardRef<
   const pathname = usePathname();
 
   return (
-    <StyledLink ref={ref} {...props} data-selected={dataAttr(props.href === pathname)} />
+    <StyledLink
+      ref={ref}
+      {...props}
+      data-selected={dataAttr(props.href === pathname)}
+    />
   );
 });
 

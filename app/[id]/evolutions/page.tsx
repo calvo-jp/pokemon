@@ -12,7 +12,14 @@ export default function Evolutions({params}: {params: {id: string}}) {
         </styled.p>
         <styled.p>Sandshrew evolves from which costs 25 Candy</styled.p>
       </Box>
-      <VStack mt={8} bg="neutral.800" py={16} px={24} gap={8} alignItems="stretch">
+      <VStack
+        mt={8}
+        bg="neutral.800"
+        py={16}
+        px={24}
+        gap={8}
+        alignItems="stretch"
+      >
         <Item />
         <Item />
         <Item />

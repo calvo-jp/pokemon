@@ -301,7 +301,10 @@ export interface PokemonV2AbilitychangeOrderBy {
   version_group_id?: InputMaybe<OrderBy>;
 }
 
-export type PokemonV2AbilitychangeSelectColumn = 'ability_id' | 'id' | 'version_group_id';
+export type PokemonV2AbilitychangeSelectColumn =
+  | 'ability_id'
+  | 'id'
+  | 'version_group_id';
 
 export interface PokemonV2AbilitychangeStddevOrderBy {
   ability_id?: InputMaybe<OrderBy>;
@@ -1339,7 +1342,10 @@ export interface PokemonV2BerryflavorOrderBy {
   pokemon_v2_natures_aggregate?: InputMaybe<PokemonV2NatureAggregateOrderBy>;
 }
 
-export type PokemonV2BerryflavorSelectColumn = 'contest_type_id' | 'id' | 'name';
+export type PokemonV2BerryflavorSelectColumn =
+  | 'contest_type_id'
+  | 'id'
+  | 'name';
 
 export interface PokemonV2BerryflavorStddevOrderBy {
   contest_type_id?: InputMaybe<OrderBy>;
@@ -1710,7 +1716,10 @@ export interface PokemonV2CharacteristicOrderBy {
   stat_id?: InputMaybe<OrderBy>;
 }
 
-export type PokemonV2CharacteristicSelectColumn = 'gene_mod_5' | 'id' | 'stat_id';
+export type PokemonV2CharacteristicSelectColumn =
+  | 'gene_mod_5'
+  | 'id'
+  | 'stat_id';
 
 export interface PokemonV2CharacteristicStddevOrderBy {
   gene_mod_5?: InputMaybe<OrderBy>;
@@ -1953,7 +1962,10 @@ export interface PokemonV2ContestcomboOrderBy {
   second_move_id?: InputMaybe<OrderBy>;
 }
 
-export type PokemonV2ContestcomboSelectColumn = 'first_move_id' | 'id' | 'second_move_id';
+export type PokemonV2ContestcomboSelectColumn =
+  | 'first_move_id'
+  | 'id'
+  | 'second_move_id';
 
 export interface PokemonV2ContestcomboStddevOrderBy {
   first_move_id?: InputMaybe<OrderBy>;
@@ -3113,7 +3125,9 @@ export interface PokemonV2EncounterconditionvaluemapAggregateBoolExp {
 }
 
 export interface PokemonV2EncounterconditionvaluemapAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<PokemonV2EncounterconditionvaluemapSelectColumn>>;
+  arguments?: InputMaybe<
+    Array<PokemonV2EncounterconditionvaluemapSelectColumn>
+  >;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
   filter?: InputMaybe<PokemonV2EncounterconditionvaluemapBoolExp>;
   predicate: IntComparisonExp;
@@ -3233,7 +3247,9 @@ export interface PokemonV2EncounterconditionvaluenameAggregateBoolExp {
 }
 
 export interface PokemonV2EncounterconditionvaluenameAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<PokemonV2EncounterconditionvaluenameSelectColumn>>;
+  arguments?: InputMaybe<
+    Array<PokemonV2EncounterconditionvaluenameSelectColumn>
+  >;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
   filter?: InputMaybe<PokemonV2EncounterconditionvaluenameBoolExp>;
   predicate: IntComparisonExp;
@@ -5183,7 +5199,10 @@ export interface PokemonV2ItemcategoryOrderBy {
   pokemon_v2_items_aggregate?: InputMaybe<PokemonV2ItemAggregateOrderBy>;
 }
 
-export type PokemonV2ItemcategorySelectColumn = 'id' | 'item_pocket_id' | 'name';
+export type PokemonV2ItemcategorySelectColumn =
+  | 'id'
+  | 'item_pocket_id'
+  | 'name';
 
 export interface PokemonV2ItemcategoryStddevOrderBy {
   id?: InputMaybe<OrderBy>;
@@ -5988,7 +6007,11 @@ export interface PokemonV2ItemnameOrderBy {
   pokemon_v2_language?: InputMaybe<PokemonV2LanguageOrderBy>;
 }
 
-export type PokemonV2ItemnameSelectColumn = 'id' | 'item_id' | 'language_id' | 'name';
+export type PokemonV2ItemnameSelectColumn =
+  | 'id'
+  | 'item_id'
+  | 'language_id'
+  | 'name';
 
 export interface PokemonV2ItemnameStddevOrderBy {
   id?: InputMaybe<OrderBy>;
@@ -8763,7 +8786,9 @@ export interface PokemonV2MovedamageclassdescriptionAggregateBoolExp {
 }
 
 export interface PokemonV2MovedamageclassdescriptionAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<PokemonV2MovedamageclassdescriptionSelectColumn>>;
+  arguments?: InputMaybe<
+    Array<PokemonV2MovedamageclassdescriptionSelectColumn>
+  >;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
   filter?: InputMaybe<PokemonV2MovedamageclassdescriptionBoolExp>;
   predicate: IntComparisonExp;
@@ -9172,7 +9197,9 @@ export interface PokemonV2MoveeffectchangeeffecttextAggregateBoolExp {
 }
 
 export interface PokemonV2MoveeffectchangeeffecttextAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<PokemonV2MoveeffectchangeeffecttextSelectColumn>>;
+  arguments?: InputMaybe<
+    Array<PokemonV2MoveeffectchangeeffecttextSelectColumn>
+  >;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
   filter?: InputMaybe<PokemonV2MoveeffectchangeeffecttextBoolExp>;
   predicate: IntComparisonExp;
@@ -9609,7 +9636,9 @@ export interface PokemonV2MovelearnmethoddescriptionAggregateBoolExp {
 }
 
 export interface PokemonV2MovelearnmethoddescriptionAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<PokemonV2MovelearnmethoddescriptionSelectColumn>>;
+  arguments?: InputMaybe<
+    Array<PokemonV2MovelearnmethoddescriptionSelectColumn>
+  >;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
   filter?: InputMaybe<PokemonV2MovelearnmethoddescriptionBoolExp>;
   predicate: IntComparisonExp;
@@ -10325,7 +10354,9 @@ export interface PokemonV2MovemetacategorydescriptionAggregateBoolExp {
 }
 
 export interface PokemonV2MovemetacategorydescriptionAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<PokemonV2MovemetacategorydescriptionSelectColumn>>;
+  arguments?: InputMaybe<
+    Array<PokemonV2MovemetacategorydescriptionSelectColumn>
+  >;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
   filter?: InputMaybe<PokemonV2MovemetacategorydescriptionBoolExp>;
   predicate: IntComparisonExp;
@@ -10646,7 +10677,11 @@ export interface PokemonV2MovenameOrderBy {
   pokemon_v2_move?: InputMaybe<PokemonV2MoveOrderBy>;
 }
 
-export type PokemonV2MovenameSelectColumn = 'id' | 'language_id' | 'move_id' | 'name';
+export type PokemonV2MovenameSelectColumn =
+  | 'id'
+  | 'language_id'
+  | 'move_id'
+  | 'name';
 
 export interface PokemonV2MovenameStddevOrderBy {
   id?: InputMaybe<OrderBy>;
@@ -11174,7 +11209,9 @@ export interface PokemonV2NaturebattlestylepreferenceAggregateBoolExp {
 }
 
 export interface PokemonV2NaturebattlestylepreferenceAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<PokemonV2NaturebattlestylepreferenceSelectColumn>>;
+  arguments?: InputMaybe<
+    Array<PokemonV2NaturebattlestylepreferenceSelectColumn>
+  >;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
   filter?: InputMaybe<PokemonV2NaturebattlestylepreferenceBoolExp>;
   predicate: IntComparisonExp;
@@ -11383,7 +11420,11 @@ export interface PokemonV2NaturenameOrderBy {
   pokemon_v2_nature?: InputMaybe<PokemonV2NatureOrderBy>;
 }
 
-export type PokemonV2NaturenameSelectColumn = 'id' | 'language_id' | 'name' | 'nature_id';
+export type PokemonV2NaturenameSelectColumn =
+  | 'id'
+  | 'language_id'
+  | 'name'
+  | 'nature_id';
 
 export interface PokemonV2NaturenameStddevOrderBy {
   id?: InputMaybe<OrderBy>;
@@ -12124,7 +12165,11 @@ export interface PokemonV2PokedexOrderBy {
   region_id?: InputMaybe<OrderBy>;
 }
 
-export type PokemonV2PokedexSelectColumn = 'id' | 'is_main_series' | 'name' | 'region_id';
+export type PokemonV2PokedexSelectColumn =
+  | 'id'
+  | 'is_main_series'
+  | 'name'
+  | 'region_id';
 
 export type PokemonV2PokedexSelectColumnPokemonV2PokedexAggregateBoolExpBoolAndArgumentsColumns =
   'is_main_series';
@@ -16034,7 +16079,10 @@ export interface PokemonV2PokemonspritesOrderBy {
   sprites?: InputMaybe<OrderBy>;
 }
 
-export type PokemonV2PokemonspritesSelectColumn = 'id' | 'pokemon_id' | 'sprites';
+export type PokemonV2PokemonspritesSelectColumn =
+  | 'id'
+  | 'pokemon_id'
+  | 'sprites';
 
 export interface PokemonV2PokemonspritesStddevOrderBy {
   id?: InputMaybe<OrderBy>;
@@ -16297,7 +16345,11 @@ export interface PokemonV2PokemontypeOrderBy {
   type_id?: InputMaybe<OrderBy>;
 }
 
-export type PokemonV2PokemontypeSelectColumn = 'id' | 'pokemon_id' | 'slot' | 'type_id';
+export type PokemonV2PokemontypeSelectColumn =
+  | 'id'
+  | 'pokemon_id'
+  | 'slot'
+  | 'type_id';
 
 export interface PokemonV2PokemontypeStddevOrderBy {
   id?: InputMaybe<OrderBy>;
@@ -16616,7 +16668,11 @@ export interface PokemonV2RegionnameOrderBy {
   region_id?: InputMaybe<OrderBy>;
 }
 
-export type PokemonV2RegionnameSelectColumn = 'id' | 'language_id' | 'name' | 'region_id';
+export type PokemonV2RegionnameSelectColumn =
+  | 'id'
+  | 'language_id'
+  | 'name'
+  | 'region_id';
 
 export interface PokemonV2RegionnameStddevOrderBy {
   id?: InputMaybe<OrderBy>;
@@ -16906,7 +16962,11 @@ export interface PokemonV2StatnameOrderBy {
   stat_id?: InputMaybe<OrderBy>;
 }
 
-export type PokemonV2StatnameSelectColumn = 'id' | 'language_id' | 'name' | 'stat_id';
+export type PokemonV2StatnameSelectColumn =
+  | 'id'
+  | 'language_id'
+  | 'name'
+  | 'stat_id';
 
 export interface PokemonV2StatnameStddevOrderBy {
   id?: InputMaybe<OrderBy>;
@@ -17118,7 +17178,9 @@ export interface PokemonV2SupercontesteffectflavortextAggregateBoolExp {
 }
 
 export interface PokemonV2SupercontesteffectflavortextAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<PokemonV2SupercontesteffectflavortextSelectColumn>>;
+  arguments?: InputMaybe<
+    Array<PokemonV2SupercontesteffectflavortextSelectColumn>
+  >;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
   filter?: InputMaybe<PokemonV2SupercontesteffectflavortextBoolExp>;
   predicate: IntComparisonExp;
@@ -17735,7 +17797,11 @@ export interface PokemonV2TypenameOrderBy {
   type_id?: InputMaybe<OrderBy>;
 }
 
-export type PokemonV2TypenameSelectColumn = 'id' | 'language_id' | 'name' | 'type_id';
+export type PokemonV2TypenameSelectColumn =
+  | 'id'
+  | 'language_id'
+  | 'name'
+  | 'type_id';
 
 export interface PokemonV2TypenameStddevOrderBy {
   id?: InputMaybe<OrderBy>;
@@ -18022,7 +18088,11 @@ export interface PokemonV2VersiongroupOrderBy {
   pokemon_v2_versions_aggregate?: InputMaybe<PokemonV2VersionAggregateOrderBy>;
 }
 
-export type PokemonV2VersiongroupSelectColumn = 'generation_id' | 'id' | 'name' | 'order';
+export type PokemonV2VersiongroupSelectColumn =
+  | 'generation_id'
+  | 'id'
+  | 'name'
+  | 'order';
 
 export interface PokemonV2VersiongroupStddevOrderBy {
   generation_id?: InputMaybe<OrderBy>;
@@ -18083,7 +18153,9 @@ export interface PokemonV2VersiongroupmovelearnmethodAggregateBoolExp {
 }
 
 export interface PokemonV2VersiongroupmovelearnmethodAggregateBoolExpCount {
-  arguments?: InputMaybe<Array<PokemonV2VersiongroupmovelearnmethodSelectColumn>>;
+  arguments?: InputMaybe<
+    Array<PokemonV2VersiongroupmovelearnmethodSelectColumn>
+  >;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
   filter?: InputMaybe<PokemonV2VersiongroupmovelearnmethodBoolExp>;
   predicate: IntComparisonExp;
@@ -18448,7 +18520,9 @@ export type PokemonsQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<PokemonV2PokemonBoolExp>;
-  orderBy?: InputMaybe<Array<PokemonV2PokemonOrderBy> | PokemonV2PokemonOrderBy>;
+  orderBy?: InputMaybe<
+    Array<PokemonV2PokemonOrderBy> | PokemonV2PokemonOrderBy
+  >;
 }>;
 
 export type PokemonsQuery = {
@@ -18488,7 +18562,11 @@ export type PokemonQuery = {
     height?: number | null;
     weight?: number | null;
     types: Array<{id: number; type?: {id: number; name: string} | null}>;
-    stats: Array<{id: number; base: number; stat?: {id: number; name: string} | null}>;
+    stats: Array<{
+      id: number;
+      base: number;
+      stat?: {id: number; name: string} | null;
+    }>;
     moves: Array<{
       id: number;
       move?: {
@@ -18497,14 +18575,20 @@ export type PokemonQuery = {
         name: string;
         power?: number | null;
         accuracy?: number | null;
-        effects?: {id: number; effectTexts: Array<{id: number; effect: string}>} | null;
+        effects?: {
+          id: number;
+          effectTexts: Array<{id: number; effect: string}>;
+        } | null;
       } | null;
     }>;
     specy?: {
       id: number;
       genderRate?: number | null;
       hatchCounter?: number | null;
-      eggroups: Array<{id: number; egggroup?: {id: number; name: string} | null}>;
+      eggroups: Array<{
+        id: number;
+        egggroup?: {id: number; name: string} | null;
+      }>;
       evolutionChain?: {
         id: number;
         species: Array<{
@@ -18667,8 +18751,11 @@ export type SdkFunctionWrapper = <T>(
   operationType?: string,
 ) => Promise<T>;
 
-const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType) =>
-  action();
+const defaultWrapper: SdkFunctionWrapper = (
+  action,
+  _operationName,
+  _operationType,
+) => action();
 
 export function getSdk(
   client: GraphQLClient,

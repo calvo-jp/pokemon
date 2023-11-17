@@ -16,7 +16,8 @@ export default function Videos({params}: {params: {id: string}}) {
         />
 
         <Box p={4} lineHeight="snug">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit, hic.
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit,
+          hic.
         </Box>
       </GridItem>
     </Grid>

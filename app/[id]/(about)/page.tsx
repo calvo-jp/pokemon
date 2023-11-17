@@ -5,8 +5,8 @@ export default function Pokemon({params}: {params: {id: string}}) {
   return (
     <Fragment>
       <Box>
-        Burrows deep underground in arid locations far from water. It only emerges to hunt
-        for food.
+        Burrows deep underground in arid locations far from water. It only
+        emerges to hunt for food.
       </Box>
 
       <HStack mt={8} w="fit" bg="neutral.800" px={8} py={6} gap={8}>
