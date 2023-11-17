@@ -1,7 +1,8 @@
 import '@/assets/styles/globals.css';
+import {cx} from '@/styled-system/css';
 import {styled} from '@/styled-system/jsx';
 import {Metadata} from 'next';
-import {Lato} from 'next/font/google';
+import {Fira_Code, Lato} from 'next/font/google';
 import {PropsWithChildren} from 'react';
 import {Navbar} from './navbar';
 
@@ -12,6 +13,14 @@ const sans = Lato({
   display: 'swap',
   preload: true,
   variable: '--font-sans',
+});
+
+const mono = Fira_Code({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+  variable: '--font-mono',
 });
 
 export const metadata: Metadata = {
@@ -25,7 +34,7 @@ export default function RootLayout({children}: PropsWithChildren) {
   return (
     <styled.html
       lang="en"
-      className={sans.variable}
+      className={cx(sans.variable, mono.variable)}
       colorScheme="dark"
       overflowY="scroll"
       scrollBehavior="smooth"

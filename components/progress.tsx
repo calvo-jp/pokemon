@@ -1,10 +1,12 @@
 'use client';
 
+import {useInterval} from '@/hooks/use-interval';
 import {cx} from '@/styled-system/css';
 import {styled} from '@/styled-system/jsx';
 import {Assign, HTMLStyledProps} from '@/styled-system/types';
+import {clamp} from '@/utils/number';
 import {createContext} from '@/utils/react';
-import {forwardRef, useId} from 'react';
+import {forwardRef, useId, useState} from 'react';
 import {Variants, recipe} from './progress.recipe';
 
 interface UseProgressProps extends Variants {
@@ -107,12 +109,29 @@ export const ProgressValue = forwardRef<HTMLDivElement, HTMLStyledProps<'div'>>(
     const context = useProgressContext();
     const styles = useProgressStylesContext();
 
+    const [state, setState] = useState(0);
+
+    useInterval(
+      () => {
+        setState((n) => {
+          if (n >= context.value) {
+            return context.value;
+          } else {
+            return n + 1;
+          }
+        });
+      },
+      state >= context.value ? null : (context.value / 100) * 5,
+    );
+
+    const width = clamp(state, context.min, context.value);
+
     return (
       <styled.div
         ref={ref}
         className={cx(styles.value, className)}
         style={{
-          ['--progress-value' as string]: `${context.value}%`,
+          ['--progress-value' as string]: `${width}%`,
         }}
         {...props}
       />

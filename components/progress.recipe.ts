@@ -31,7 +31,7 @@ export const recipe = sva({
         left: 0,
         rounded: 'full',
         content: "''",
-        transition: 'all token(durations.slow)',
+        transition: 'all token(durations.normal)',
       },
     },
     valueText: {
