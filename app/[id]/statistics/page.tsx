@@ -40,7 +40,7 @@ export default async function Statistics({params}: {params: {id: string}}) {
       <Box mt={10} bg="neutral.800" p={8}>
         <Box>Weakness</Box>
 
-        <styled.ul mt={4} display="flex" gap={2}>
+        <styled.ul mt={4} display="flex" flexWrap="wrap" gap={2}>
           {weaknesses.map(({name}) => (
             <styled.li
               key={name}
@@ -59,7 +59,7 @@ export default async function Statistics({params}: {params: {id: string}}) {
       <Box mt={10} bg="neutral.800" p={8}>
         <Box>Resistance</Box>
 
-        <styled.ul mt={4} display="flex" gap={2}>
+        <styled.ul mt={4} display="flex" flexWrap="wrap" gap={2}>
           {resistance.map(({name}) => (
             <styled.li
               key={name}
