@@ -181,12 +181,9 @@ const POKEMON_TYPES: PokemonType[] = [
 ];
 
 function formatSelectedPokemonTypes(list: PokemonType[]) {
-  if (list.length < 0) return null;
-  if (list.length > 1)
-    return `${list[0].label} and ${decrement(list.length)} more`;
-  return list[0].label;
-}
+  let len = list.length;
 
-function decrement(n: number) {
-  return --n;
+  if (len < 0) return '';
+  if (len > 1) return `${list[0].label} and ${--len} more`;
+  return list[0].label;
 }
