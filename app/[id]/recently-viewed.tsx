@@ -12,31 +12,43 @@ import {Image} from '@/components/image';
 import {Link} from '@/components/link';
 import {PokemonQuery} from '@/graphql';
 import {css} from '@/styled-system/css';
-import {AspectRatio} from '@/styled-system/jsx';
+import {Box} from '@/styled-system/jsx';
+import {arrayChunk} from '@/utils/array-chunk';
+import {arrayUnique} from '@/utils/array-unique';
 import {CarouselControl, CarouselNextTrigger} from '@ark-ui/react';
+import {useEffect} from 'react';
 import {useLocalStorage} from 'react-use';
 
 interface RecentlyViewedProps {
-  __rsc_data: PokemonQuery['pokemon'];
+  __rsc_data: NonNullable<PokemonQuery['pokemon']>;
 }
 
 export function RecentlyViewed(props: RecentlyViewedProps) {
-  const [pokemons, setPokemons] = useLocalStorage<string[]>(
-    'recently-viewed',
-    [],
-    {
-      raw: false,
-      serializer(value) {
-        return JSON.stringify(value);
-      },
-      deserializer(value) {
-        /* TODO: use valibot */
-        return JSON.parse(value);
-      },
+  const [array, setArray] = useLocalStorage<
+    NonNullable<PokemonQuery['pokemon']>[]
+  >('recently-viewed', [], {
+    raw: false,
+    serializer(value) {
+      return JSON.stringify(arrayUnique(value, (obj) => obj.id));
     },
+    deserializer(value) {
+      return JSON.parse(value);
+    },
+  });
+
+  useEffect(() => {
+    setArray((current) => {
+      return current ? [props.__rsc_data, ...current] : [props.__rsc_data];
+    });
+  }, [props.__rsc_data, setArray]);
+
+  if (!array || array.length < 0) return null;
+
+  const listExcludingCurrent = array.filter(
+    (pokemon) => pokemon.id !== props.__rsc_data.id,
   );
 
-  if (!pokemons?.length) return null;
+  const chunks = arrayChunk(listExcludingCurrent, 6);
 
   return (
     <Carousel mt={8} display="flex" alignItems="center" gap={6}>
@@ -48,31 +60,16 @@ export function RecentlyViewed(props: RecentlyViewedProps) {
 
       <CarouselViewport flexGrow={1}>
         <CarouselItemGroup>
-          {Array.from({length: 3}).map((_, idx0) => (
+          {chunks.map((pokemons, index) => (
             <CarouselItem
-              key={idx0}
+              key={index}
               index={1}
               display="grid"
               gridTemplateColumns="repeat(3,1fr)"
               gap={3}
             >
-              {Array.from({length: 6}).map((_, idx1) => (
-                <Link
-                  key={`${idx0}:${idx1}`}
-                  href="/1"
-                  display="block"
-                  bg="neutral.800"
-                  p={4}
-                >
-                  <AspectRatio w="full" ratio={1}>
-                    <Image
-                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/51.png"
-                      alt=""
-                      width={150}
-                      height={150}
-                    />
-                  </AspectRatio>
-                </Link>
+              {pokemons.map((pokemon) => (
+                <Thumbnail key={pokemon.id} data={pokemon} />
               ))}
             </CarouselItem>
           ))}
@@ -85,6 +82,35 @@ export function RecentlyViewed(props: RecentlyViewedProps) {
         </CarouselNextTrigger>
       </CarouselControl>
     </Carousel>
+  );
+}
+
+function Thumbnail({data}: {data: NonNullable<PokemonQuery['pokemon']>}) {
+  const sprite = JSON.parse(data.sprites.at(0)?.sprites ?? '{}');
+  const image =
+    sprite.other?.dream_world?.front_default ??
+    sprite.other?.dream_world?.front_default ??
+    '';
+
+  return (
+    <Link href={`/${data.id}`} display="block" bg="neutral.800" p={2}>
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        aspectRatio={1}
+      >
+        <Image
+          src={image}
+          alt=""
+          width={150}
+          height={150}
+          h="auto"
+          maxH="full"
+          maxW="full"
+        />
+      </Box>
+    </Link>
   );
 }
 

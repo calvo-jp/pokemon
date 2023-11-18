@@ -86,16 +86,23 @@ export default async function Layout({
 
         <Box flexGrow={1}>
           <styled.h1 fontSize="4xl" fontWeight="bold" lineHeight="none">
-            Bulbasaur
+            {capitalize(pokemon.name, {delimiter: '-'})}
           </styled.h1>
 
           <styled.ol display="flex" mt={4} gap={3}>
-            <styled.li bg="neutral.800" rounded="full" px={4} py={1}>
-              Grass
-            </styled.li>
-            <styled.li bg="neutral.800" rounded="full" px={4} py={1}>
-              Fire
-            </styled.li>
+            {pokemon.types
+              .filter((obj) => Boolean(obj.type))
+              .map((obj) => (
+                <styled.li
+                  key={obj.id}
+                  bg="neutral.800"
+                  px={4}
+                  py={1}
+                  rounded="full"
+                >
+                  {obj.type?.name}
+                </styled.li>
+              ))}
           </styled.ol>
 
           <styled.nav mt={12}>
