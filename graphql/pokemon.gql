@@ -12,21 +12,6 @@ query Pokemons(
   ) {
     id
     name
-    specy: pokemon_v2_pokemonspecy {
-      id
-      evolutionChain: pokemon_v2_evolutionchain {
-        id
-        evolutions: pokemon_v2_pokemonspecies {
-          id
-          name
-          evolveFrom: evolves_from_species_id
-          evolveTrigger: pokemon_v2_pokemonevolutions {
-            id
-            minLevel: min_level
-          }
-        }
-      }
-    }
     types: pokemon_v2_pokemontypes {
       id
       type: pokemon_v2_type {

@@ -41,7 +41,7 @@ import {Portal} from '@ark-ui/react';
 import {usePathname, useRouter, useSearchParams} from 'next/navigation';
 import {Fragment, useReducer} from 'react';
 import {parse} from 'valibot';
-import {FilterSchema, TFilterSchema} from './utils';
+import {FilterSchema, FilterSchemaOuput} from './utils';
 
 export function Filter() {
   const router = useRouter();
@@ -49,7 +49,7 @@ export function Filter() {
   const searchParams = useSearchParams();
 
   const [filter, setFilter] = useReducer(
-    (prev: TFilterSchema, next: Partial<TFilterSchema>) => ({
+    (prev: FilterSchemaOuput, next: Partial<FilterSchemaOuput>) => ({
       ...prev,
       ...next,
     }),
@@ -138,6 +138,7 @@ export function Filter() {
 
           s.delete('search');
           s.delete('type');
+          s.delete('page');
 
           if (filter.search) {
             s.set('search', filter.search);

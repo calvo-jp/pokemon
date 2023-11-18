@@ -1,7 +1,7 @@
 /* eslint-disable */
 // @ts-nocheck
 // Generated file
-// Last modified: Wed, 15 Nov 2023 15:31:13 GMT
+// Last modified: Sat, 18 Nov 2023 07:19:46 GMT
 import {GraphQLClient} from 'graphql-request';
 import {GraphQLClientRequestHeaders} from 'graphql-request/build/cjs/types';
 import {gql} from 'graphql-request';
@@ -18529,18 +18529,6 @@ export type PokemonsQuery = {
   pokemons: Array<{
     id: number;
     name: string;
-    specy?: {
-      id: number;
-      evolutionChain?: {
-        id: number;
-        evolutions: Array<{
-          id: number;
-          name: string;
-          evolveFrom?: number | null;
-          evolveTrigger: Array<{id: number; minLevel?: number | null}>;
-        }>;
-      } | null;
-    } | null;
     types: Array<{id: number; type?: {id: number; name: string} | null}>;
     sprites: Array<{id: number; sprites: string}>;
   }>;
@@ -18619,21 +18607,6 @@ export const PokemonsDocument = gql`
     ) {
       id
       name
-      specy: pokemon_v2_pokemonspecy {
-        id
-        evolutionChain: pokemon_v2_evolutionchain {
-          id
-          evolutions: pokemon_v2_pokemonspecies {
-            id
-            name
-            evolveFrom: evolves_from_species_id
-            evolveTrigger: pokemon_v2_pokemonevolutions {
-              id
-              minLevel: min_level
-            }
-          }
-        }
-      }
       types: pokemon_v2_pokemontypes {
         id
         type: pokemon_v2_type {

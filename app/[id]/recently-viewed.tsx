@@ -16,18 +16,22 @@ import {CarouselControl, CarouselNextTrigger} from '@ark-ui/react';
 import {useLocalStorage} from 'react-use';
 
 export function RecentlyViewed() {
-  const [state, setState] = useLocalStorage<string[]>('recently-viewed', [], {
-    raw: false,
-    serializer(value) {
-      return JSON.stringify(value);
+  const [pokemons, setPokemons] = useLocalStorage<string[]>(
+    'recently-viewed',
+    [],
+    {
+      raw: false,
+      serializer(value) {
+        return JSON.stringify(value);
+      },
+      deserializer(value) {
+        /* TODO: use valibot */
+        return JSON.parse(value);
+      },
     },
-    deserializer(value) {
-      /* TODO: use valibot */
-      return JSON.parse(value);
-    },
-  });
+  );
 
-  console.log(state);
+  if (!pokemons?.length) return null;
 
   return (
     <Carousel mt={8} display="flex" alignItems="center" gap={6}>

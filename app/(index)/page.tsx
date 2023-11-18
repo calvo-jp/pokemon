@@ -1,11 +1,26 @@
 import {Image} from '@/components/image';
 import {Link} from '@/components/link';
+import {PokemonsQuery} from '@/graphql';
 import {AspectRatio, Box, Grid, styled} from '@/styled-system/jsx';
+import {capitalize} from '@/utils/capitalize';
 import {Fragment} from 'react';
+import {parse} from 'valibot';
 import {Filter} from './filter';
 import {PageNav} from './page-nav';
+import {GetPokemonsArgsSchema, getPokemons} from './utils';
 
-export default async function Pokemons() {
+export default async function Pokemons({
+  searchParams,
+}: {
+  searchParams: {[key: string]: any};
+}) {
+  const search = parse(GetPokemonsArgsSchema, {
+    ...searchParams,
+    types: searchParams.type,
+  });
+
+  const {pokemons} = await getPokemons(search);
+
   return (
     <Fragment>
       <Filter />
@@ -17,8 +32,8 @@ export default async function Pokemons() {
         mt={4}
         gap={5}
       >
-        {Array.from({length: 20}).map((_, i) => (
-          <Pokemon key={i} />
+        {pokemons.map((pokemon) => (
+          <Pokemon key={pokemon.id} data={pokemon} />
         ))}
       </Grid>
       <PageNav />
@@ -26,7 +41,11 @@ export default async function Pokemons() {
   );
 }
 
-function Pokemon() {
+interface PokemonProps {
+  data: NonNullable<PokemonsQuery['pokemons']>[number];
+}
+
+function Pokemon({data}: PokemonProps) {
   return (
     <Link
       href="/1"
@@ -43,7 +62,7 @@ function Pokemon() {
     >
       <AspectRatio mx={6} bg="neutral.700" rounded="full" ratio={1}>
         <Image
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/31.png"
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${data.id}.png`}
           alt=""
           width={400}
           height={400}
@@ -53,15 +72,29 @@ function Pokemon() {
       </AspectRatio>
 
       <Box px={6} mt={5}>
-        <styled.h2 fontSize="2xl">Bulbasor</styled.h2>
+        <styled.h2 fontSize="2xl">
+          {capitalize(data.name, {delimiter: '-'})}
+        </styled.h2>
 
         <styled.ul mt={2} display="flex" gap={2} flexWrap="wrap" fontSize="sm">
-          <styled.li bg="neutral.700" px={2.5} py={0.5} rounded="full">
-            Grass
-          </styled.li>
-          <styled.li bg="neutral.700" px={2.5} py={0.5} rounded="full">
-            Poision
-          </styled.li>
+          {data.types
+            .filter((obj) => obj.type)
+            .slice(0, 2)
+            .map(({id, type}) => {
+              if (!type) return null;
+
+              return (
+                <styled.li
+                  key={id}
+                  bg="neutral.700"
+                  px={2.5}
+                  py={0.5}
+                  rounded="full"
+                >
+                  {type.name}
+                </styled.li>
+              );
+            })}
         </styled.ul>
       </Box>
     </Link>
