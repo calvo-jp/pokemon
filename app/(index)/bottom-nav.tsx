@@ -10,7 +10,8 @@ import {
 } from '@/components/pagination';
 import {usePathname, useRouter, useSearchParams} from 'next/navigation';
 import {Fragment} from 'react';
-import {fallback, object, optional, parse, string, transform} from 'valibot';
+import {parse} from 'valibot';
+import {PaginationSchema} from './utils';
 
 export function BottomNav() {
   const router = useRouter();
@@ -68,8 +69,3 @@ export function BottomNav() {
     </Pagination>
   );
 }
-
-const PaginationSchema = object({
-  page: fallback(transform(optional(string()), Number), 1),
-  size: fallback(transform(optional(string()), Number), 20),
-});

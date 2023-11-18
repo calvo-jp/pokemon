@@ -40,33 +40,32 @@ import {Box, Flex, VisuallyHidden, styled} from '@/styled-system/jsx';
 import {Portal} from '@ark-ui/react';
 import {usePathname, useRouter, useSearchParams} from 'next/navigation';
 import {Fragment, useReducer} from 'react';
+import {parse} from 'valibot';
+import {FilterSchema, TFilterSchema} from './utils';
 
 export function TopNav() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const [values, setValues] = useReducer(
-    (
-      prev: {search: string; types: string[]},
-      next: {search?: string; types?: string[]},
-    ) => ({
+  const [filter, setFilter] = useReducer(
+    (prev: TFilterSchema, next: Partial<TFilterSchema>) => ({
       ...prev,
       ...next,
     }),
-    {
-      search: searchParams.get('search') ?? '',
-      types: searchParams.getAll('type') ?? [],
-    },
+    parse(FilterSchema, {
+      search: searchParams.get('search'),
+      types: searchParams.getAll('type'),
+    }),
   );
 
   return (
     <Flex gap={4} alignItems="center">
       <Input
         placeholder="Enter keyword"
-        value={values.search}
+        value={filter.search}
         onChange={(evt) => {
-          setValues({search: evt.target.value});
+          setFilter({search: evt.target.value});
         }}
       />
 
@@ -78,9 +77,9 @@ export function TopNav() {
         positioning={{
           sameWidth: true,
         }}
-        value={values.types}
+        value={filter.types}
         onValueChange={(details) => {
-          setValues({types: details.value});
+          setFilter({types: details.value});
         }}
       >
         {(ctx) => (
@@ -140,12 +139,12 @@ export function TopNav() {
           s.delete('search');
           s.delete('type');
 
-          if (values.search) {
-            s.set('search', values.search);
+          if (filter.search) {
+            s.set('search', filter.search);
           }
 
-          if (values.types.length > 0) {
-            values.types.forEach((type) => {
+          if (filter.types.length > 0) {
+            filter.types.forEach((type) => {
               s.append('type', type);
             });
           }
