@@ -24,7 +24,7 @@ query Pokemons(
       sprites
     }
   }
-  details: pokemon_v2_pokemon_aggregate {
+  details: pokemon_v2_pokemon_aggregate(where: $where) {
     aggregate {
       count
     }

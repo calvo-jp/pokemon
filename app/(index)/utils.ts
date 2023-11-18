@@ -86,9 +86,6 @@ export const getPokemons = cache(async (input: GetPokemonsArgsSchemaOutput) => {
   return await getSdk(graphqlClient).Pokemons({
     limit: size,
     offset: size * (page - 1),
-    orderBy: {
-      name: 'asc',
-    },
     where: {
       ...(search && {
         name: {

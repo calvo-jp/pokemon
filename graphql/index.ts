@@ -1,7 +1,7 @@
 /* eslint-disable */
 // @ts-nocheck
 // Generated file
-// Last modified: Sat, 18 Nov 2023 07:19:46 GMT
+// Last modified: Sat, 18 Nov 2023 07:26:23 GMT
 import {GraphQLClient} from 'graphql-request';
 import {GraphQLClientRequestHeaders} from 'graphql-request/build/cjs/types';
 import {gql} from 'graphql-request';
@@ -18619,7 +18619,7 @@ export const PokemonsDocument = gql`
         sprites
       }
     }
-    details: pokemon_v2_pokemon_aggregate {
+    details: pokemon_v2_pokemon_aggregate(where: $where) {
       aggregate {
         count
       }

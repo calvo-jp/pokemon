@@ -13,7 +13,13 @@ import {Fragment} from 'react';
 import {parse} from 'valibot';
 import {PaginationSchema} from './utils';
 
-export function PageNav() {
+interface PageNavProps {
+  data: {
+    count: number;
+  };
+}
+
+export function PageNav(props: PageNavProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -29,7 +35,7 @@ export function PageNav() {
       /* @ts-expect-error */
       page={pagination.page}
       pageSize={pagination.size}
-      count={1000}
+      count={props.data.count}
       onPageChange={(o) => {
         const s = new URLSearchParams(searchParams);
 

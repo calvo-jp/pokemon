@@ -19,7 +19,7 @@ export default async function Pokemons({
     types: searchParams.type,
   });
 
-  const {pokemons} = await getPokemons(search);
+  const {pokemons, details} = await getPokemons(search);
 
   return (
     <Fragment>
@@ -36,7 +36,11 @@ export default async function Pokemons({
           <Pokemon key={pokemon.id} data={pokemon} />
         ))}
       </Grid>
-      <PageNav />
+      <PageNav
+        data={{
+          count: details.aggregate?.count ?? 0,
+        }}
+      />
     </Fragment>
   );
 }
