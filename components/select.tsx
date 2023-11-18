@@ -14,6 +14,7 @@ export const SelectContent = styled(parts.Content, {
   base: {
     py: 2,
     bg: 'neutral.700',
+    zIndex: 'modal',
     overflowY: 'auto',
     _focusVisible: {
       outline: '2px solid token(colors.neutral.500)',

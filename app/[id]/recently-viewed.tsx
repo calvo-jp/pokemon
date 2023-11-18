@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Carousel,
   CarouselItem,
@@ -11,8 +13,22 @@ import {Link} from '@/components/link';
 import {css} from '@/styled-system/css';
 import {AspectRatio} from '@/styled-system/jsx';
 import {CarouselControl, CarouselNextTrigger} from '@ark-ui/react';
+import {useLocalStorage} from 'react-use';
 
 export function RecentlyViewed() {
+  const [state, setState] = useLocalStorage<string[]>('recently-viewed', [], {
+    raw: false,
+    serializer(value) {
+      return JSON.stringify(value);
+    },
+    deserializer(value) {
+      /* TODO: use valibot */
+      return JSON.parse(value);
+    },
+  });
+
+  console.log(state);
+
   return (
     <Carousel mt={8} display="flex" alignItems="center" gap={6}>
       <CarouselControl>
