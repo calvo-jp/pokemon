@@ -1,4 +1,5 @@
 import {Box, styled} from '@/styled-system/jsx';
+import {capitalize} from '@/utils/capitalize';
 import {Fragment} from 'react';
 import {getPokemon} from '../utils';
 
@@ -11,24 +12,22 @@ export default async function Moves({params}: {params: {id: string}}) {
         <Box>Quick Moves</Box>
 
         <styled.ul mt={4} display="flex" gap={2}>
-          <styled.li
-            bg="neutral.700"
-            fontSize="sm"
-            rounded="full"
-            px={3}
-            py={1}
-          >
-            Sand Veil
-          </styled.li>
-          <styled.li
-            bg="neutral.700"
-            fontSize="sm"
-            rounded="full"
-            px={3}
-            py={1}
-          >
-            Sand Rush
-          </styled.li>
+          {pokemon?.abilities.map((obj) => {
+            if (!obj.ability) return null;
+
+            return (
+              <styled.li
+                key={obj.ability?.id}
+                bg="neutral.700"
+                fontSize="sm"
+                rounded="full"
+                px={3}
+                py={1}
+              >
+                {capitalize(obj.ability.name, {delimiter: '-'})}
+              </styled.li>
+            );
+          })}
         </styled.ul>
       </Box>
 
@@ -66,40 +65,29 @@ export default async function Moves({params}: {params: {id: string}}) {
             </styled.tr>
           </styled.thead>
           <styled.tbody>
-            <styled.tr>
-              <styled.td>
-                <styled.div
-                  bg="neutral.700"
-                  fontSize="sm"
-                  rounded="full"
-                  display="inline-block"
-                  px={2.5}
-                  py={0.5}
-                >
-                  Scratch
-                </styled.div>
-              </styled.td>
-              <styled.td>40</styled.td>
-              <styled.td>35</styled.td>
-              <styled.td>35</styled.td>
-            </styled.tr>
-            <styled.tr>
-              <styled.td>
-                <styled.div
-                  bg="neutral.700"
-                  fontSize="sm"
-                  rounded="full"
-                  display="inline-block"
-                  px={2.5}
-                  py={0.5}
-                >
-                  Cut
-                </styled.div>
-              </styled.td>
-              <styled.td>50</styled.td>
-              <styled.td>55</styled.td>
-              <styled.td>45</styled.td>
-            </styled.tr>
+            {pokemon?.moves.map((obj) => {
+              if (!obj.move) return null;
+
+              return (
+                <styled.tr key={obj.id}>
+                  <styled.td>
+                    <styled.div
+                      bg="neutral.700"
+                      px={2.5}
+                      py={0.5}
+                      rounded="full"
+                      display="inline-block"
+                      fontSize="sm"
+                    >
+                      {capitalize(obj.move.name, {delimiter: '-'})}
+                    </styled.div>
+                  </styled.td>
+                  <styled.td>{obj.move.power}</styled.td>
+                  <styled.td>{obj.move.pp}</styled.td>
+                  <styled.td>{obj.move.pp}</styled.td>
+                </styled.tr>
+              );
+            })}
           </styled.tbody>
         </styled.table>
       </Box>
