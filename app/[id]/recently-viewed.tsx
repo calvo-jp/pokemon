@@ -19,14 +19,14 @@ import {CarouselControl, CarouselNextTrigger} from '@ark-ui/react';
 import {useEffect} from 'react';
 import {useLocalStorage} from 'react-use';
 
+type TPokemon = NonNullable<PokemonQuery['pokemon']>;
+
 interface RecentlyViewedProps {
-  __rsc_data: NonNullable<PokemonQuery['pokemon']>;
+  __RSC_DATA: TPokemon;
 }
 
 export function RecentlyViewed(props: RecentlyViewedProps) {
-  const [array, setArray] = useLocalStorage<
-    NonNullable<PokemonQuery['pokemon']>[]
-  >('recently-viewed', [], {
+  const [array, setArray] = useLocalStorage<TPokemon[]>('recently-viewed', [], {
     raw: false,
     serializer(value) {
       return JSON.stringify(arrayUnique(value, (obj) => obj.id));
@@ -38,14 +38,14 @@ export function RecentlyViewed(props: RecentlyViewedProps) {
 
   useEffect(() => {
     setArray((current) => {
-      return current ? [props.__rsc_data, ...current] : [props.__rsc_data];
+      return current ? [props.__RSC_DATA, ...current] : [props.__RSC_DATA];
     });
-  }, [props.__rsc_data, setArray]);
+  }, [props.__RSC_DATA, setArray]);
 
   if (!array || array.length < 0) return null;
 
   const listExcludingCurrent = array.filter(
-    (pokemon) => pokemon.id !== props.__rsc_data.id,
+    (pokemon) => pokemon.id !== props.__RSC_DATA.id,
   );
 
   const chunks = arrayChunk(listExcludingCurrent, 6);

@@ -15,7 +15,7 @@ import {parse} from 'valibot';
 import {PaginationSchema} from './utils';
 
 interface PageNavProps {
-  __rsc_data: PokemonsQuery;
+  __RSC_DATA: PokemonsQuery;
 }
 
 export function PageNav(props: PageNavProps) {
@@ -34,7 +34,7 @@ export function PageNav(props: PageNavProps) {
       /* @ts-expect-error */
       page={pagination.page}
       pageSize={pagination.size}
-      count={props.__rsc_data.details.aggregate?.count ?? 0}
+      count={props.__RSC_DATA.details.aggregate?.count ?? 0}
       onPageChange={(o) => {
         const s = new URLSearchParams(searchParams);
 

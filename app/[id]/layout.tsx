@@ -81,7 +81,7 @@ export default async function Layout({
             />
           </Box>
 
-          <RecentlyViewed __rsc_data={pokemon} />
+          <RecentlyViewed __RSC_DATA={pokemon} />
         </Box>
 
         <Box flexGrow={1}>

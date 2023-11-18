@@ -41,7 +41,7 @@ export default async function Pokemons(props: PokemonsProps) {
           <Pokemon key={pokemon.id} data={pokemon} />
         ))}
       </Grid>
-      <PageNav __rsc_data={data} />
+      <PageNav __RSC_DATA={data} />
     </Fragment>
   );
 }
