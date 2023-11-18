@@ -5,11 +5,21 @@ import {
   ProgressValueText,
 } from '@/components/progress';
 import {Box, VStack, styled} from '@/styled-system/jsx';
+import {capitalize} from '@/utils/capitalize';
 import {Fragment} from 'react';
 import {getPokemon} from '../utils';
+import {getResistanceAndWeakness} from './utils';
 
 export default async function Statistics({params}: {params: {id: string}}) {
   const pokemon = await getPokemon(parseInt(params.id));
+  const elements = pokemon?.types
+    .map((obj) => obj.type?.id)
+    .filter(Boolean) as number[];
+
+  const {resistance, weaknesses} = await getResistanceAndWeakness(elements);
+
+  console.log({resistance});
+  console.log({weaknesses});
 
   return (
     <Fragment>
@@ -31,51 +41,18 @@ export default async function Statistics({params}: {params: {id: string}}) {
         <Box>Weakness</Box>
 
         <styled.ul mt={4} display="flex" gap={2}>
-          <styled.li
-            bg="neutral.700"
-            fontSize="sm"
-            rounded="full"
-            px={3}
-            py={1}
-          >
-            Water
-          </styled.li>
-          <styled.li
-            bg="neutral.700"
-            fontSize="sm"
-            rounded="full"
-            px={3}
-            py={1}
-          >
-            Grass
-          </styled.li>
-          <styled.li
-            bg="neutral.700"
-            fontSize="sm"
-            rounded="full"
-            px={3}
-            py={1}
-          >
-            Ice
-          </styled.li>
-          <styled.li
-            bg="neutral.700"
-            fontSize="sm"
-            rounded="full"
-            px={3}
-            py={1}
-          >
-            Bug
-          </styled.li>
-          <styled.li
-            bg="neutral.700"
-            fontSize="sm"
-            rounded="full"
-            px={3}
-            py={1}
-          >
-            Flying
-          </styled.li>
+          {weaknesses.map(({name}) => (
+            <styled.li
+              key={name}
+              px={3}
+              py={1}
+              bg="neutral.700"
+              fontSize="sm"
+              rounded="full"
+            >
+              {capitalize(name)}
+            </styled.li>
+          ))}
         </styled.ul>
       </Box>
 
@@ -83,51 +60,18 @@ export default async function Statistics({params}: {params: {id: string}}) {
         <Box>Resistance</Box>
 
         <styled.ul mt={4} display="flex" gap={2}>
-          <styled.li
-            bg="neutral.700"
-            fontSize="sm"
-            rounded="full"
-            px={3}
-            py={1}
-          >
-            Poision
-          </styled.li>
-          <styled.li
-            bg="neutral.700"
-            fontSize="sm"
-            rounded="full"
-            px={3}
-            py={1}
-          >
-            Rock
-          </styled.li>
-          <styled.li
-            bg="neutral.700"
-            fontSize="sm"
-            rounded="full"
-            px={3}
-            py={1}
-          >
-            Steel
-          </styled.li>
-          <styled.li
-            bg="neutral.700"
-            fontSize="sm"
-            rounded="full"
-            px={3}
-            py={1}
-          >
-            Fire
-          </styled.li>
-          <styled.li
-            bg="neutral.700"
-            fontSize="sm"
-            rounded="full"
-            px={3}
-            py={1}
-          >
-            Electric
-          </styled.li>
+          {resistance.map(({name}) => (
+            <styled.li
+              key={name}
+              px={3}
+              py={1}
+              bg="neutral.700"
+              fontSize="sm"
+              rounded="full"
+            >
+              {capitalize(name)}
+            </styled.li>
+          ))}
         </styled.ul>
       </Box>
     </Fragment>
