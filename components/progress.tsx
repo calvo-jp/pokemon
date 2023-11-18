@@ -30,7 +30,7 @@ function useProgress(props: UseProgressProps) {
   let percentLoaded: number;
 
   percentLoaded = (diff / range) * 100;
-  percentLoaded = Math.round(percentLoaded);
+  percentLoaded = Math.floor(percentLoaded);
 
   return {
     min,
