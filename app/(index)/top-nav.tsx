@@ -12,6 +12,7 @@ import poison from '@/assets/images/poison.svg';
 import rock from '@/assets/images/rock.svg';
 import steel from '@/assets/images/steel.svg';
 import water from '@/assets/images/water.svg';
+import {Button} from '@/components/button';
 import {
   IconCheck,
   IconChevronDown,
@@ -19,7 +20,7 @@ import {
   IconX,
 } from '@/components/icons';
 import {Image} from '@/components/image';
-import {Input, InputGroup, InputIcon} from '@/components/input-group';
+import {Input} from '@/components/input';
 import {
   Select,
   SelectClearTrigger,
@@ -38,31 +39,30 @@ import {css, cx} from '@/styled-system/css';
 import {Box, Flex, styled} from '@/styled-system/jsx';
 import {Portal} from '@ark-ui/react';
 import {usePathname, useRouter, useSearchParams} from 'next/navigation';
-import {Fragment} from 'react';
+import {Fragment, useState} from 'react';
 
 export function TopNav() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  const [values, setValues] = useState({
+    search: searchParams.get('search') ?? '',
+    types: searchParams.getAll('types') ?? [],
+  });
+
   return (
-    <Flex gap={4}>
-      <InputGroup flexGrow={1}>
-        <Input
-          placeholder="Search"
-          value={searchParams.get('search') ?? ''}
-          onChange={(e) => {
-            const s = new URLSearchParams(searchParams);
-
-            s.set('search', e.target.value);
-
-            router.push(`${pathname}?${s.toString()}`);
-          }}
-        />
-        <InputIcon asChild>
-          <IconSearch />
-        </InputIcon>
-      </InputGroup>
+    <Flex gap={4} alignItems="center">
+      <Input
+        placeholder="Search"
+        value={values.search}
+        onChange={(evt) => {
+          setValues((current) => ({
+            ...current,
+            search: evt.target.value,
+          }));
+        }}
+      />
 
       <Select
         w="18rem"
@@ -71,15 +71,14 @@ export function TopNav() {
         positioning={{
           sameWidth: true,
         }}
-        value={searchParams.getAll('types') ?? []}
-        onValueChange={(o) => {
-          const s = new URLSearchParams(searchParams);
-
-          s.delete('types');
-          o.value.forEach((v) => s.append('types', v));
-
-          router.push(`${pathname}?${s.toString()}`);
+        value={values.types}
+        onValueChange={(details) => {
+          setValues((current) => ({
+            ...current,
+            types: details.value,
+          }));
         }}
+        flexShrink={0}
       >
         {(ctx) => (
           <Fragment>
@@ -129,6 +128,24 @@ export function TopNav() {
           </Fragment>
         )}
       </Select>
+
+      <Button
+        flexShrink={0}
+        onClick={() => {
+          const s = new URLSearchParams(searchParams);
+
+          s.set('search', values.search);
+          s.delete('types');
+
+          values.types.forEach((type) => {
+            s.append('types', type);
+          });
+
+          router.push(`${pathname}?${s.toString()}`);
+        }}
+      >
+        <IconSearch w={6} h={6} color="neutral.400" />
+      </Button>
     </Flex>
   );
 }
