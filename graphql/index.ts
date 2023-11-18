@@ -1,7 +1,7 @@
 /* eslint-disable */
 // @ts-nocheck
 // Generated file
-// Last modified: Sat, 18 Nov 2023 08:50:53 GMT
+// Last modified: Sat, 18 Nov 2023 14:01:34 GMT
 import {GraphQLClient} from 'graphql-request';
 import {GraphQLClientRequestHeaders} from 'graphql-request/build/cjs/types';
 import {gql} from 'graphql-request';
@@ -18584,13 +18584,21 @@ export type PokemonQuery = {
           id: number;
           name: string;
           evolvesFrom?: number | null;
-          evolvutions: Array<{id: number; minLevel?: number | null}>;
+          evolutions: Array<{id: number; minLevel?: number | null}>;
         }>;
       } | null;
       flavorTexts: Array<{id: number; flavorText: string}>;
     } | null;
     abilities: Array<{id: number; ability?: {id: number; name: string} | null}>;
   } | null;
+};
+
+export type PokemonSpritesQueryVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+export type PokemonSpritesQuery = {
+  sprites: Array<{id: number; sprite: string}>;
 };
 
 export const PokemonsDocument = gql`
@@ -18698,7 +18706,7 @@ export const PokemonDocument = gql`
             id
             name
             evolvesFrom: evolves_from_species_id
-            evolvutions: pokemon_v2_pokemonevolutions {
+            evolutions: pokemon_v2_pokemonevolutions {
               id
               minLevel: min_level
             }
@@ -18719,6 +18727,14 @@ export const PokemonDocument = gql`
           name
         }
       }
+    }
+  }
+`;
+export const PokemonSpritesDocument = gql`
+  query PokemonSprites($id: Int!) {
+    sprites: pokemon_v2_pokemonsprites(where: {pokemon_id: {_eq: $id}}) {
+      id
+      sprite: sprites
     }
   }
 `;
@@ -18779,6 +18795,21 @@ export function getSdk(
             ...wrappedRequestHeaders,
           }),
         'Pokemon',
+        'query',
+      );
+    },
+    PokemonSprites(
+      variables: PokemonSpritesQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<PokemonSpritesQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<PokemonSpritesQuery>(
+            PokemonSpritesDocument,
+            variables,
+            {...requestHeaders, ...wrappedRequestHeaders},
+          ),
+        'PokemonSprites',
         'query',
       );
     },

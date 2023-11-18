@@ -1,19 +1,35 @@
 import {IconMoveRight} from '@/components/icons';
 import {Image} from '@/components/image';
 import {Box, HStack, VStack, styled} from '@/styled-system/jsx';
+import {capitalize} from '@/utils/capitalize';
 import {Fragment} from 'react';
-import {getPokemon} from '../utils';
+import {getPokemon, getPokemonImage} from '../utils';
 
 export default async function Evolutions({params}: {params: {id: string}}) {
   const pokemon = await getPokemon(parseInt(params.id));
 
+  if (!pokemon) return null;
+
+  const species = pokemon?.specy?.evolutionChain?.species ?? [];
+  const currentForm = species.find((obj) => obj.id === pokemon.id);
+  const previousForm = species.find(
+    (obj) => obj.id === currentForm?.evolvesFrom,
+  );
+
   return (
     <Fragment>
       <Box>
-        <styled.p>
-          There are currently a total of 2 Pokémon in the Sandshrew family.
-        </styled.p>
-        <styled.p>Sandshrew evolves from which costs 25 Candy</styled.p>
+        <styled.span>
+          There are currently a total of {species.length} Pokémon in the{' '}
+          {capitalize(pokemon.name, {delimiter: '-'})} family.
+        </styled.span>{' '}
+        {previousForm && (
+          <styled.span>
+            {capitalize(pokemon.name, {delimiter: '-'})} evolves from{' '}
+            {capitalize(previousForm.name, {delimiter: '-'})} which
+            costs&nbsp;25&nbsp;Candy.
+          </styled.span>
+        )}
       </Box>
       <VStack
         mt={8}
@@ -23,47 +39,60 @@ export default async function Evolutions({params}: {params: {id: string}}) {
         gap={8}
         alignItems="stretch"
       >
-        <Item />
-        <Item />
-        <Item />
+        {species.map((obj) => {
+          return (
+            <HStack key={obj.id}>
+              <Box w={32} h={32} p={4} bg="neutral.700">
+                <Box
+                  bg="neutral.600"
+                  rounded="full"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  aspectRatio={1}
+                >
+                  <PokemonImage id={obj.evolvesFrom ?? obj.id} />
+                </Box>
+              </Box>
+
+              <VStack flexGrow={1}>
+                <Box fontFamily="mono">
+                  {obj.evolutions
+                    .map((o) => o.minLevel)
+                    .filter(Boolean)
+                    .at(0) ?? 0}
+                </Box>
+                <IconMoveRight w={6} h={6} />
+              </VStack>
+
+              <Box w={32} h={32} p={4} bg="neutral.700">
+                <Box bg="neutral.600" rounded="full">
+                  <PokemonImage id={obj.id} />
+                </Box>
+              </Box>
+            </HStack>
+          );
+        })}
       </VStack>
     </Fragment>
   );
 }
 
-function Item() {
+async function PokemonImage({id}: {id: number}) {
+  const image = await getPokemonImage(id);
+
+  if (!image) return null;
+
   return (
-    <HStack>
-      <Box w={32} h={32} p={4} bg="neutral.700">
-        <Box bg="neutral.600" rounded="full">
-          <Image
-            src="https://pokedex-ohayo003.vercel.app/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2FPokeAPI%2Fsprites%2Fmaster%2Fsprites%2Fpokemon%2Fother%2Fhome%2F27.png&w=1920&q=75"
-            alt=""
-            width={250}
-            height={250}
-            objectFit="cover"
-            w="full"
-            h="full"
-          />
-        </Box>
-      </Box>
-      <VStack flexGrow={1}>
-        <Box fontFamily="mono">11</Box>
-        <IconMoveRight w={6} h={6} />
-      </VStack>
-      <Box w={32} h={32} p={4} bg="neutral.700">
-        <Box bg="neutral.600" rounded="full">
-          <Image
-            src="https://pokedex-ohayo003.vercel.app/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2FPokeAPI%2Fsprites%2Fmaster%2Fsprites%2Fpokemon%2Fother%2Fhome%2F28.png&w=1920&q=75"
-            alt=""
-            width={250}
-            height={250}
-            objectFit="cover"
-            w="full"
-            h="full"
-          />
-        </Box>
-      </Box>
-    </HStack>
+    <Image
+      src={image}
+      alt=""
+      width={250}
+      height={250}
+      objectFit="cover"
+      h="auto"
+      maxH="full"
+      maxW="full"
+    />
   );
 }

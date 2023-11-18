@@ -105,7 +105,7 @@ query Pokemon($id: Int!) {
           id
           name
           evolvesFrom: evolves_from_species_id
-          evolvutions: pokemon_v2_pokemonevolutions {
+          evolutions: pokemon_v2_pokemonevolutions {
             id
             minLevel: min_level
           }
@@ -127,5 +127,12 @@ query Pokemon($id: Int!) {
         name
       }
     }
+  }
+}
+
+query PokemonSprites($id: Int!) {
+  sprites: pokemon_v2_pokemonsprites(where: {pokemon_id: {_eq: $id}}) {
+    id
+    sprite: sprites
   }
 }
