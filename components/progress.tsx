@@ -29,9 +29,8 @@ function useProgress(props: UseProgressProps) {
 
   let percentLoaded: number;
 
-  percentLoaded = (diff / range) * max;
-  percentLoaded = Math.min(max, Math.max(min, percentLoaded));
-  percentLoaded = Math.floor(percentLoaded);
+  percentLoaded = (diff / range) * 100;
+  percentLoaded = Math.round(percentLoaded);
 
   return {
     min,

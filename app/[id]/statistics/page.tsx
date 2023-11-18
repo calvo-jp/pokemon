@@ -18,7 +18,7 @@ export default async function Statistics({params}: {params: {id: string}}) {
           if (!obj.stat) return null;
 
           return (
-            <Progress key={obj.id}>
+            <Progress key={obj.id} value={obj.base}>
               <ProgressLabel w={12}>{formatStat(obj.stat.name)}</ProgressLabel>
               <ProgressValue />
               <ProgressValueText w={8} textAlign="right" color="neutral.400" />
