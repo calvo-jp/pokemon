@@ -1,12 +1,12 @@
 'use client';
 
-import { useInterval } from '@/hooks/use-interval';
-import { styled } from '@/styled-system/jsx';
-import { Assign, HTMLStyledProps } from '@/styled-system/types';
-import { clamp } from '@/utils/clamp';
-import { createContext } from '@/utils/create-context';
-import { HTMLArkProps, ark } from '@ark-ui/react';
-import { forwardRef, useId, useState } from 'react';
+import {useInterval} from '@/hooks/use-interval';
+import {styled} from '@/styled-system/jsx';
+import {Assign, HTMLStyledProps} from '@/styled-system/types';
+import {clamp} from '@/utils/clamp';
+import {createContext} from '@/utils/create-context';
+import {HTMLArkProps, ark} from '@ark-ui/react';
+import {forwardRef, useId, useState} from 'react';
 
 interface UseProgressProps {
   id?: string;
