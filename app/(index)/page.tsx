@@ -59,7 +59,7 @@ function Pokemon({data}: PokemonProps) {
 
   return (
     <Link
-      href="/1"
+      href={`/${data.id}`}
       bg="neutral.800"
       py={6}
       transition="transform token(durations.slow)"

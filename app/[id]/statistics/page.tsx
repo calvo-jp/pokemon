@@ -6,8 +6,11 @@ import {
 } from '@/components/progress';
 import {Box, VStack, styled} from '@/styled-system/jsx';
 import {Fragment} from 'react';
+import {getPokemon} from '../utils';
 
-export default function Statistics({params}: {params: {id: string}}) {
+export default async function Statistics({params}: {params: {id: string}}) {
+  const pokemon = await getPokemon(parseInt(params.id));
+
   return (
     <Fragment>
       <VStack alignItems="stretch" gap={3} bg="neutral.800" p={8}>

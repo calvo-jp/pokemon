@@ -1,7 +1,10 @@
 import {Box, styled} from '@/styled-system/jsx';
 import {Fragment} from 'react';
+import {getPokemon} from '../utils';
 
-export default function Moves({params}: {params: {id: string}}) {
+export default async function Moves({params}: {params: {id: string}}) {
+  const pokemon = await getPokemon(parseInt(params.id));
+
   return (
     <Fragment>
       <Box bg="neutral.800" p={8}>

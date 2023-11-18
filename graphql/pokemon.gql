@@ -45,6 +45,11 @@ query Pokemon($id: Int!) {
     height
     weight
 
+    sprites: pokemon_v2_pokemonsprites {
+      id
+      sprites
+    }
+
     types: pokemon_v2_pokemontypes {
       id
       type: pokemon_v2_type {

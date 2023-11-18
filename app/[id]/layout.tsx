@@ -13,14 +13,26 @@ import {
 import {Image} from '@/components/image';
 import {Link} from '@/components/link';
 import {Box, Flex, styled} from '@/styled-system/jsx';
+import {capitalize} from '@/utils/capitalize';
 import {Fragment, PropsWithChildren} from 'react';
 import {CurrentPageLabel} from './current-page-label';
 import {RecentlyViewed} from './recently-viewed';
+import {getPokemon} from './utils';
 
-export default function Layout({
+export default async function Layout({
   params,
   children,
 }: PropsWithChildren<{params: {id: string}}>) {
+  const pokemon = await getPokemon(parseInt(params.id));
+
+  if (!pokemon) return null; /* 404 */
+
+  const sprite = JSON.parse(pokemon.sprites.at(0)?.sprites ?? '{}');
+  const image =
+    sprite.other?.dream_world?.front_default ??
+    sprite.other?.dream_world?.front_default ??
+    '';
+
   return (
     <Fragment>
       <Breadcrumbs>
@@ -32,7 +44,9 @@ export default function Layout({
           </BreadcrumbItem>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link href="/1">Bulbasaur</Link>
+              <Link href="/1">
+                {capitalize(pokemon.name, {delimiter: '-'})}
+              </Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbItem>
@@ -45,19 +59,29 @@ export default function Layout({
 
       <Flex gap={16} mt={16}>
         <Box w="20rem" flexShrink={0}>
-          <Box bg="neutral.800" h="24rem" p={8}>
+          <Box
+            bg="neutral.800"
+            h="24rem"
+            w="full"
+            p={8}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            aspectRatio={1}
+          >
             <Image
-              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png"
+              src={image}
               alt=""
-              width={500}
-              height={500}
+              width={600}
+              height={600}
               objectFit="cover"
-              w="full"
-              h="full"
+              h="auto"
+              maxH="full"
+              maxW="full"
             />
           </Box>
 
-          <RecentlyViewed />
+          <RecentlyViewed __rsc_data={pokemon} />
         </Box>
 
         <Box flexGrow={1}>

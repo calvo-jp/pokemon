@@ -1,7 +1,10 @@
 import {Box, Divider, HStack} from '@/styled-system/jsx';
 import {Fragment} from 'react';
+import {getPokemon} from './utils';
 
-export default function Pokemon({params}: {params: {id: string}}) {
+export default async function Pokemon({params}: {params: {id: string}}) {
+  const pokemon = await getPokemon(parseInt(params.id));
+
   return (
     <Fragment>
       <Box>
@@ -14,14 +17,14 @@ export default function Pokemon({params}: {params: {id: string}}) {
           <Box fontSize="xs" color="neutral.400">
             Weight
           </Box>
-          <Box>120 KG</Box>
+          <Box>{pokemon?.weight ?? 0} KG</Box>
         </Box>
         <Divider orientation="vertical" h={8} color="neutral.700" />
         <Box>
           <Box fontSize="xs" color="neutral.400">
             Height
           </Box>
-          <Box>6 M</Box>
+          <Box>{pokemon?.height ?? 0} M</Box>
         </Box>
       </HStack>
 

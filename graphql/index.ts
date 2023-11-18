@@ -1,7 +1,7 @@
 /* eslint-disable */
 // @ts-nocheck
 // Generated file
-// Last modified: Sat, 18 Nov 2023 07:26:23 GMT
+// Last modified: Sat, 18 Nov 2023 08:50:53 GMT
 import {GraphQLClient} from 'graphql-request';
 import {GraphQLClientRequestHeaders} from 'graphql-request/build/cjs/types';
 import {gql} from 'graphql-request';
@@ -18549,6 +18549,7 @@ export type PokemonQuery = {
     name: string;
     height?: number | null;
     weight?: number | null;
+    sprites: Array<{id: number; sprites: string}>;
     types: Array<{id: number; type?: {id: number; name: string} | null}>;
     stats: Array<{
       id: number;
@@ -18641,6 +18642,10 @@ export const PokemonDocument = gql`
       name
       height
       weight
+      sprites: pokemon_v2_pokemonsprites {
+        id
+        sprites
+      }
       types: pokemon_v2_pokemontypes {
         id
         type: pokemon_v2_type {

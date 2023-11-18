@@ -2,8 +2,11 @@ import {IconMoveRight} from '@/components/icons';
 import {Image} from '@/components/image';
 import {Box, HStack, VStack, styled} from '@/styled-system/jsx';
 import {Fragment} from 'react';
+import {getPokemon} from '../utils';
 
-export default function Evolutions({params}: {params: {id: string}}) {
+export default async function Evolutions({params}: {params: {id: string}}) {
+  const pokemon = await getPokemon(parseInt(params.id));
+
   return (
     <Fragment>
       <Box>

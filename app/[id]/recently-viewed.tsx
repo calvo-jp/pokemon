@@ -10,12 +10,17 @@ import {
 import {IconChevronLeft, IconChevronRight} from '@/components/icons';
 import {Image} from '@/components/image';
 import {Link} from '@/components/link';
+import {PokemonQuery} from '@/graphql';
 import {css} from '@/styled-system/css';
 import {AspectRatio} from '@/styled-system/jsx';
 import {CarouselControl, CarouselNextTrigger} from '@ark-ui/react';
 import {useLocalStorage} from 'react-use';
 
-export function RecentlyViewed() {
+interface RecentlyViewedProps {
+  __rsc_data: PokemonQuery['pokemon'];
+}
+
+export function RecentlyViewed(props: RecentlyViewedProps) {
   const [pokemons, setPokemons] = useLocalStorage<string[]>(
     'recently-viewed',
     [],
