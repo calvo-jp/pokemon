@@ -13,7 +13,7 @@ import {Fragment} from 'react';
 import {parse} from 'valibot';
 import {PaginationSchema} from './utils';
 
-export function BottomNav() {
+export function PageNav() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();

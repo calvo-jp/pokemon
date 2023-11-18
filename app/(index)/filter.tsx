@@ -43,7 +43,7 @@ import {Fragment, useReducer} from 'react';
 import {parse} from 'valibot';
 import {FilterSchema, TFilterSchema} from './utils';
 
-export function TopNav() {
+export function Filter() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();

@@ -2,18 +2,16 @@ import {Image} from '@/components/image';
 import {Link} from '@/components/link';
 import {AspectRatio, Box, Grid, styled} from '@/styled-system/jsx';
 import {Fragment} from 'react';
-import {BottomNav} from './bottom-nav';
-import {TopNav} from './top-nav';
+import {Filter} from './filter';
+import {PageNav} from './page-nav';
 
 export default async function Pokemons() {
   return (
     <Fragment>
-      <TopNav />
-
+      <Filter />
       <Box mt={12} color="neutral.300" fontSize="sm" fontStyle="italic">
         Showing 1-20 of 1000
       </Box>
-
       <Grid
         gridTemplateColumns="repeat(auto-fill,minmax(14rem,1fr))"
         mt={4}
@@ -23,8 +21,7 @@ export default async function Pokemons() {
           <Pokemon key={i} />
         ))}
       </Grid>
-
-      <BottomNav />
+      <PageNav />
     </Fragment>
   );
 }
