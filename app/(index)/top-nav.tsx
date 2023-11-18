@@ -56,7 +56,7 @@ export function TopNav() {
     }),
     {
       search: searchParams.get('search') ?? '',
-      types: searchParams.getAll('types') ?? [],
+      types: searchParams.getAll('type') ?? [],
     },
   );
 
@@ -138,10 +138,10 @@ export function TopNav() {
           const s = new URLSearchParams(searchParams);
 
           s.set('search', values.search);
-          s.delete('types');
+          s.delete('type');
 
           values.types.forEach((type) => {
-            s.append('types', type);
+            s.append('type', type);
           });
 
           router.push(`${pathname}?${s.toString()}`);
