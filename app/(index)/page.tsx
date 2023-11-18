@@ -1,8 +1,9 @@
 import {Image} from '@/components/image';
 import {Link} from '@/components/link';
 import {PokemonsQuery} from '@/graphql';
-import {AspectRatio, Box, Grid, styled} from '@/styled-system/jsx';
+import {Box, Grid, styled} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
+import {clamp} from '@/utils/clamp';
 import {Fragment} from 'react';
 import {parse} from 'valibot';
 import {Filter} from './filter';
@@ -14,18 +15,22 @@ export default async function Pokemons({
 }: {
   searchParams: {[key: string]: any};
 }) {
-  const search = parse(GetPokemonsArgsSchema, {
+  const params = parse(GetPokemonsArgsSchema, {
     ...searchParams,
     types: searchParams.type,
   });
 
-  const {pokemons, details} = await getPokemons(search);
+  const {pokemons, details} = await getPokemons(params);
+
+  const count = details.aggregate?.count ?? 0;
+  const start = 1 + (params.page - 1) * params.size;
+  const until = clamp(params.page * params.size, params.size, count);
 
   return (
     <Fragment>
       <Filter />
       <Box mt={12} color="neutral.300" fontSize="sm" fontStyle="italic">
-        Showing 1-20 of 1000
+        Showing {start}-{until} of {count}
       </Box>
       <Grid
         gridTemplateColumns="repeat(auto-fill,minmax(14rem,1fr))"
@@ -36,11 +41,7 @@ export default async function Pokemons({
           <Pokemon key={pokemon.id} data={pokemon} />
         ))}
       </Grid>
-      <PageNav
-        data={{
-          count: details.aggregate?.count ?? 0,
-        }}
-      />
+      <PageNav data={{count}} />
     </Fragment>
   );
 }
@@ -50,6 +51,12 @@ interface PokemonProps {
 }
 
 function Pokemon({data}: PokemonProps) {
+  const sprite = JSON.parse(data.sprites.at(0)?.sprites ?? '{}');
+  const image =
+    sprite.other?.dream_world?.front_default ??
+    sprite.other?.dream_world?.front_default ??
+    '';
+
   return (
     <Link
       href="/1"
@@ -64,19 +71,31 @@ function Pokemon({data}: PokemonProps) {
         outlineOffset: '3px',
       }}
     >
-      <AspectRatio mx={6} bg="neutral.700" rounded="full" ratio={1}>
-        <Image
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${data.id}.png`}
-          alt=""
-          width={400}
-          height={400}
-          draggable={false}
+      <Box px={6}>
+        <Box
+          bg="neutral.700"
           w="full"
-        />
-      </AspectRatio>
+          px={6}
+          rounded="full"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          aspectRatio={1}
+        >
+          <Image
+            src={image}
+            alt=""
+            width={400}
+            height={400}
+            h="auto"
+            maxH="full"
+            maxW="full"
+          />
+        </Box>
+      </Box>
 
       <Box px={6} mt={5}>
-        <styled.h2 fontSize="2xl">
+        <styled.h2 fontSize="2xl" truncate>
           {capitalize(data.name, {delimiter: '-'})}
         </styled.h2>
 
