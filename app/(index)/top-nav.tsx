@@ -37,13 +37,28 @@ import {
 import {css, cx} from '@/styled-system/css';
 import {Box, Flex, styled} from '@/styled-system/jsx';
 import {Portal} from '@ark-ui/react';
+import {usePathname, useRouter, useSearchParams} from 'next/navigation';
 import {Fragment} from 'react';
 
 export function TopNav() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   return (
     <Flex gap={4}>
       <InputGroup flexGrow={1}>
-        <Input placeholder="Search" />
+        <Input
+          placeholder="Search"
+          value={searchParams.get('search') ?? ''}
+          onChange={(e) => {
+            const s = new URLSearchParams(searchParams);
+
+            s.set('search', e.target.value);
+
+            router.push(`${pathname}?${s.toString()}`);
+          }}
+        />
         <InputIcon asChild>
           <IconSearch />
         </InputIcon>
@@ -55,6 +70,15 @@ export function TopNav() {
         multiple
         positioning={{
           sameWidth: true,
+        }}
+        value={searchParams.getAll('types') ?? []}
+        onValueChange={(o) => {
+          const s = new URLSearchParams(searchParams);
+
+          s.delete('types');
+          o.value.forEach((v) => s.append('types', v));
+
+          router.push(`${pathname}?${s.toString()}`);
         }}
       >
         {(ctx) => (
@@ -68,9 +92,7 @@ export function TopNav() {
                     )}
                   >
                     {ctx.hasSelectedItems
-                      ? formatSelectedPokemonTypes(
-                          ctx.selectedItems as PokemonType[],
-                        )
+                      ? formatTypes(ctx.selectedItems as PokemonType[])
                       : 'Choose Types'}
                   </styled.span>
                 </SelectValueText>
@@ -180,7 +202,7 @@ const POKEMON_TYPES: PokemonType[] = [
   },
 ];
 
-function formatSelectedPokemonTypes(list: PokemonType[]) {
+function formatTypes(list: PokemonType[]) {
   let len = list.length;
 
   if (len < 0) return '';

@@ -4,13 +4,21 @@ import {cva} from '@/styled-system/css';
 import {styled} from '@/styled-system/jsx';
 import {Pagination as parts} from '@ark-ui/react';
 
-export const Pagination = styled(parts.Root, {
-  base: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: 2,
+export const Pagination = styled(
+  parts.Root,
+  {
+    base: {
+      display: 'flex',
+      justifyContent: 'center',
+      gap: 2,
+    },
   },
-});
+  {
+    shouldForwardProp(key) {
+      return ['page'].includes(key);
+    },
+  },
+);
 
 export const PaginationEllipsis = styled(parts.Ellipsis, {
   base: {

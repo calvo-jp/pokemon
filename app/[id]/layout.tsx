@@ -15,7 +15,7 @@ import {Link} from '@/components/link';
 import {Box, Flex, styled} from '@/styled-system/jsx';
 import {Fragment, PropsWithChildren} from 'react';
 import {CurrentPageLabel} from './current-page-label';
-import {Recent} from './recent';
+import {RecentlyViewed} from './recently-viewed';
 
 export default function Layout({
   params,
@@ -56,7 +56,8 @@ export default function Layout({
               h="full"
             />
           </Box>
-          <Recent />
+
+          <RecentlyViewed />
         </Box>
 
         <Box flexGrow={1}>

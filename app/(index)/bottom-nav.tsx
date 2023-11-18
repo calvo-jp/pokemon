@@ -8,11 +8,36 @@ import {
   PaginationNextTrigger,
   PaginationPrevTrigger,
 } from '@/components/pagination';
+import {usePathname, useRouter, useSearchParams} from 'next/navigation';
 import {Fragment} from 'react';
+import {fallback, object, optional, parse, string, transform} from 'valibot';
 
 export function BottomNav() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const pagination = parse(PaginationSchema, {
+    page: searchParams.get('page'),
+    size: searchParams.get('size'),
+  });
+
   return (
-    <Pagination mt={12} pageSize={20} count={1000}>
+    <Pagination
+      mt={12}
+      /* @ts-expect-error */
+      page={pagination.page}
+      pageSize={pagination.size}
+      count={1000}
+      onPageChange={(o) => {
+        const s = new URLSearchParams(searchParams);
+
+        s.set('page', `${o.page}`);
+        s.set('size', `${o.pageSize}`);
+
+        router.push(`${pathname}?${s.toString()}`);
+      }}
+    >
       {(ctx) => (
         <Fragment>
           <PaginationPrevTrigger>
@@ -43,3 +68,8 @@ export function BottomNav() {
     </Pagination>
   );
 }
+
+const PaginationSchema = object({
+  page: fallback(transform(optional(string()), Number), 1),
+  size: fallback(transform(optional(string()), Number), 20),
+});

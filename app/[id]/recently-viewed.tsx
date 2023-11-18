@@ -12,7 +12,7 @@ import {css} from '@/styled-system/css';
 import {AspectRatio} from '@/styled-system/jsx';
 import {CarouselControl, CarouselNextTrigger} from '@ark-ui/react';
 
-export function Recent() {
+export function RecentlyViewed() {
   return (
     <Carousel mt={8} display="flex" alignItems="center" gap={6}>
       <CarouselControl>
