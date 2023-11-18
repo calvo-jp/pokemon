@@ -89,7 +89,7 @@ export const getPokemons = cache(async (input: GetPokemonsArgsSchemaOutput) => {
     where: {
       ...(search && {
         name: {
-          _ilike: search,
+          _iregex: search,
         },
       }),
       ...(types.length > 0 && {

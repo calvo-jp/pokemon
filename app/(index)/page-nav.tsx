@@ -8,15 +8,14 @@ import {
   PaginationNextTrigger,
   PaginationPrevTrigger,
 } from '@/components/pagination';
+import {PokemonsQuery} from '@/graphql';
 import {usePathname, useRouter, useSearchParams} from 'next/navigation';
 import {Fragment} from 'react';
 import {parse} from 'valibot';
 import {PaginationSchema} from './utils';
 
 interface PageNavProps {
-  data: {
-    count: number;
-  };
+  __rsc_data: PokemonsQuery;
 }
 
 export function PageNav(props: PageNavProps) {
@@ -35,7 +34,7 @@ export function PageNav(props: PageNavProps) {
       /* @ts-expect-error */
       page={pagination.page}
       pageSize={pagination.size}
-      count={props.data.count}
+      count={props.__rsc_data.details.aggregate?.count ?? 0}
       onPageChange={(o) => {
         const s = new URLSearchParams(searchParams);
 

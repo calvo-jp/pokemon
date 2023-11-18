@@ -10,19 +10,19 @@ import {Filter} from './filter';
 import {PageNav} from './page-nav';
 import {GetPokemonsArgsSchema, getPokemons} from './utils';
 
-export default async function Pokemons({
-  searchParams,
-}: {
-  searchParams: {[key: string]: any};
-}) {
+interface PokemonsProps {
+  searchParams: {[key: string]: unknown};
+}
+
+export default async function Pokemons(props: PokemonsProps) {
   const params = parse(GetPokemonsArgsSchema, {
-    ...searchParams,
-    types: searchParams.type,
+    ...props.searchParams,
+    types: props.searchParams.type,
   });
 
-  const {pokemons, details} = await getPokemons(params);
+  const data = await getPokemons(params);
 
-  const count = details.aggregate?.count ?? 0;
+  const count = data.details.aggregate?.count ?? 0;
   const start = 1 + (params.page - 1) * params.size;
   const until = clamp(params.page * params.size, params.size, count);
 
@@ -37,11 +37,11 @@ export default async function Pokemons({
         mt={4}
         gap={5}
       >
-        {pokemons.map((pokemon) => (
+        {data.pokemons.map((pokemon) => (
           <Pokemon key={pokemon.id} data={pokemon} />
         ))}
       </Grid>
-      <PageNav data={{count}} />
+      <PageNav __rsc_data={data} />
     </Fragment>
   );
 }
