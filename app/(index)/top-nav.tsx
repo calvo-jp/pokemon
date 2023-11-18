@@ -39,33 +39,40 @@ import {css, cx} from '@/styled-system/css';
 import {Box, Flex, styled} from '@/styled-system/jsx';
 import {Portal} from '@ark-ui/react';
 import {usePathname, useRouter, useSearchParams} from 'next/navigation';
-import {Fragment, useState} from 'react';
+import {Fragment, useReducer} from 'react';
 
 export function TopNav() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const [values, setValues] = useState({
-    search: searchParams.get('search') ?? '',
-    types: searchParams.getAll('types') ?? [],
-  });
+  const [values, setValues] = useReducer(
+    (
+      prev: {search: string; types: string[]},
+      next: {search?: string; types?: string[]},
+    ) => ({
+      ...prev,
+      ...next,
+    }),
+    {
+      search: searchParams.get('search') ?? '',
+      types: searchParams.getAll('types') ?? [],
+    },
+  );
 
   return (
     <Flex gap={4} alignItems="center">
       <Input
-        placeholder="Search"
+        placeholder="Enter keyword"
         value={values.search}
         onChange={(evt) => {
-          setValues((current) => ({
-            ...current,
-            search: evt.target.value,
-          }));
+          setValues({search: evt.target.value});
         }}
       />
 
       <Select
         w="18rem"
+        flexShrink={0}
         items={POKEMON_TYPES}
         multiple
         positioning={{
@@ -73,12 +80,8 @@ export function TopNav() {
         }}
         value={values.types}
         onValueChange={(details) => {
-          setValues((current) => ({
-            ...current,
-            types: details.value,
-          }));
+          setValues({types: details.value});
         }}
-        flexShrink={0}
       >
         {(ctx) => (
           <Fragment>
