@@ -36,7 +36,7 @@ import {
   SelectValueText,
 } from '@/components/select';
 import {css, cx} from '@/styled-system/css';
-import {Box, Flex, styled} from '@/styled-system/jsx';
+import {Box, Flex, VisuallyHidden, styled} from '@/styled-system/jsx';
 import {Portal} from '@ark-ui/react';
 import {usePathname, useRouter, useSearchParams} from 'next/navigation';
 import {Fragment, useReducer} from 'react';
@@ -137,17 +137,24 @@ export function TopNav() {
         onClick={() => {
           const s = new URLSearchParams(searchParams);
 
-          s.set('search', values.search);
+          s.delete('search');
           s.delete('type');
 
-          values.types.forEach((type) => {
-            s.append('type', type);
-          });
+          if (values.search) {
+            s.set('search', values.search);
+          }
+
+          if (values.types.length > 0) {
+            values.types.forEach((type) => {
+              s.append('type', type);
+            });
+          }
 
           router.push(`${pathname}?${s.toString()}`);
         }}
       >
         <IconSearch w={6} h={6} color="neutral.400" />
+        <VisuallyHidden>Search</VisuallyHidden>
       </Button>
     </Flex>
   );
