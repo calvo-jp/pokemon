@@ -65,6 +65,7 @@ export function RecentlyViewed(props: RecentlyViewedProps) {
               key={index}
               index={1}
               display="grid"
+              gridTemplateRows="repeat(2,1fr)"
               gridTemplateColumns="repeat(3,1fr)"
               gap={3}
             >
