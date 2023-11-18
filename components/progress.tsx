@@ -1,12 +1,12 @@
 'use client';
 
-import {useInterval} from '@/hooks/use-interval';
-import {styled} from '@/styled-system/jsx';
-import {Assign, HTMLStyledProps} from '@/styled-system/types';
-import {clamp} from '@/utils/clamp';
-import {createContext} from '@/utils/create-context';
-import {HTMLArkProps, ark} from '@ark-ui/react';
-import {forwardRef, useId, useState} from 'react';
+import { styled } from '@/styled-system/jsx';
+import { Assign, HTMLStyledProps } from '@/styled-system/types';
+import { clamp } from '@/utils/clamp';
+import { createContext } from '@/utils/create-context';
+import { HTMLArkProps, ark } from '@ark-ui/react';
+import { forwardRef, useId, useState } from 'react';
+import { useInterval } from 'react-use';
 
 interface UseProgressProps {
   id?: string;
@@ -94,11 +94,11 @@ export type ProgressValueProps = Assign<
 export const ProgressValue = forwardRef<HTMLDivElement, ProgressValueProps>(
   function ProgressValue({css, style, ...props}, ref) {
     const context = useProgressContext();
-    const [state, setState] = useState(0);
+    const [progress, setProgress] = useState(0);
 
     useInterval(
       () => {
-        setState((n) => {
+        setProgress((n) => {
           if (n >= context.value) {
             return context.value;
           } else {
@@ -106,10 +106,10 @@ export const ProgressValue = forwardRef<HTMLDivElement, ProgressValueProps>(
           }
         });
       },
-      state >= context.value ? null : (context.value / 100) * 5,
+      progress >= context.value ? null : (context.value / 100) * 5,
     );
 
-    const width = clamp(state, context.min, context.value);
+    const width = clamp(progress, context.min, context.value);
 
     return (
       <StyledArkDiv
