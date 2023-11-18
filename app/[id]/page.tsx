@@ -6,9 +6,7 @@ import {Fragment} from 'react';
 import {getPokemon} from './utils';
 
 export async function generateStaticParams() {
-  const {pokemons} = await getSdk(graphqlClient).Pokemons({
-    limit: 20,
-  });
+  const {pokemons} = await getSdk(graphqlClient).Pokemons({limit: 100});
 
   return pokemons.map((pokemon) => ({id: `${pokemon.id}`}));
 }

@@ -11,13 +11,13 @@ import {IconChevronLeft, IconChevronRight} from '@/components/icons';
 import {Image} from '@/components/image';
 import {Link} from '@/components/link';
 import {PokemonQuery} from '@/graphql';
+import {useEffectOnce} from '@/hooks/use-effect-once';
 import {css} from '@/styled-system/css';
 import {Box} from '@/styled-system/jsx';
 import {arrayChunk} from '@/utils/array-chunk';
 import {arrayUnique} from '@/utils/array-unique';
 import {CarouselControl, CarouselNextTrigger} from '@ark-ui/react';
-import {useEffect} from 'react';
-import {useLocalStorage} from 'react-use';
+import {useEffect, useState} from 'react';
 
 type TPokemon = NonNullable<PokemonQuery['pokemon']>;
 
@@ -26,29 +26,14 @@ interface RecentlyViewedProps {
 }
 
 export function RecentlyViewed(props: RecentlyViewedProps) {
-  const [array, setArray] = useLocalStorage<TPokemon[]>('recently-viewed', [], {
-    raw: false,
-    serializer(value) {
-      return JSON.stringify(arrayUnique(value, (obj) => obj.id));
-    },
-    deserializer(value) {
-      return JSON.parse(value);
-    },
+  const [items, {add}] = useRecentlyViewed();
+  const chunks = arrayChunk<TPokemon>(items, 6);
+
+  useEffectOnce(() => {
+    add(props.__RSC_DATA);
   });
 
-  useEffect(() => {
-    setArray((current) => {
-      return current ? [props.__RSC_DATA, ...current] : [props.__RSC_DATA];
-    });
-  }, [props.__RSC_DATA, setArray]);
-
-  if (!array || array.length < 0) return null;
-
-  const listExcludingCurrent = array.filter(
-    (pokemon) => pokemon.id !== props.__RSC_DATA.id,
-  );
-
-  const chunks = arrayChunk(listExcludingCurrent, 6);
+  if (chunks.length <= 0) return null;
 
   return (
     <Carousel mt={8} display="flex" alignItems="center" gap={6}>
@@ -136,3 +121,36 @@ const button = css({
     },
   },
 });
+
+const recentlyViewedStorageKey = 'recently-viewed';
+
+function getRecentlyViewed() {
+  try {
+    const v = localStorage.getItem(recentlyViewedStorageKey);
+    const l = v ? JSON.parse(v) : [];
+
+    return Array.isArray(l) ? l : [];
+  } catch {
+    return [];
+  }
+}
+
+function useRecentlyViewed() {
+  const [state, setState] = useState<TPokemon[]>([]);
+
+  useEffect(() => {
+    setState(getRecentlyViewed());
+  }, []);
+
+  const add = (v: TPokemon) => {
+    const l = arrayUnique([v, ...getRecentlyViewed()], (i) => i.id).slice(
+      0,
+      18,
+    );
+
+    localStorage.setItem(recentlyViewedStorageKey, JSON.stringify(l));
+    setState(l);
+  };
+
+  return [state, {add}] as const;
+}
