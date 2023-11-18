@@ -14,36 +14,17 @@ export default async function Statistics({params}: {params: {id: string}}) {
   return (
     <Fragment>
       <VStack alignItems="stretch" gap={3} bg="neutral.800" p={8}>
-        <Progress value={75}>
-          <ProgressLabel w={12}>HP</ProgressLabel>
-          <ProgressValue />
-          <ProgressValueText w={8} textAlign="right" color="neutral.400" />
-        </Progress>
-        <Progress value={30}>
-          <ProgressLabel w={12}>ATK</ProgressLabel>
-          <ProgressValue />
-          <ProgressValueText w={8} textAlign="right" color="neutral.400" />
-        </Progress>
-        <Progress value={44}>
-          <ProgressLabel w={12}>DEF</ProgressLabel>
-          <ProgressValue />
-          <ProgressValueText w={8} textAlign="right" color="neutral.400" />
-        </Progress>
-        <Progress value={100}>
-          <ProgressLabel w={12}>SATK</ProgressLabel>
-          <ProgressValue />
-          <ProgressValueText w={8} textAlign="right" color="neutral.400" />
-        </Progress>
-        <Progress value={5}>
-          <ProgressLabel w={12}>SDEF</ProgressLabel>
-          <ProgressValue />
-          <ProgressValueText w={8} textAlign="right" color="neutral.400" />
-        </Progress>
-        <Progress value={55}>
-          <ProgressLabel w={12}>SPD</ProgressLabel>
-          <ProgressValue />
-          <ProgressValueText w={8} textAlign="right" color="neutral.400" />
-        </Progress>
+        {pokemon?.stats.map((obj) => {
+          if (!obj.stat) return null;
+
+          return (
+            <Progress key={obj.id}>
+              <ProgressLabel w={12}>{formatStat(obj.stat.name)}</ProgressLabel>
+              <ProgressValue />
+              <ProgressValueText w={8} textAlign="right" color="neutral.400" />
+            </Progress>
+          );
+        })}
       </VStack>
 
       <Box mt={10} bg="neutral.800" p={8}>
@@ -151,4 +132,23 @@ export default async function Statistics({params}: {params: {id: string}}) {
       </Box>
     </Fragment>
   );
+}
+
+function formatStat(stat: string) {
+  switch (stat) {
+    case 'hp':
+      return 'HP';
+    case 'attack':
+      return 'ATK';
+    case 'defense':
+      return 'DEF';
+    case 'special-attack':
+      return 'SATK';
+    case 'special-defense':
+      return 'SDEF';
+    case 'speed':
+      return 'SPD';
+    default:
+      return stat;
+  }
 }

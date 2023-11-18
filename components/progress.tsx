@@ -1,12 +1,12 @@
 'use client';
 
-import { styled } from '@/styled-system/jsx';
-import { Assign, HTMLStyledProps } from '@/styled-system/types';
-import { clamp } from '@/utils/clamp';
-import { createContext } from '@/utils/create-context';
-import { HTMLArkProps, ark } from '@ark-ui/react';
-import { forwardRef, useId, useState } from 'react';
-import { useInterval } from 'react-use';
+import {styled} from '@/styled-system/jsx';
+import {Assign, HTMLStyledProps} from '@/styled-system/types';
+import {clamp} from '@/utils/clamp';
+import {createContext} from '@/utils/create-context';
+import {HTMLArkProps, ark} from '@ark-ui/react';
+import {forwardRef, useId, useState} from 'react';
+import {useInterval} from 'react-use';
 
 interface UseProgressProps {
   id?: string;
@@ -29,8 +29,8 @@ function useProgress(props: UseProgressProps) {
 
   let percentLoaded: number;
 
-  percentLoaded = (diff / range) * 100;
-  percentLoaded = Math.min(100, Math.max(0, percentLoaded));
+  percentLoaded = (diff / range) * max;
+  percentLoaded = Math.min(max, Math.max(min, percentLoaded));
   percentLoaded = Math.floor(percentLoaded);
 
   return {
@@ -109,7 +109,7 @@ export const ProgressValue = forwardRef<HTMLDivElement, ProgressValueProps>(
       progress >= context.value ? null : (context.value / 100) * 5,
     );
 
-    const width = clamp(progress, context.min, context.value);
+    const width = clamp(progress, context.min, context.max);
 
     return (
       <StyledArkDiv
