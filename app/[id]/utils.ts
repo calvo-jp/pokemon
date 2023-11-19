@@ -1,35 +1,32 @@
 import {graphqlClient} from '@/config/graphql-client';
 import {getSdk} from '@/graphql';
 import {arrayUnique} from '@/utils/array-unique';
-import {cache} from 'react';
 
-export const getPokemon = cache(async (id: number) => {
+export async function getPokemon(id: number) {
   const data = await getSdk(graphqlClient).Pokemon({id});
 
   return data.pokemon ?? null;
-});
+}
 
-export const getPokemonIds = cache(async (limit = 100) => {
+export async function getPokemonIds(limit = 100) {
   const {pokemons} = await getSdk(graphqlClient).Pokemons({limit});
   return pokemons.map((pokemon) => pokemon.id);
-});
+}
 
-export const getPokemonImage = cache(
-  async (id: number): Promise<string | null> => {
-    const data = await getSdk(graphqlClient).PokemonSprites({id});
-    const item = data.sprites.at(0);
+export async function getPokemonImage(id: number): Promise<string | null> {
+  const data = await getSdk(graphqlClient).PokemonSprites({id});
+  const item = data.sprites.at(0);
 
-    if (!item) return null;
+  if (!item) return null;
 
-    const parsed = JSON.parse(item.sprite) as {[key: string]: any};
-    const image =
-      parsed.other?.dream_world?.front_default ??
-      parsed.other?.dream_world?.front_default ??
-      null;
+  const parsed = JSON.parse(item.sprite) as {[key: string]: any};
+  const image =
+    parsed.other?.dream_world?.front_default ??
+    parsed.other?.dream_world?.front_default ??
+    null;
 
-    return image;
-  },
-);
+  return image;
+}
 
 export async function getPokemonResistanceAndWeakness(types: number[]) {
   const promises = types.map(async (type) => {

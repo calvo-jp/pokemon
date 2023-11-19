@@ -1,7 +1,6 @@
 import {graphqlClient} from '@/config/graphql-client';
 import {getSdk} from '@/graphql';
 import {clamp} from '@/utils/clamp';
-import {cache} from 'react';
 import {
   Input,
   Output,
@@ -80,7 +79,7 @@ export const GetPokemonsArgsSchema = transform(
 export type GetPokemonsArgsSchemaInput = Input<typeof GetPokemonsArgsSchema>;
 export type GetPokemonsArgsSchemaOutput = Output<typeof GetPokemonsArgsSchema>;
 
-export const getPokemons = cache(async (input: GetPokemonsArgsSchemaOutput) => {
+export async function getPokemons(input: GetPokemonsArgsSchemaOutput) {
   const {size, page, search, types} = input;
 
   return await getSdk(graphqlClient).Pokemons({
@@ -103,4 +102,4 @@ export const getPokemons = cache(async (input: GetPokemonsArgsSchemaOutput) => {
       }),
     },
   });
-});
+}
