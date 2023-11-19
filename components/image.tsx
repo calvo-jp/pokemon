@@ -43,10 +43,8 @@ export const Image = forwardRef<
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    return () => {
-      setError(false);
-    };
-  }, []);
+    setError(false);
+  }, [src]);
 
   return (
     <StyledImage
