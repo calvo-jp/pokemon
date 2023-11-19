@@ -67,7 +67,14 @@ export default async function Evolutions({params}: {params: {id: string}}) {
               </VStack>
 
               <Box w={32} h={32} p={4} bg="neutral.700">
-                <Box bg="neutral.600" rounded="full">
+                <Box
+                  bg="neutral.600"
+                  rounded="full"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  aspectRatio={1}
+                >
                   <PokemonImage id={obj.id} />
                 </Box>
               </Box>
@@ -90,7 +97,6 @@ async function PokemonImage({id}: {id: number}) {
       alt=""
       width={250}
       height={250}
-      objectFit="cover"
       h="auto"
       maxH="full"
       maxW="full"

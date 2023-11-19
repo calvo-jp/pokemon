@@ -75,7 +75,6 @@ export default async function Layout({
               alt=""
               width={600}
               height={600}
-              objectFit="cover"
               h="auto"
               maxH="full"
               maxW="full"
