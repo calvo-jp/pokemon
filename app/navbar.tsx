@@ -43,7 +43,12 @@ export function Navbar() {
 
         <Tooltip openDelay={0} closeDelay={0}>
           <TooltipTrigger asChild>
-            <Link href="https://github.com/calvo-jp/pokemon">
+            <Link
+              href="https://github.com/calvo-jp/pokemon"
+              target="_blank"
+              rel="noreferrer noopener"
+              prefetch={false}
+            >
               <IconGitBranch w={5} h={5} />
               <VisuallyHidden>Github</VisuallyHidden>
             </Link>
