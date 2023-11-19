@@ -1,15 +1,11 @@
-import {graphqlClient} from '@/config/graphql-client';
-import {getSdk} from '@/graphql';
 import {Box, Divider, HStack} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
 import {notFound} from 'next/navigation';
 import {Fragment} from 'react';
-import {getPokemon} from './utils';
+import {getPokemon, getPokemonIds} from './utils';
 
 export async function generateStaticParams() {
-  const {pokemons} = await getSdk(graphqlClient).Pokemons({limit: 100});
-
-  return pokemons.map((pokemon) => ({id: `${pokemon.id}`}));
+  return (await getPokemonIds()).map(String).map((id) => ({id}));
 }
 
 export default async function Pokemon({params}: {params: {id: string}}) {

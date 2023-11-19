@@ -9,6 +9,11 @@ export const getPokemon = cache(async (id: number) => {
   return data.pokemon ?? null;
 });
 
+export const getPokemonIds = cache(async (limit = 100) => {
+  const {pokemons} = await getSdk(graphqlClient).Pokemons({limit});
+  return pokemons.map((pokemon) => pokemon.id);
+});
+
 export const getPokemonImage = cache(
   async (id: number): Promise<string | null> => {
     const data = await getSdk(graphqlClient).PokemonSprites({id});

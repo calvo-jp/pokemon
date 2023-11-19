@@ -31,6 +31,12 @@ query Pokemons(
   }
 }
 
+query PokemonIds {
+  pokemons: pokemon_v2_pokemon {
+    id
+  }
+}
+
 query PokemonTypes {
   types: pokemon_v2_type {
     id
