@@ -8,7 +8,7 @@ import {Navbar} from './navbar';
 
 const sans = Lato({
   style: ['normal', 'italic'],
-  weight: ['400', '700'],
+  weight: ['400', '700', '900'],
   subsets: ['latin'],
   display: 'swap',
   preload: true,

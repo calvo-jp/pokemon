@@ -14,6 +14,7 @@ import {Image} from '@/components/image';
 import {Link} from '@/components/link';
 import {Box, Flex, styled} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
+import {notFound} from 'next/navigation';
 import {Fragment, PropsWithChildren} from 'react';
 import {CurrentPageLabel} from './current-page-label';
 import {RecentlyViewed} from './recently-viewed';
@@ -25,7 +26,7 @@ export default async function Layout({
 }: PropsWithChildren<{params: {id: string}}>) {
   const pokemon = await getPokemon(parseInt(params.id));
 
-  if (!pokemon) return null; /* 404 */
+  if (!pokemon) return notFound();
 
   const sprite = JSON.parse(pokemon.sprites.at(0)?.sprites ?? '{}');
   const image =

@@ -1,10 +1,13 @@
 import {Box, styled} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
+import {notFound} from 'next/navigation';
 import {Fragment} from 'react';
 import {getPokemon} from '../utils';
 
 export default async function Moves({params}: {params: {id: string}}) {
   const pokemon = await getPokemon(parseInt(params.id));
+
+  if (!pokemon) return notFound();
 
   return (
     <Fragment>
@@ -12,7 +15,7 @@ export default async function Moves({params}: {params: {id: string}}) {
         <Box>Quick Moves</Box>
 
         <styled.ul mt={4} display="flex" gap={2}>
-          {pokemon?.abilities.map((obj) => {
+          {pokemon.abilities.map((obj) => {
             if (!obj.ability) return null;
 
             return (
@@ -65,7 +68,7 @@ export default async function Moves({params}: {params: {id: string}}) {
             </styled.tr>
           </styled.thead>
           <styled.tbody>
-            {pokemon?.moves.map((obj) => {
+            {pokemon.moves.map((obj) => {
               if (!obj.move) return null;
 
               return (

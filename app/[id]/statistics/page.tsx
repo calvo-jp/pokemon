@@ -6,25 +6,26 @@ import {
 } from '@/components/progress';
 import {Box, VStack, styled} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
+import {notFound} from 'next/navigation';
 import {Fragment} from 'react';
 import {getPokemon} from '../utils';
 import {getResistanceAndWeakness} from './utils';
 
 export default async function Statistics({params}: {params: {id: string}}) {
   const pokemon = await getPokemon(parseInt(params.id));
-  const elements = pokemon?.types
+
+  if (!pokemon) return notFound();
+
+  const elements = pokemon.types
     .map((obj) => obj.type?.id)
     .filter(Boolean) as number[];
 
   const {resistance, weaknesses} = await getResistanceAndWeakness(elements);
 
-  console.log({resistance});
-  console.log({weaknesses});
-
   return (
     <Fragment>
       <VStack alignItems="stretch" gap={3} bg="neutral.800" p={8}>
-        {pokemon?.stats.map((obj) => {
+        {pokemon.stats.map((obj) => {
           if (!obj.stat) return null;
 
           return (

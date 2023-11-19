@@ -2,15 +2,16 @@ import {IconMoveRight} from '@/components/icons';
 import {Image} from '@/components/image';
 import {Box, HStack, VStack, styled} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
+import {notFound} from 'next/navigation';
 import {Fragment} from 'react';
 import {getPokemon, getPokemonImage} from '../utils';
 
 export default async function Evolutions({params}: {params: {id: string}}) {
   const pokemon = await getPokemon(parseInt(params.id));
 
-  if (!pokemon) return null;
+  if (!pokemon) return notFound();
 
-  const species = pokemon?.specy?.evolutionChain?.species ?? [];
+  const species = pokemon.specy?.evolutionChain?.species ?? [];
   const currentForm = species.find((obj) => obj.id === pokemon.id);
   const previousForm = species.find(
     (obj) => obj.id === currentForm?.evolvesFrom,
