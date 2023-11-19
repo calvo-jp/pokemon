@@ -94,6 +94,7 @@ async function PokemonImage({id}: {id: number}) {
       h="auto"
       maxH="full"
       maxW="full"
+      fallbackSrc="/pokemon-ball.png"
     />
   );
 }

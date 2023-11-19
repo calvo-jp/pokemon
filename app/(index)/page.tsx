@@ -90,6 +90,7 @@ function Pokemon({data}: PokemonProps) {
             h="auto"
             maxH="full"
             maxW="full"
+            fallbackSrc="/pokemon-ball.png"
           />
         </Box>
       </Box>

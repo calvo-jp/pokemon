@@ -79,6 +79,7 @@ export default async function Layout({
               h="auto"
               maxH="full"
               maxW="full"
+              fallbackSrc="/pokemon-ball.png"
             />
           </Box>
 

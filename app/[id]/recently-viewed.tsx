@@ -94,6 +94,7 @@ function Thumbnail({data}: {data: NonNullable<PokemonQuery['pokemon']>}) {
           h="auto"
           maxH="full"
           maxW="full"
+          fallbackSrc="/pokemon-ball.png"
         />
       </Box>
     </Link>
