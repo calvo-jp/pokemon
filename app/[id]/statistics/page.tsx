@@ -8,8 +8,7 @@ import {Box, VStack, styled} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
 import {notFound} from 'next/navigation';
 import {Fragment} from 'react';
-import {getPokemon} from '../utils';
-import {getResistanceAndWeakness} from './utils';
+import {getPokemon, getPokemonResistanceAndWeakness} from '../utils';
 
 export default async function Statistics({params}: {params: {id: string}}) {
   const pokemon = await getPokemon(parseInt(params.id));
@@ -20,7 +19,8 @@ export default async function Statistics({params}: {params: {id: string}}) {
     .map((obj) => obj.type?.id)
     .filter(Boolean) as number[];
 
-  const {resistance, weaknesses} = await getResistanceAndWeakness(elements);
+  const {resistance, weaknesses} =
+    await getPokemonResistanceAndWeakness(elements);
 
   return (
     <Fragment>
