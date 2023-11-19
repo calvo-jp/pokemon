@@ -27,13 +27,12 @@ interface RecentlyViewedProps {
 
 export function RecentlyViewed(props: RecentlyViewedProps) {
   const [items, {add}] = useRecentlyViewed();
-  const chunks = arrayChunk<TPokemon>(items, 6);
 
   useEffectOnce(() => {
     add(props.__RSC_DATA);
   });
 
-  if (chunks.length <= 0) return null;
+  if (items.length <= 0) return null;
 
   return (
     <Carousel mt={8} display="flex" alignItems="center" gap={6}>
@@ -45,12 +44,12 @@ export function RecentlyViewed(props: RecentlyViewedProps) {
 
       <CarouselViewport flexGrow={1}>
         <CarouselItemGroup>
-          {chunks.map((pokemons, index) => (
+          {arrayChunk(items, 6).map((pokemons, index) => (
             <CarouselItem
               key={index}
               index={1}
               display="grid"
-              gridTemplateRows="repeat(2,1fr)"
+              gridTemplateRows={'repeat(2,1fr)'}
               gridTemplateColumns="repeat(3,1fr)"
               gap={3}
             >
@@ -125,7 +124,7 @@ const button = css({
 
 const recentlyViewedStorageKey = 'recently-viewed';
 
-function getRecentlyViewed() {
+function getRecentlyViewed(): TPokemon[] {
   try {
     const v = localStorage.getItem(recentlyViewedStorageKey);
     const l = v ? JSON.parse(v) : [];
