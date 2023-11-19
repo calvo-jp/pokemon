@@ -45,7 +45,7 @@ export default async function Layout({
           </BreadcrumbItem>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link href="/1">
+              <Link href={`/${pokemon.id}`}>
                 {capitalize(pokemon.name, {delimiter: '-'})}
               </Link>
             </BreadcrumbLink>
