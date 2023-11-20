@@ -2,11 +2,7 @@ import {Box, Divider, Flex, HStack} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
 import {notFound} from 'next/navigation';
 import {Fragment} from 'react';
-import {getPokemon, getPokemonIds} from './utils';
-
-export async function generateStaticParams() {
-  return (await getPokemonIds()).map(String).map((id) => ({id}));
-}
+import {getPokemon} from './utils';
 
 export default async function Pokemon({params}: {params: {id: string}}) {
   const pokemon = await getPokemon(parseInt(params.id));
