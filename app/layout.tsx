@@ -23,10 +23,21 @@ const mono = Fira_Code({
   variable: '--font-mono',
 });
 
+const title = 'Pokemon';
+const description =
+  'Dive into our Pokémon hub! Explore the entire Pokédex with details on each Pokémon—stats, types, evolutions, and more. Your go-to resource for all things Pokémon!';
+
 export const metadata: Metadata = {
   title: {
-    default: 'Pokemon',
-    template: '%s | Pokemon',
+    default: title,
+    template: `%s | ${title}`,
+  },
+  metadataBase: new URL('https://calvojp-pokemon.vercel.app'),
+  openGraph: {
+    title: 'Pokemon',
+    description,
+    images: ['/banner.jpeg'],
+    siteName: 'Pokemon',
   },
 };
 
