@@ -29,13 +29,26 @@ export default async function Pokemons(props: PokemonsProps) {
   return (
     <Fragment>
       <Filter />
-      <Box mt={12} color="neutral.300" fontSize="sm" fontStyle="italic">
+      <Box
+        mt={{
+          base: 4,
+          lg: 12,
+        }}
+        color="neutral.300"
+        fontSize="sm"
+        fontStyle="italic"
+      >
         Showing {start}-{until} of {count}
       </Box>
       <Grid
-        gridTemplateColumns="repeat(auto-fill,minmax(14rem,1fr))"
+        gridTemplateColumns={{
+          lg: 'repeat(auto-fill,minmax(14rem,1fr))',
+        }}
         mt={4}
-        gap={5}
+        gap={{
+          base: 3,
+          lg: 5,
+        }}
       >
         {data.pokemons.map((pokemon) => (
           <Pokemon key={pokemon.id} data={pokemon} />

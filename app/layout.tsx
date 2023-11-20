@@ -44,10 +44,20 @@ export default function RootLayout({children}: PropsWithChildren) {
         color="neutral.100"
         fontFamily="sans"
         minH="dvh"
-        minW="breakpoint-lg"
       >
         <Navbar />
-        <styled.main maxW="breakpoint-xl" mx="auto" px={12} py={16}>
+        <styled.main
+          maxW="breakpoint-xl"
+          mx="auto"
+          px={{
+            base: 4,
+            lg: 12,
+          }}
+          py={{
+            base: 4,
+            lg: 16,
+          }}
+        >
           {children}
         </styled.main>
       </styled.body>

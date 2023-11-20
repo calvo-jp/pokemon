@@ -21,7 +21,19 @@ const heading = Lilita_One({
 export function Navbar() {
   return (
     <styled.header bg="neutral.800">
-      <Flex h={24} px={12} alignItems="center" maxW="breakpoint-xl" mx="auto">
+      <Flex
+        h={{
+          base: 16,
+          lg: 24,
+        }}
+        px={{
+          base: 4,
+          lg: 12,
+        }}
+        alignItems="center"
+        maxW="breakpoint-xl"
+        mx="auto"
+      >
         <styled.h3
           color="transparent"
           fontFamily="var(--font-heading)"

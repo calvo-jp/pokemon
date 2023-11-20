@@ -60,8 +60,23 @@ export function Filter() {
   );
 
   return (
-    <Flex gap={4} alignItems="center">
+    <Flex
+      columnGap={{
+        base: 0,
+        lg: 4,
+      }}
+      rowGap={{
+        base: 3,
+        lg: 4,
+      }}
+      alignItems="center"
+      flexWrap={{
+        base: 'wrap',
+        lg: 'nowrap',
+      }}
+    >
       <Input
+        flexGrow={1}
         placeholder="Enter keyword"
         value={filter.search}
         onChange={(evt) => {
@@ -70,7 +85,10 @@ export function Filter() {
       />
 
       <Select
-        w="18rem"
+        w={{
+          base: '75%',
+          lg: '18rem',
+        }}
         flexShrink={0}
         items={POKEMON_TYPES}
         multiple
@@ -132,6 +150,14 @@ export function Filter() {
       </Select>
 
       <Button
+        w={{
+          base: 'calc(25% - 0.75rem)',
+          lg: 'auto',
+        }}
+        ml={{
+          base: 3,
+          lg: 0,
+        }}
         flexShrink={0}
         onClick={() => {
           const s = new URLSearchParams(searchParams);

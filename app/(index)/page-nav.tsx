@@ -30,7 +30,10 @@ export function PageNav(props: PageNavProps) {
 
   return (
     <Pagination
-      mt={12}
+      mt={{
+        base: 4,
+        lg: 12,
+      }}
       /* @ts-expect-error */
       page={pagination.page}
       pageSize={pagination.size}
@@ -53,14 +56,28 @@ export function PageNav(props: PageNavProps) {
           {ctx.pages.map((page, index) => {
             if (page.type === 'page') {
               return (
-                <PaginationItem key={index} {...page}>
+                <PaginationItem
+                  key={index}
+                  display={{
+                    base: 'none',
+                    lg: 'flex',
+                  }}
+                  {...page}
+                >
                   {page.value}
                 </PaginationItem>
               );
             }
 
             return (
-              <PaginationEllipsis key={index} index={index}>
+              <PaginationEllipsis
+                key={index}
+                index={index}
+                display={{
+                  base: 'none',
+                  lg: 'flex',
+                }}
+              >
                 ...
               </PaginationEllipsis>
             );
