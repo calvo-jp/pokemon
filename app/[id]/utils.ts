@@ -8,7 +8,7 @@ export async function getPokemon(id: number) {
   return data.pokemon ?? null;
 }
 
-export async function getPokemonIds(limit = 100) {
+export async function getPokemonIds(limit = 20) {
   const {pokemons} = await getSdk(graphqlClient).Pokemons({limit});
   return pokemons.map((pokemon) => pokemon.id);
 }
