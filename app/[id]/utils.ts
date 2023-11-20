@@ -1,6 +1,7 @@
 import {graphqlClient} from '@/config/graphql-client';
 import {getSdk} from '@/graphql';
 import {arrayUnique} from '@/utils/array-unique';
+import {cache} from 'react';
 
 export async function getPokemon(id: number) {
   const data = await getSdk(graphqlClient).Pokemon({id});
@@ -8,10 +9,10 @@ export async function getPokemon(id: number) {
   return data.pokemon ?? null;
 }
 
-export async function getPokemonIds(limit = 20) {
+export const getPokemonIds = cache(async (limit = 1) => {
   const {pokemons} = await getSdk(graphqlClient).Pokemons({limit});
   return pokemons.map((pokemon) => pokemon.id);
-}
+});
 
 export async function getPokemonImage(id: number): Promise<string | null> {
   const data = await getSdk(graphqlClient).PokemonSprites({id});
