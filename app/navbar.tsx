@@ -34,10 +34,14 @@ export function Navbar() {
         maxW="breakpoint-xl"
         mx="auto"
       >
-        <styled.h3
+        <Link
+          href="/"
           color="transparent"
           fontFamily="var(--font-heading)"
-          fontSize="5xl"
+          fontSize={{
+            base: '4xl',
+            lg: '5xl',
+          }}
           fontWeight="black"
           lineHeight="none"
           textTransform="uppercase"
@@ -49,7 +53,7 @@ export function Navbar() {
           className={heading.className}
         >
           Pokemon
-        </styled.h3>
+        </Link>
 
         <Spacer />
 

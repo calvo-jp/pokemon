@@ -32,7 +32,15 @@ export default async function Statistics({params}: {params: {id: string}}) {
 
   return (
     <Fragment>
-      <VStack alignItems="stretch" gap={3} bg="neutral.800" p={8}>
+      <VStack
+        alignItems="stretch"
+        gap={3}
+        bg="neutral.800"
+        p={{
+          base: 5,
+          lg: 8,
+        }}
+      >
         {pokemon.stats.map((obj) => {
           if (!obj.stat) return null;
 
@@ -46,7 +54,17 @@ export default async function Statistics({params}: {params: {id: string}}) {
         })}
       </VStack>
 
-      <Box mt={10} bg="neutral.800" p={8}>
+      <Box
+        mt={{
+          base: 4,
+          lg: 10,
+        }}
+        bg="neutral.800"
+        p={{
+          base: 5,
+          lg: 8,
+        }}
+      >
         <Box>Weakness</Box>
 
         <styled.ul mt={4} display="flex" flexWrap="wrap" gap={2}>
@@ -65,7 +83,14 @@ export default async function Statistics({params}: {params: {id: string}}) {
         </styled.ul>
       </Box>
 
-      <Box mt={10} bg="neutral.800" p={8}>
+      <Box
+        mt={{
+          base: 4,
+          lg: 10,
+        }}
+        bg="neutral.800"
+        p={8}
+      >
         <Box>Resistance</Box>
 
         <styled.ul mt={4} display="flex" flexWrap="wrap" gap={2}>

@@ -1,4 +1,4 @@
-import {Box, Divider, HStack} from '@/styled-system/jsx';
+import {Box, Divider, Flex, HStack} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
 import {notFound} from 'next/navigation';
 import {Fragment} from 'react';
@@ -19,7 +19,26 @@ export default async function Pokemon({params}: {params: {id: string}}) {
         {pokemon.specy?.flavorTexts.map((obj) => obj.flavorText).join()}
       </Box>
 
-      <HStack mt={8} w="fit" bg="neutral.800" px={8} py={6} gap={8}>
+      <HStack
+        mt={{
+          base: 5,
+          lg: 8,
+        }}
+        w="fit"
+        bg="neutral.800"
+        px={{
+          base: 5,
+          lg: 8,
+        }}
+        py={{
+          base: 5,
+          lg: 6,
+        }}
+        gap={{
+          base: 6,
+          lg: 8,
+        }}
+      >
         <Box>
           <Box fontSize="xs" color="neutral.400">
             Weight
@@ -35,7 +54,32 @@ export default async function Pokemon({params}: {params: {id: string}}) {
         </Box>
       </HStack>
 
-      <HStack w="fit" mt={8} bg="neutral.800" px={8} py={6} gap={8}>
+      <Flex
+        w={{
+          lg: 'fit',
+        }}
+        mt={{
+          base: 5,
+          lg: 8,
+        }}
+        bg="neutral.800"
+        px={{
+          base: 5,
+          lg: 8,
+        }}
+        py={{
+          base: 5,
+          lg: 6,
+        }}
+        gap={{
+          base: 4,
+          lg: 8,
+        }}
+        flexDir={{
+          base: 'column',
+          lg: 'row',
+        }}
+      >
         <Box>
           <Box fontSize="xs" color="neutral.400">
             Gender
@@ -45,7 +89,15 @@ export default async function Pokemon({params}: {params: {id: string}}) {
             {getGender(pokemon.specy?.genderRate ?? 0)}
           </Box>
         </Box>
-        <Divider orientation="vertical" h={8} color="neutral.700" />
+        <Divider
+          orientation="vertical"
+          h={8}
+          color="neutral.700"
+          display={{
+            base: 'none',
+            lg: 'block',
+          }}
+        />
         <Box>
           <Box fontSize="xs" color="neutral.400">
             Egg Group
@@ -58,14 +110,22 @@ export default async function Pokemon({params}: {params: {id: string}}) {
               .join(', ')}
           </HStack>
         </Box>
-        <Divider orientation="vertical" h={8} color="neutral.700" />
+        <Divider
+          orientation="vertical"
+          h={8}
+          color="neutral.700"
+          display={{
+            base: 'none',
+            lg: 'block',
+          }}
+        />
         <Box>
           <Box fontSize="xs" color="neutral.400">
             Egg Cycle
           </Box>
           <Box>{pokemon.specy?.hatchCounter ?? 0}</Box>
         </Box>
-      </HStack>
+      </Flex>
     </Fragment>
   );
 }

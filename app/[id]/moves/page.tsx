@@ -15,7 +15,13 @@ export default async function Moves({params}: {params: {id: string}}) {
 
   return (
     <Fragment>
-      <Box bg="neutral.800" p={8}>
+      <Box
+        bg="neutral.800"
+        p={{
+          base: 5,
+          lg: 8,
+        }}
+      >
         <Box>Quick Moves</Box>
 
         <styled.ul mt={4} display="flex" gap={2}>
@@ -38,7 +44,17 @@ export default async function Moves({params}: {params: {id: string}}) {
         </styled.ul>
       </Box>
 
-      <Box bg="neutral.800" p={8} mt={10}>
+      <Box
+        bg="neutral.800"
+        p={{
+          base: 5,
+          lg: 8,
+        }}
+        mt={{
+          base: 4,
+          lg: 10,
+        }}
+      >
         <Box>Main Moves</Box>
 
         <styled.table

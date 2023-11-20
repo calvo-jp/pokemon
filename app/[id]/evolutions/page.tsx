@@ -37,17 +37,40 @@ export default async function Evolutions({params}: {params: {id: string}}) {
         )}
       </Box>
       <VStack
-        mt={8}
+        mt={{
+          base: 5,
+          lg: 8,
+        }}
         bg="neutral.800"
-        py={16}
-        px={24}
-        gap={8}
+        py={{
+          base: 4,
+          lg: 16,
+        }}
+        px={{
+          base: 4,
+          lg: 24,
+        }}
+        gap={{
+          base: 2,
+          lg: 8,
+        }}
         alignItems="stretch"
       >
         {species.map((obj) => {
           return (
             <HStack key={obj.id}>
-              <Box w={32} h={32} p={4} bg="neutral.700">
+              <Box
+                w={{
+                  base: 24,
+                  lg: 32,
+                }}
+                h={{
+                  base: 24,
+                  lg: 32,
+                }}
+                p={4}
+                bg="neutral.700"
+              >
                 <Box
                   bg="neutral.600"
                   rounded="full"
@@ -60,7 +83,7 @@ export default async function Evolutions({params}: {params: {id: string}}) {
                 </Box>
               </Box>
 
-              <VStack flexGrow={1}>
+              <VStack flexGrow={1} flexShrink={0}>
                 <Box fontFamily="mono">
                   {obj.evolutions
                     .map((o) => o.minLevel)
@@ -70,7 +93,18 @@ export default async function Evolutions({params}: {params: {id: string}}) {
                 <IconMoveRight w={6} h={6} />
               </VStack>
 
-              <Box w={32} h={32} p={4} bg="neutral.700">
+              <Box
+                w={{
+                  base: 24,
+                  lg: 32,
+                }}
+                h={{
+                  base: 24,
+                  lg: 32,
+                }}
+                p={4}
+                bg="neutral.700"
+              >
                 <Box
                   bg="neutral.600"
                   rounded="full"

@@ -35,7 +35,7 @@ export function RecentlyViewed(props: RecentlyViewedProps) {
   if (items.length <= 0) return null;
 
   return (
-    <Carousel mt={8} display="flex" alignItems="center" gap={6}>
+    <Carousel display="flex" alignItems="center" gap={6}>
       <CarouselControl>
         <CarouselPrevTrigger className={button}>
           <IconChevronLeft w={5} h={5} />

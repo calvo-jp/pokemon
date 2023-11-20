@@ -36,7 +36,12 @@ export default async function Layout({
 
   return (
     <Fragment>
-      <Breadcrumbs>
+      <Breadcrumbs
+        display={{
+          base: 'none',
+          lg: 'flex',
+        }}
+      >
         <BreadcrumbItems>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
@@ -58,8 +63,25 @@ export default async function Layout({
         </BreadcrumbItems>
       </Breadcrumbs>
 
-      <Flex gap={16} mt={16}>
-        <Box w="20rem" flexShrink={0}>
+      <Flex
+        mt={{
+          lg: 16,
+        }}
+        gap={{
+          base: 5,
+          lg: 16,
+        }}
+        direction={{
+          base: 'column',
+          lg: 'row',
+        }}
+      >
+        <Box
+          w={{
+            lg: '20rem',
+          }}
+          flexShrink={0}
+        >
           <Box
             bg="neutral.800"
             h="24rem"
@@ -82,11 +104,26 @@ export default async function Layout({
             />
           </Box>
 
-          <RecentlyViewed __RSC_DATA={pokemon} />
+          <Box
+            mt={8}
+            display={{
+              base: 'none',
+              lg: 'block',
+            }}
+          >
+            <RecentlyViewed __RSC_DATA={pokemon} />
+          </Box>
         </Box>
 
         <Box flexGrow={1}>
-          <styled.h1 fontSize="4xl" fontWeight="bold" lineHeight="none">
+          <styled.h1
+            fontSize={{
+              base: '3xl',
+              lg: '4xl',
+            }}
+            fontWeight="bold"
+            lineHeight="none"
+          >
             {capitalize(pokemon.name, {delimiter: '-'})}
           </styled.h1>
 
@@ -106,11 +143,21 @@ export default async function Layout({
               ))}
           </styled.ol>
 
-          <styled.nav mt={12}>
+          <styled.nav
+            mt={{
+              base: 8,
+              lg: 12,
+            }}
+          >
             <styled.ul
               display="grid"
-              gridTemplateColumns="repeat(4,1fr)"
-              gap={5}
+              gridTemplateColumns={{
+                lg: 'repeat(4,1fr)',
+              }}
+              gap={{
+                base: 3,
+                lg: 5,
+              }}
             >
               {links.map(({path, label, icon: SVGIcon}) => (
                 <styled.li key={path} w="full">
@@ -147,7 +194,14 @@ export default async function Layout({
             </styled.ul>
           </styled.nav>
 
-          <Box mt={12}>{children}</Box>
+          <Box
+            mt={{
+              base: 8,
+              lg: 12,
+            }}
+          >
+            {children}
+          </Box>
         </Box>
       </Flex>
     </Fragment>
