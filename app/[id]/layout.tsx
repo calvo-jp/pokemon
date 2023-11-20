@@ -14,11 +14,43 @@ import {Image} from '@/components/image';
 import {Link} from '@/components/link';
 import {Box, Flex, styled} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
+import {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 import {Fragment, PropsWithChildren} from 'react';
 import {CurrentPageLabel} from './current-page-label';
 import {RecentlyViewed} from './recently-viewed';
 import {getPokemon} from './utils';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: {id: string};
+}): Promise<Metadata> {
+  const pokemon = await getPokemon(parseInt(params.id));
+
+  if (!pokemon) return {};
+
+  const sprite = JSON.parse(pokemon.sprites.at(0)?.sprites ?? '{}');
+  const image =
+    sprite.other?.dream_world?.front_default ??
+    sprite.other?.dream_world?.front_default ??
+    '';
+
+  const title = capitalize(pokemon.name, {delimiter: '-'});
+  const description = pokemon.specy?.flavorTexts
+    .map((obj) => obj.flavorText)
+    .join();
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [image],
+    },
+  };
+}
 
 export default async function Layout({
   params,
