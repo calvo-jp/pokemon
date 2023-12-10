@@ -1,3 +1,3 @@
 # Pokemon
 
-![Pokemon](/public/banner.jpeg)
+![Pokemon](/public/banner.png)

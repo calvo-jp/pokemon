@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Pokemon',
     description,
-    images: ['/banner.jpeg'],
+    images: ['/banner.png'],
     siteName: 'Pokemon',
   },
 };
