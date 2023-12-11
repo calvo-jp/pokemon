@@ -6,9 +6,4 @@ invariant(
   "'NEXT_PUBLIC_POKEAPI' is undefined",
 );
 
-export const graphqlClient = new GraphQLClient(
-  process.env.NEXT_PUBLIC_POKEAPI,
-  {
-    fetch,
-  },
-);
+export const graphqlClient = new GraphQLClient(process.env.NEXT_PUBLIC_POKEAPI);
