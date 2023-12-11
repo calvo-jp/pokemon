@@ -33,8 +33,8 @@ dependencies:
     specifier: 1.3.1
     version: 1.3.1
   valibot:
-    specifier: 0.24.0
-    version: 0.24.0
+    specifier: 0.21.0
+    version: 0.21.0
 
 devDependencies:
   '@graphql-codegen/add':
@@ -6715,8 +6715,8 @@ packages:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
 
-  /valibot@0.24.0:
-    resolution: {integrity: sha512-OZq+2RmC4CU93Oxw+hL9L73wA7X0I89g2Fd6RR8wtlRFUinW9/gVl9g9h94EWQBHbEFFVG2Xxt2ndMszF66k0A==}
+  /valibot@0.21.0:
+    resolution: {integrity: sha512-XnzpX93b1vQL7CB3fHlhpLg7OutYpc3ke8SKOvp7IXgicRfTdP/w8+bf0DjhVsySq6YdF4Opld05mj6bTobo9g==}
     dev: false
 
   /value-or-promise@1.0.12:
