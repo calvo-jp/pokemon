@@ -1,6 +1,7 @@
 import '@/assets/styles/globals.css';
 import {cx} from '@/styled-system/css';
 import {styled} from '@/styled-system/jsx';
+import {Analytics} from '@vercel/analytics/react';
 import {Metadata} from 'next';
 import {Fira_Code, Lato} from 'next/font/google';
 import {PropsWithChildren} from 'react';
@@ -71,6 +72,8 @@ export default function RootLayout({children}: PropsWithChildren) {
         >
           {children}
         </styled.main>
+
+        <Analytics />
       </styled.body>
     </styled.html>
   );
