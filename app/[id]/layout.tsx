@@ -1,23 +1,18 @@
 import {
-  BreadcrumbItem,
-  BreadcrumbItems,
-  BreadcrumbLink,
-  Breadcrumbs,
-} from '@/components/breadcrumbs';
-import {
   IconBarChart2,
   IconLightBulb,
   IconRotate3D,
   IconShield,
 } from '@/components/icons';
-import {Image} from '@/components/image';
 import {Link} from '@/components/link';
 import {Box, Flex, styled} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
 import {Metadata} from 'next';
 import {notFound} from 'next/navigation';
-import {Fragment, PropsWithChildren} from 'react';
-import {CurrentPageLabel} from './current-page-label';
+import {Fragment, PropsWithChildren, Suspense} from 'react';
+import {Navbar} from './navbar';
+import {PokemonAvatar} from './pokemon-avatar';
+import {PokemonDetails} from './pokemon-details';
 import {RecentlyViewed} from './recently-viewed';
 import {getPokemon} from './utils';
 
@@ -56,44 +51,15 @@ export default async function Layout({
   params,
   children,
 }: PropsWithChildren<{params: {id: string}}>) {
-  const pokemon = await getPokemon(parseInt(params.id));
+  const id = parseInt(params.id);
 
-  if (!pokemon) return notFound();
-
-  const sprite = JSON.parse(pokemon.sprites.at(0)?.sprites ?? '{}');
-  const image =
-    sprite.other?.dream_world?.front_default ??
-    sprite.other?.dream_world?.front_default ??
-    '';
+  if (isNaN(id)) return notFound();
 
   return (
     <Fragment>
-      <Breadcrumbs
-        display={{
-          base: 'none',
-          lg: 'flex',
-        }}
-      >
-        <BreadcrumbItems>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href="/">Pokemons</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href={`/${pokemon.id}`}>
-                {capitalize(pokemon.name, {delimiter: '-'})}
-              </Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbItem>
-            <BreadcrumbLink currentPage>
-              <CurrentPageLabel />
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-        </BreadcrumbItems>
-      </Breadcrumbs>
+      <Suspense fallback={null}>
+        <Navbar id={id} />
+      </Suspense>
 
       <Flex
         mt={{
@@ -114,27 +80,9 @@ export default async function Layout({
           }}
           flexShrink={0}
         >
-          <Box
-            bg="neutral.800"
-            h="24rem"
-            w="full"
-            p={8}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            aspectRatio={1}
-          >
-            <Image
-              src={image}
-              alt=""
-              width={600}
-              height={600}
-              h="auto"
-              maxH="full"
-              maxW="full"
-              fallbackSrc="/pokemon-ball.png"
-            />
-          </Box>
+          <Suspense fallback={null}>
+            <PokemonAvatar id={id} />
+          </Suspense>
 
           <Box
             mt={8}
@@ -143,37 +91,16 @@ export default async function Layout({
               lg: 'block',
             }}
           >
-            <RecentlyViewed __RSC_DATA={pokemon} />
+            <Suspense fallback={null}>
+              <RecentlyViewed id={id} />
+            </Suspense>
           </Box>
         </Box>
 
         <Box flexGrow={1}>
-          <styled.h1
-            fontSize={{
-              base: '3xl',
-              lg: '4xl',
-            }}
-            fontWeight="bold"
-            lineHeight="none"
-          >
-            {capitalize(pokemon.name, {delimiter: '-'})}
-          </styled.h1>
-
-          <styled.ol display="flex" mt={4} gap={3}>
-            {pokemon.types
-              .filter((obj) => Boolean(obj.type))
-              .map((obj) => (
-                <styled.li
-                  key={obj.id}
-                  bg="neutral.800"
-                  px={4}
-                  py={1}
-                  rounded="full"
-                >
-                  {obj.type?.name}
-                </styled.li>
-              ))}
-          </styled.ol>
+          <Suspense fallback={null}>
+            <PokemonDetails id={id} />
+          </Suspense>
 
           <styled.nav
             mt={{
