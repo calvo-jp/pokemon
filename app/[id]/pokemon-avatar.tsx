@@ -1,5 +1,5 @@
 import {Image} from '@/components/image';
-import {Box} from '@/styled-system/jsx';
+import {Box, styled} from '@/styled-system/jsx';
 import {notFound} from 'next/navigation';
 import {getPokemon} from './utils';
 
@@ -15,16 +15,7 @@ export async function PokemonAvatar({id}: {id: number}) {
     '';
 
   return (
-    <Box
-      bg="neutral.800"
-      h="24rem"
-      w="full"
-      p={8}
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      aspectRatio={1}
-    >
+    <Container>
       <Image
         src={image}
         alt=""
@@ -35,6 +26,35 @@ export async function PokemonAvatar({id}: {id: number}) {
         maxW="full"
         fallbackSrc="/pokemon-ball.png"
       />
-    </Box>
+    </Container>
   );
 }
+
+export function PokemonAvatarLoader() {
+  return (
+    <Container>
+      <Image
+        src="/pokemon-ball.png"
+        alt=""
+        width={600}
+        height={600}
+        h="auto"
+        maxH="full"
+        maxW="full"
+      />
+    </Container>
+  );
+}
+
+const Container = styled(Box, {
+  base: {
+    h: '24rem',
+    w: 'full',
+    p: 8,
+    bg: 'neutral.800',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    aspectRatio: 1,
+  },
+});

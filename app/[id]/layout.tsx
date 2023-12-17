@@ -10,9 +10,9 @@ import {capitalize} from '@/utils/capitalize';
 import {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 import {Fragment, PropsWithChildren, Suspense} from 'react';
-import {Navbar} from './navbar';
-import {PokemonAvatar} from './pokemon-avatar';
-import {PokemonDetails} from './pokemon-details';
+import {Navbar, NavbarLoader} from './navbar';
+import {PokemonAvatar, PokemonAvatarLoader} from './pokemon-avatar';
+import {PokemonDetails, PokemonDetailsLoader} from './pokemon-details';
 import {RecentlyViewed} from './recently-viewed';
 import {getPokemon} from './utils';
 
@@ -57,7 +57,7 @@ export default async function Layout({
 
   return (
     <Fragment>
-      <Suspense fallback={null}>
+      <Suspense fallback={<NavbarLoader />}>
         <Navbar id={id} />
       </Suspense>
 
@@ -80,7 +80,7 @@ export default async function Layout({
           }}
           flexShrink={0}
         >
-          <Suspense fallback={null}>
+          <Suspense fallback={<PokemonAvatarLoader />}>
             <PokemonAvatar id={id} />
           </Suspense>
 
@@ -98,7 +98,7 @@ export default async function Layout({
         </Box>
 
         <Box flexGrow={1}>
-          <Suspense fallback={null}>
+          <Suspense fallback={<PokemonDetailsLoader />}>
             <PokemonDetails id={id} />
           </Suspense>
 

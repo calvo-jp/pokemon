@@ -43,3 +43,30 @@ export async function Navbar({id}: {id: number}) {
     </Breadcrumbs>
   );
 }
+
+export function NavbarLoader() {
+  return (
+    <Breadcrumbs
+      display={{
+        base: 'none',
+        lg: 'flex',
+      }}
+    >
+      <BreadcrumbItems>
+        <BreadcrumbItem>
+          <BreadcrumbLink asChild>
+            <Link href="/">Pokemons</Link>
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink>Loading</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink currentPage>
+            <CurrentPageLabel />
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+      </BreadcrumbItems>
+    </Breadcrumbs>
+  );
+}

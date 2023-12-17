@@ -1,4 +1,4 @@
-import {styled} from '@/styled-system/jsx';
+import {Box, Flex, styled} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
 import {getPokemon} from './utils';
 
@@ -9,32 +9,47 @@ export async function PokemonDetails({id}: {id: number}) {
 
   return (
     <>
-      <styled.h1
-        fontSize={{
-          base: '3xl',
-          lg: '4xl',
-        }}
-        fontWeight="bold"
-        lineHeight="none"
-      >
-        {capitalize(pokemon.name, {delimiter: '-'})}
-      </styled.h1>
+      <Heading>{capitalize(pokemon.name, {delimiter: '-'})}</Heading>
 
-      <styled.ol display="flex" mt={4} gap={3}>
+      <Flex mt={4} gap={3}>
         {pokemon.types
           .filter((obj) => Boolean(obj.type))
           .map((obj) => (
-            <styled.li
-              key={obj.id}
-              bg="neutral.800"
-              px={4}
-              py={1}
-              rounded="full"
-            >
-              {obj.type?.name}
-            </styled.li>
+            <Badge key={obj.id}>{obj.type?.name}</Badge>
           ))}
-      </styled.ol>
+      </Flex>
     </>
   );
 }
+
+export function PokemonDetailsLoader() {
+  return (
+    <>
+      <Heading>Pokemon</Heading>
+      <Box mt={4}>
+        <Badge>Unknown</Badge>
+      </Box>
+    </>
+  );
+}
+
+const Heading = styled('h1', {
+  base: {
+    fontSize: {
+      base: '3xl',
+      lg: '4xl',
+    },
+    fontWeight: 'bold',
+    lineHeight: 'none',
+  },
+});
+
+const Badge = styled(Box, {
+  base: {
+    bg: 'neutral.800',
+    px: 4,
+    py: 1,
+    display: 'inline-block',
+    rounded: 'full',
+  },
+});
