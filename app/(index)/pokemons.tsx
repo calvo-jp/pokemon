@@ -41,7 +41,7 @@ export function PokemonsLoader({size}: {size: number}) {
       }}
     >
       {Array.from({length: size}).map((_, index) => (
-        <Box key={index} bg="red.100" />
+        <PokemonLoader key={index} />
       ))}
     </Grid>
   );
@@ -123,5 +123,46 @@ function Pokemon({data}: PokemonProps) {
         </styled.ul>
       </Box>
     </Link>
+  );
+}
+
+function PokemonLoader() {
+  return (
+    <Box bg="neutral.800" py={6}>
+      <Box px={6}>
+        <Box
+          bg="neutral.700"
+          w="full"
+          px={6}
+          rounded="full"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          aspectRatio={1}
+        >
+          <Image
+            src="/pokemon-ball.png"
+            alt=""
+            width={400}
+            height={400}
+            h="auto"
+            maxH="full"
+            maxW="full"
+          />
+        </Box>
+      </Box>
+
+      <Box px={6} mt={5}>
+        <styled.h2 fontSize="2xl" truncate>
+          Pokemon
+        </styled.h2>
+
+        <styled.ul mt={2} display="flex" gap={2} flexWrap="wrap" fontSize="sm">
+          <styled.li bg="neutral.700" px={2.5} py={0.5} rounded="full">
+            unknown
+          </styled.li>
+        </styled.ul>
+      </Box>
+    </Box>
   );
 }

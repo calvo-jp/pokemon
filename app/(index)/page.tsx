@@ -42,7 +42,9 @@ export default async function PokemonsPage(props: PokemonsProps) {
           <Pokemons filter={filter} />
         </Suspense>
       </Box>
-      <PageNav filter={filter} />
+      <Suspense fallback={null}>
+        <PageNav filter={filter} />
+      </Suspense>
     </Fragment>
   );
 }
