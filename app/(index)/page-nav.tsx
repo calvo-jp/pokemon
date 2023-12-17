@@ -1,93 +1,14 @@
-'use client';
+import {PageNavClient} from './page-nav-client';
+import {GetPokemonsArgsSchemaOutput, getPokemons} from './utils';
 
-import {IconChevronLeft, IconChevronRight} from '@/components/icons';
-import {
-  Pagination,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationNextTrigger,
-  PaginationPrevTrigger,
-} from '@/components/pagination';
-import {PokemonsQuery} from '@/graphql';
-import {usePathname, useRouter, useSearchParams} from 'next/navigation';
-import {Fragment} from 'react';
-import {parse} from 'valibot';
-import {PaginationSchema} from './utils';
-
-interface PageNavProps {
-  __RSC_DATA: PokemonsQuery;
-}
-
-export function PageNav(props: PageNavProps) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  const pagination = parse(PaginationSchema, {
-    page: searchParams.get('page'),
-    size: searchParams.get('size'),
-  });
+export async function PageNav({filter}: {filter: GetPokemonsArgsSchemaOutput}) {
+  const data = await getPokemons(filter);
 
   return (
-    <Pagination
-      mt={{
-        base: 4,
-        lg: 12,
-      }}
-      /* @ts-expect-error */
-      page={pagination.page}
-      pageSize={pagination.size}
-      count={props.__RSC_DATA.details.aggregate?.count ?? 0}
-      onPageChange={(o) => {
-        const s = new URLSearchParams(searchParams);
-
-        s.set('page', `${o.page}`);
-        s.set('size', `${o.pageSize}`);
-
-        router.push(`${pathname}?${s.toString()}`);
-      }}
-    >
-      {(ctx) => (
-        <Fragment>
-          <PaginationPrevTrigger>
-            <IconChevronLeft w={5} h={5} />
-          </PaginationPrevTrigger>
-
-          {ctx.pages.map((page, index) => {
-            if (page.type === 'page') {
-              return (
-                <PaginationItem
-                  key={index}
-                  display={{
-                    base: 'none',
-                    lg: 'flex',
-                  }}
-                  {...page}
-                >
-                  {page.value}
-                </PaginationItem>
-              );
-            }
-
-            return (
-              <PaginationEllipsis
-                key={index}
-                index={index}
-                display={{
-                  base: 'none',
-                  lg: 'flex',
-                }}
-              >
-                ...
-              </PaginationEllipsis>
-            );
-          })}
-
-          <PaginationNextTrigger>
-            <IconChevronRight w={5} h={5} />
-          </PaginationNextTrigger>
-        </Fragment>
-      )}
-    </Pagination>
+    <PageNavClient
+      page={filter.page}
+      size={filter.size}
+      count={data.details.aggregate?.count ?? 0}
+    />
   );
 }
