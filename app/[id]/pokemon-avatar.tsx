@@ -31,19 +31,7 @@ export async function PokemonAvatar({id}: {id: number}) {
 }
 
 export function PokemonAvatarLoader() {
-  return (
-    <Container>
-      <Image
-        src="/pokemon-ball.png"
-        alt=""
-        width={600}
-        height={600}
-        h="auto"
-        maxH="full"
-        maxW="full"
-      />
-    </Container>
-  );
+  return <Container animation="pulse" />;
 }
 
 const Container = styled(Box, {

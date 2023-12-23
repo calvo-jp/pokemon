@@ -1,7 +1,7 @@
 import {Image} from '@/components/image';
 import {Link} from '@/components/link';
 import {PokemonsQuery} from '@/graphql';
-import {Box, Grid, styled} from '@/styled-system/jsx';
+import {Box, Flex, Grid, styled} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
 import {GetPokemonsArgsSchemaOutput, getPokemons} from './utils';
 
@@ -97,7 +97,7 @@ function Pokemon({data}: PokemonProps) {
       </Box>
 
       <Box px={6} mt={5}>
-        <styled.h2 fontSize="2xl" truncate>
+        <styled.h2 fontSize="2xl" lineHeight="none" truncate>
           {capitalize(data.name, {delimiter: '-'})}
         </styled.h2>
 
@@ -128,41 +128,23 @@ function Pokemon({data}: PokemonProps) {
 
 function PokemonLoader() {
   return (
-    <Box bg="neutral.800" py={6}>
-      <Box px={6}>
-        <Box
-          bg="neutral.700"
-          w="full"
-          px={6}
-          rounded="full"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          aspectRatio={1}
-        >
-          <Image
-            src="/pokemon-ball.png"
-            alt=""
-            width={400}
-            height={400}
-            h="auto"
-            maxH="full"
-            maxW="full"
-          />
-        </Box>
-      </Box>
+    <Box bg="neutral.800" p={6}>
+      <Box
+        bg="neutral.700"
+        w="full"
+        px={6}
+        rounded="full"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        aspectRatio={1}
+        animation="pulse"
+      />
 
-      <Box px={6} mt={5}>
-        <styled.h2 fontSize="2xl" truncate>
-          Pokemon
-        </styled.h2>
-
-        <styled.ul mt={2} display="flex" gap={2} flexWrap="wrap" fontSize="sm">
-          <styled.li bg="neutral.700" px={2.5} py={0.5} rounded="full">
-            unknown
-          </styled.li>
-        </styled.ul>
-      </Box>
+      <Flex mt={6} flexDir="column" gap={2}>
+        <Box h={6} w="1/2" bg="neutral.700" rounded="full" animation="pulse" />
+        <Box h={5} w={16} bg="neutral.700" rounded="full" animation="pulse" />
+      </Flex>
     </Box>
   );
 }

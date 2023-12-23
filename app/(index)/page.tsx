@@ -38,7 +38,10 @@ export default async function PokemonsPage(props: PokemonsProps) {
         </Suspense>
       </Box>
       <Box mt={4}>
-        <Suspense fallback={<PokemonsLoader size={filter.size} />}>
+        <Suspense
+          fallback={<PokemonsLoader size={filter.size} />}
+          key={JSON.stringify(filter)}
+        >
           <Pokemons filter={filter} />
         </Suspense>
       </Box>
