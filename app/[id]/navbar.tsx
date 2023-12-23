@@ -5,6 +5,7 @@ import {
   Breadcrumbs,
 } from '@/components/breadcrumbs';
 import {Link} from '@/components/link';
+import {Box} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
 import {CurrentPageLabel} from './current-page-label';
 import {getPokemon} from './utils';
@@ -59,7 +60,7 @@ export function NavbarLoader() {
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <BreadcrumbLink>Loading</BreadcrumbLink>
+          <Box h={3} w={16} bg="neutral.800" rounded="full" animation="pulse" />
         </BreadcrumbItem>
         <BreadcrumbItem>
           <BreadcrumbLink currentPage>
