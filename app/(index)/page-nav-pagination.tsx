@@ -11,13 +11,13 @@ import {
 import {usePathname, useRouter, useSearchParams} from 'next/navigation';
 import {Fragment} from 'react';
 
-interface PageNavClientProps {
+interface PageNavPaginationProps {
   page: number;
   size: number;
   count: number;
 }
 
-export function PageNavClient({page, size, count}: PageNavClientProps) {
+export function PageNavPagination({page, size, count}: PageNavPaginationProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
