@@ -9,7 +9,6 @@ import {
   PaginationPrevTrigger,
 } from '@/components/pagination';
 import {usePathname, useRouter, useSearchParams} from 'next/navigation';
-import {Fragment} from 'react';
 
 interface PageNavPaginationProps {
   page: number;
@@ -42,7 +41,7 @@ export function PageNavPagination({page, size, count}: PageNavPaginationProps) {
       }}
     >
       {(ctx) => (
-        <Fragment>
+        <>
           <PaginationPrevTrigger>
             <IconChevronLeft w={5} h={5} />
           </PaginationPrevTrigger>
@@ -80,7 +79,7 @@ export function PageNavPagination({page, size, count}: PageNavPaginationProps) {
           <PaginationNextTrigger>
             <IconChevronRight w={5} h={5} />
           </PaginationNextTrigger>
-        </Fragment>
+        </>
       )}
     </Pagination>
   );

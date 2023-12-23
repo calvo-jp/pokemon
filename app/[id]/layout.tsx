@@ -9,7 +9,7 @@ import {Box, Flex, styled} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
 import {Metadata} from 'next';
 import {notFound} from 'next/navigation';
-import {Fragment, PropsWithChildren, Suspense} from 'react';
+import {PropsWithChildren, Suspense} from 'react';
 import {Navbar, NavbarLoader} from './navbar';
 import {PokemonAvatar, PokemonAvatarLoader} from './pokemon-avatar';
 import {PokemonDetails, PokemonDetailsLoader} from './pokemon-details';
@@ -56,7 +56,7 @@ export default async function Layout({
   if (isNaN(id)) return notFound();
 
   return (
-    <Fragment>
+    <>
       <Suspense fallback={<NavbarLoader />}>
         <Navbar id={id} />
       </Suspense>
@@ -163,7 +163,7 @@ export default async function Layout({
           </Box>
         </Box>
       </Flex>
-    </Fragment>
+    </>
   );
 }
 

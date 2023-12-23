@@ -1,7 +1,6 @@
 import {Box, styled} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
 import {notFound} from 'next/navigation';
-import {Fragment} from 'react';
 import {getPokemon} from '../utils';
 
 export default async function Moves({params}: {params: {id: string}}) {
@@ -10,7 +9,7 @@ export default async function Moves({params}: {params: {id: string}}) {
   if (!pokemon) return notFound();
 
   return (
-    <Fragment>
+    <>
       <Box
         bg="neutral.800"
         p={{
@@ -110,6 +109,6 @@ export default async function Moves({params}: {params: {id: string}}) {
           </styled.tbody>
         </styled.table>
       </Box>
-    </Fragment>
+    </>
   );
 }

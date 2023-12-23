@@ -1,7 +1,6 @@
 import {Box, Divider, Flex, HStack} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
 import {notFound} from 'next/navigation';
-import {Fragment} from 'react';
 import {getPokemon} from './utils';
 
 export default async function Pokemon({params}: {params: {id: string}}) {
@@ -10,7 +9,7 @@ export default async function Pokemon({params}: {params: {id: string}}) {
   if (!pokemon) return notFound();
 
   return (
-    <Fragment>
+    <>
       <Box>
         {pokemon.specy?.flavorTexts.map((obj) => obj.flavorText).join()}
       </Box>
@@ -122,7 +121,7 @@ export default async function Pokemon({params}: {params: {id: string}}) {
           <Box>{pokemon.specy?.hatchCounter ?? 0}</Box>
         </Box>
       </Flex>
-    </Fragment>
+    </>
   );
 }
 

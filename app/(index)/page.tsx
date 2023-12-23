@@ -1,6 +1,6 @@
 import {Box} from '@/styled-system/jsx';
 import {clamp} from '@/utils/clamp';
-import {Fragment, Suspense} from 'react';
+import {Suspense} from 'react';
 import {parse} from 'valibot';
 import {Filter} from './filter';
 import {PageNav} from './page-nav';
@@ -22,7 +22,7 @@ export default async function PokemonsPage(props: PokemonsProps) {
   });
 
   return (
-    <Fragment>
+    <>
       <Filter />
       <Box
         mt={{
@@ -45,7 +45,7 @@ export default async function PokemonsPage(props: PokemonsProps) {
       <Suspense fallback={null}>
         <PageNav filter={filter} />
       </Suspense>
-    </Fragment>
+    </>
   );
 }
 

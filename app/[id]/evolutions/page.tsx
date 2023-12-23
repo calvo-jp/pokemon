@@ -3,7 +3,6 @@ import {Image} from '@/components/image';
 import {Box, HStack, VStack, styled} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
 import {notFound} from 'next/navigation';
-import {Fragment} from 'react';
 import {getPokemon, getPokemonImage} from '../utils';
 
 export default async function Evolutions({params}: {params: {id: string}}) {
@@ -18,7 +17,7 @@ export default async function Evolutions({params}: {params: {id: string}}) {
   );
 
   return (
-    <Fragment>
+    <>
       <Box>
         <styled.span>
           There are currently a total of {species.length} Pokémon in the{' '}
@@ -116,7 +115,7 @@ export default async function Evolutions({params}: {params: {id: string}}) {
           );
         })}
       </VStack>
-    </Fragment>
+    </>
   );
 }
 

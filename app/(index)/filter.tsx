@@ -39,7 +39,7 @@ import {css, cx} from '@/styled-system/css';
 import {Box, Flex, VisuallyHidden, styled} from '@/styled-system/jsx';
 import {Portal} from '@ark-ui/react';
 import {usePathname, useRouter, useSearchParams} from 'next/navigation';
-import {Fragment, useReducer} from 'react';
+import {useReducer} from 'react';
 import {parse} from 'valibot';
 import {FilterSchema, FilterSchemaOuput} from './utils';
 
@@ -101,7 +101,7 @@ export function Filter() {
         }}
       >
         {(ctx) => (
-          <Fragment>
+          <>
             <SelectControl>
               <SelectTrigger>
                 <SelectValueText flexGrow={1}>
@@ -145,7 +145,7 @@ export function Filter() {
                 </SelectContent>
               </SelectPositioner>
             </Portal>
-          </Fragment>
+          </>
         )}
       </Select>
 

@@ -7,7 +7,6 @@ import {
 import {Box, VStack, styled} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
 import {notFound} from 'next/navigation';
-import {Fragment} from 'react';
 import {getPokemon, getPokemonResistanceAndWeakness} from '../utils';
 
 export default async function Statistics({params}: {params: {id: string}}) {
@@ -23,7 +22,7 @@ export default async function Statistics({params}: {params: {id: string}}) {
     await getPokemonResistanceAndWeakness(elements);
 
   return (
-    <Fragment>
+    <>
       <VStack
         alignItems="stretch"
         gap={3}
@@ -100,7 +99,7 @@ export default async function Statistics({params}: {params: {id: string}}) {
           ))}
         </styled.ul>
       </Box>
-    </Fragment>
+    </>
   );
 }
 
