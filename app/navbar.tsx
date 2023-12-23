@@ -40,8 +40,8 @@ export function Navbar() {
           color="transparent"
           fontFamily="var(--font-heading)"
           fontSize={{
-            base: '4xl',
-            lg: '5xl',
+            base: '3xl',
+            lg: '4xl',
           }}
           fontWeight="black"
           lineHeight="none"
