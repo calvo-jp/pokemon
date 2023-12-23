@@ -1,4 +1,4 @@
-import {IconGitBranch} from '@/components/icons';
+import {Icon} from '@/components/icon';
 import {Link} from '@/components/link';
 import {
   Tooltip,
@@ -10,6 +10,7 @@ import {
 } from '@/components/tooltip';
 import {Flex, Spacer, VisuallyHidden, styled} from '@/styled-system/jsx';
 import {Portal} from '@ark-ui/react';
+import {GithubIcon} from 'lucide-react';
 import {Lilita_One} from 'next/font/google';
 
 const heading = Lilita_One({
@@ -65,7 +66,9 @@ export function Navbar() {
               rel="noreferrer noopener"
               prefetch={false}
             >
-              <IconGitBranch w={5} h={5} />
+              <Icon w={5} h={5} asChild>
+                <GithubIcon />
+              </Icon>
               <VisuallyHidden>Github</VisuallyHidden>
             </Link>
           </TooltipTrigger>

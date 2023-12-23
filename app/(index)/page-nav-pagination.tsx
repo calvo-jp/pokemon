@@ -1,6 +1,6 @@
 'use client';
 
-import {IconChevronLeft, IconChevronRight} from '@/components/icons';
+import {Icon} from '@/components/icon';
 import {
   Pagination,
   PaginationEllipsis,
@@ -8,6 +8,7 @@ import {
   PaginationNextTrigger,
   PaginationPrevTrigger,
 } from '@/components/pagination';
+import {ChevronLeftIcon, ChevronRightIcon} from 'lucide-react';
 import {usePathname, useRouter, useSearchParams} from 'next/navigation';
 
 interface PageNavPaginationProps {
@@ -43,7 +44,9 @@ export function PageNavPagination({page, size, count}: PageNavPaginationProps) {
       {(ctx) => (
         <>
           <PaginationPrevTrigger>
-            <IconChevronLeft w={5} h={5} />
+            <Icon w={5} h={5} asChild>
+              <ChevronLeftIcon />
+            </Icon>
           </PaginationPrevTrigger>
 
           {ctx.pages.map((page, index) => {
@@ -77,7 +80,9 @@ export function PageNavPagination({page, size, count}: PageNavPaginationProps) {
           })}
 
           <PaginationNextTrigger>
-            <IconChevronRight w={5} h={5} />
+            <Icon w={5} h={5} asChild>
+              <ChevronRightIcon />
+            </Icon>
           </PaginationNextTrigger>
         </>
       )}

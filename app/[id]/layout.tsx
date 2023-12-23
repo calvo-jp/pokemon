@@ -1,12 +1,13 @@
-import {
-  IconBarChart2,
-  IconLightBulb,
-  IconRotate3D,
-  IconShield,
-} from '@/components/icons';
+import {Icon} from '@/components/icon';
 import {Link} from '@/components/link';
 import {Box, Flex, styled} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
+import {
+  BarChart2Icon,
+  LightbulbIcon,
+  Rotate3DIcon,
+  ShieldIcon,
+} from 'lucide-react';
 import {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 import {PropsWithChildren, Suspense} from 'react';
@@ -118,7 +119,7 @@ export default async function Layout({
                 lg: 5,
               }}
             >
-              {links.map(({path, label, icon: SVGIcon}) => (
+              {links.map(({path, label, icon}) => (
                 <styled.li key={path} w="full">
                   <Link
                     href={`/${params.id}${path}`}
@@ -145,7 +146,10 @@ export default async function Layout({
                       },
                     }}
                   >
-                    <SVGIcon w={5} h={5} pointerEvents="none" />
+                    <Icon w={5} h={5} pointerEvents="none" asChild>
+                      {icon}
+                    </Icon>
+
                     {label}
                   </Link>
                 </styled.li>
@@ -169,22 +173,22 @@ export default async function Layout({
 
 const links = [
   {
-    icon: IconLightBulb,
+    icon: <LightbulbIcon />,
     label: 'About',
     path: '/',
   },
   {
-    icon: IconBarChart2,
+    icon: <BarChart2Icon />,
     label: 'Statistics',
     path: '/statistics',
   },
   {
-    icon: IconRotate3D,
+    icon: <Rotate3DIcon />,
     label: 'Evolutions',
     path: '/evolutions',
   },
   {
-    icon: IconShield,
+    icon: <ShieldIcon />,
     label: 'Moves',
     path: '/moves',
   },

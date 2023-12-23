@@ -1,8 +1,10 @@
-import {IconMoveRight} from '@/components/icons';
+import {Icon} from '@/components/icon';
 import {Image} from '@/components/image';
 import {Box, HStack, VStack, styled} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
+import {MoveRightIcon} from 'lucide-react';
 import {notFound} from 'next/navigation';
+import {Suspense} from 'react';
 import {getPokemon, getPokemonImage} from '../utils';
 
 export default async function Evolutions({params}: {params: {id: string}}) {
@@ -85,7 +87,9 @@ export default async function Evolutions({params}: {params: {id: string}}) {
                     .filter(Boolean)
                     .at(0) ?? 0}
                 </Box>
-                <IconMoveRight w={6} h={6} />
+                <Icon w={6} h={6} asChild>
+                  <MoveRightIcon />
+                </Icon>
               </VStack>
 
               <Box
@@ -108,7 +112,9 @@ export default async function Evolutions({params}: {params: {id: string}}) {
                   justifyContent="center"
                   aspectRatio={1}
                 >
-                  <PokemonImage id={obj.id} />
+                  <Suspense fallback={null}>
+                    <PokemonImage id={obj.id} />
+                  </Suspense>
                 </Box>
               </Box>
             </HStack>

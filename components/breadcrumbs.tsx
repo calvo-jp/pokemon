@@ -4,6 +4,7 @@ import {styled} from '@/styled-system/jsx';
 import {Assign, HTMLStyledProps} from '@/styled-system/types';
 import {ariaAttr} from '@/utils/aria-attr';
 import {HTMLArkProps, ark} from '@ark-ui/react';
+import {ChevronRightIcon} from 'lucide-react';
 import {
   Children,
   Fragment,
@@ -11,7 +12,7 @@ import {
   forwardRef,
   isValidElement,
 } from 'react';
-import {IconChevronRight} from './icons';
+import {Icon} from './icon';
 
 const StyledArkNav = styled(ark.nav);
 const StyledArkOl = styled(ark.ol);
@@ -54,7 +55,11 @@ export const BreadcrumbItems = forwardRef<
       {clones?.map((clone, index, list) => (
         <Fragment key={index}>
           {clone}
-          {index + 1 < list.length && <IconChevronRight color="neutral.600" />}
+          {index + 1 < list.length && (
+            <Icon color="neutral.600" asChild>
+              <ChevronRightIcon />
+            </Icon>
+          )}
         </Fragment>
       ))}
     </StyledArkOl>

@@ -7,7 +7,7 @@ import {
   CarouselPrevTrigger,
   CarouselViewport,
 } from '@/components/carousel';
-import {IconChevronLeft, IconChevronRight} from '@/components/icons';
+import {Icon} from '@/components/icon';
 import {Image} from '@/components/image';
 import {Link} from '@/components/link';
 import {PokemonQuery} from '@/graphql';
@@ -17,6 +17,7 @@ import {Box} from '@/styled-system/jsx';
 import {arrayChunk} from '@/utils/array-chunk';
 import {arrayUnique} from '@/utils/array-unique';
 import {CarouselControl, CarouselNextTrigger} from '@ark-ui/react';
+import {ChevronLeftIcon, ChevronRightIcon} from 'lucide-react';
 import {useEffect, useState} from 'react';
 
 type TPokemon = NonNullable<PokemonQuery['pokemon']>;
@@ -38,7 +39,9 @@ export function RecentlyViewedSlideshow(props: RecentlyViewedSlideshowProps) {
     <Carousel display="flex" alignItems="center" gap={6}>
       <CarouselControl>
         <CarouselPrevTrigger className={button}>
-          <IconChevronLeft w={5} h={5} />
+          <Icon w={5} h={5} asChild>
+            <ChevronLeftIcon />
+          </Icon>
         </CarouselPrevTrigger>
       </CarouselControl>
 
@@ -63,7 +66,9 @@ export function RecentlyViewedSlideshow(props: RecentlyViewedSlideshowProps) {
 
       <CarouselControl>
         <CarouselNextTrigger className={button}>
-          <IconChevronRight w={5} h={5} />
+          <Icon w={5} h={5} asChild>
+            <ChevronRightIcon />
+          </Icon>
         </CarouselNextTrigger>
       </CarouselControl>
     </Carousel>

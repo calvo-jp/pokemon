@@ -13,12 +13,7 @@ import rock from '@/assets/images/rock.svg';
 import steel from '@/assets/images/steel.svg';
 import water from '@/assets/images/water.svg';
 import {Button} from '@/components/button';
-import {
-  IconCheck,
-  IconChevronDown,
-  IconSearch,
-  IconX,
-} from '@/components/icons';
+import {Icon} from '@/components/icon';
 import {Image} from '@/components/image';
 import {Input} from '@/components/input';
 import {
@@ -38,6 +33,7 @@ import {
 import {css, cx} from '@/styled-system/css';
 import {Box, Flex, VisuallyHidden, styled} from '@/styled-system/jsx';
 import {Portal} from '@ark-ui/react';
+import {CheckIcon, ChevronDownIcon, SearchIcon, XIcon} from 'lucide-react';
 import {usePathname, useRouter, useSearchParams} from 'next/navigation';
 import {useReducer} from 'react';
 import {parse} from 'valibot';
@@ -117,11 +113,15 @@ export function Filter() {
                 </SelectValueText>
                 <SelectClearTrigger asChild>
                   <Box>
-                    <IconX w={5} h={5} />
+                    <Icon w={5} h={5} asChild>
+                      <XIcon />
+                    </Icon>
                   </Box>
                 </SelectClearTrigger>
                 <SelectIndicator>
-                  <IconChevronDown w={6} h={6} />
+                  <Icon w={6} h={6} asChild>
+                    <ChevronDownIcon />
+                  </Icon>
                 </SelectIndicator>
               </SelectTrigger>
             </SelectControl>
@@ -137,7 +137,9 @@ export function Filter() {
                           <styled.span>{obj.label}</styled.span>
                         </SelectItemText>
                         <SelectItemIndicator>
-                          <IconCheck w={4} h={4} />
+                          <Icon w={4} h={4} asChild>
+                            <CheckIcon />
+                          </Icon>
                         </SelectItemIndicator>
                       </SelectItem>
                     ))}
@@ -179,7 +181,9 @@ export function Filter() {
           router.push(`${pathname}?${s.toString()}`);
         }}
       >
-        <IconSearch w={6} h={6} color="neutral.400" />
+        <Icon w={6} h={6} color="neutral.400" asChild>
+          <SearchIcon />
+        </Icon>
         <VisuallyHidden>Search</VisuallyHidden>
       </Button>
     </Flex>
