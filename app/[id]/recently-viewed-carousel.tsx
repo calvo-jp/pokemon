@@ -22,15 +22,15 @@ import {useEffect, useState} from 'react';
 
 type TPokemon = NonNullable<PokemonQuery['pokemon']>;
 
-interface RecentlyViewedSlideshowProps {
-  __RSC_DATA: TPokemon;
+interface RecentlyViewedCarouselProps {
+  data: TPokemon;
 }
 
-export function RecentlyViewedSlideshow(props: RecentlyViewedSlideshowProps) {
+export function RecentlyViewedCarousel(props: RecentlyViewedCarouselProps) {
   const [items, {add}] = useRecentlyViewed();
 
   useEffectOnce(() => {
-    add(props.__RSC_DATA);
+    add(props.data);
   });
 
   if (items.length <= 0) return null;

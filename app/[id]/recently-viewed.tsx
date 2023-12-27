@@ -1,4 +1,4 @@
-import {RecentlyViewedSlideshow} from './recently-viewed-slideshow';
+import {RecentlyViewedCarousel} from './recently-viewed-carousel';
 import {getPokemon} from './utils';
 
 export async function RecentlyViewed({id}: {id: number}) {
@@ -6,5 +6,5 @@ export async function RecentlyViewed({id}: {id: number}) {
 
   if (!pokemon) return null;
 
-  return <RecentlyViewedSlideshow __RSC_DATA={pokemon} />;
+  return <RecentlyViewedCarousel data={pokemon} />;
 }
