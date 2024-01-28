@@ -27,10 +27,7 @@ export async function generateMetadata({
   if (!pokemon) return {};
 
   const sprite = pokemon.sprites.at(0)?.sprites ?? {};
-  const image =
-    sprite.other?.dream_world?.front_default ??
-    sprite.other?.dream_world?.front_default ??
-    '';
+  const image = sprite.other?.dream_world?.front_default ?? '';
 
   const title = capitalize(pokemon.name, {delimiter: '-'});
   const description = pokemon.specy?.flavorTexts

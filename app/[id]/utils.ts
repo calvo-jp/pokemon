@@ -20,10 +20,7 @@ export async function getPokemonImage(id: number): Promise<string | null> {
   if (!item) return null;
 
   const parsed = item.sprite;
-  const image =
-    parsed.other?.dream_world?.front_default ??
-    parsed.other?.dream_world?.front_default ??
-    null;
+  const image = parsed.other?.dream_world?.front_default ?? null;
 
   return image;
 }

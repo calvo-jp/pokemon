@@ -77,10 +77,7 @@ export function RecentlyViewedCarousel(props: RecentlyViewedCarouselProps) {
 
 function Thumbnail({data}: {data: NonNullable<PokemonQuery['pokemon']>}) {
   const sprite = data.sprites.at(0)?.sprites ?? {};
-  const image =
-    sprite.other?.dream_world?.front_default ??
-    sprite.other?.dream_world?.front_default ??
-    '';
+  const image = sprite.other?.dream_world?.front_default ?? '';
 
   return (
     <Link href={`/${data.id}`} display="block" bg="neutral.800" p={2}>
