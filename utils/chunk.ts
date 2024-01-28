@@ -1,4 +1,4 @@
-export function arrayChunk<T extends unknown>(array: T[], size: number) {
+export function chunk<T extends unknown>(array: T[], size: number) {
   const chunks: T[][] = [];
   const copy = [...array];
 

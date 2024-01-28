@@ -1,6 +1,6 @@
 import {graphqlClient} from '@/config/graphql-client';
 import {getSdk} from '@/graphql';
-import {arrayUnique} from '@/utils/array-unique';
+import {uniqBy} from '@/utils/uniqBy';
 
 export async function getPokemon(id: number) {
   const data = await getSdk(graphqlClient).Pokemon({id});
@@ -72,7 +72,7 @@ export async function getPokemonResistanceAndWeakness(types: number[]) {
   );
 
   return {
-    resistance: arrayUnique(resistanceAndWeaknesses.resistance, (v) => v.name),
-    weaknesses: arrayUnique(resistanceAndWeaknesses.weaknesses, (v) => v.name),
+    resistance: uniqBy(resistanceAndWeaknesses.resistance, (v) => v.name),
+    weaknesses: uniqBy(resistanceAndWeaknesses.weaknesses, (v) => v.name),
   };
 }

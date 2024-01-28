@@ -13,8 +13,8 @@ import {Link} from '@/components/link';
 import {PokemonQuery} from '@/graphql';
 import {css} from '@/styled-system/css';
 import {Box} from '@/styled-system/jsx';
-import {arrayChunk} from '@/utils/array-chunk';
-import {arrayUnique} from '@/utils/array-unique';
+import {chunk} from '@/utils/chunk';
+import {uniqBy} from '@/utils/uniqBy';
 import {CarouselControl, CarouselNextTrigger} from '@ark-ui/react';
 import {ChevronLeftIcon, ChevronRightIcon} from 'lucide-react';
 import {useEffect, useState} from 'react';
@@ -27,13 +27,13 @@ interface RecentlyViewedCarouselProps {
 }
 
 export function RecentlyViewedCarousel(props: RecentlyViewedCarouselProps) {
-  const [items, {add}] = useRecentlyViewed();
+  const [recentlyViewed, setRecentlyViewed] = useRecentlyViewed();
 
   useEffectOnce(() => {
-    add(props.data);
+    setRecentlyViewed.add(props.data);
   });
 
-  if (items.length <= 0) return null;
+  if (recentlyViewed.length <= 0) return null;
 
   return (
     <Carousel display="flex" alignItems="center" gap={6}>
@@ -47,7 +47,7 @@ export function RecentlyViewedCarousel(props: RecentlyViewedCarouselProps) {
 
       <CarouselViewport flexGrow={1}>
         <CarouselItemGroup>
-          {arrayChunk(items, 6).map((pokemons, index) => (
+          {chunk(recentlyViewed, 6).map((pokemons, index) => (
             <CarouselItem
               key={index}
               index={1}
@@ -138,21 +138,18 @@ function getRecentlyViewed(): TPokemon[] {
 }
 
 function useRecentlyViewed() {
-  const [state, setState] = useState<TPokemon[]>([]);
+  const [items, setItems] = useState<TPokemon[]>([]);
 
   useEffect(() => {
-    setState(getRecentlyViewed());
+    setItems(getRecentlyViewed());
   }, []);
 
   const add = (v: TPokemon) => {
-    const l = arrayUnique([v, ...getRecentlyViewed()], (i) => i.id).slice(
-      0,
-      18,
-    );
+    const l = uniqBy([v, ...getRecentlyViewed()], (i) => i.id).slice(0, 18);
 
     localStorage.setItem(recentlyViewedStorageKey, JSON.stringify(l));
-    setState(l);
+    setItems(l);
   };
 
-  return [state, {add}] as const;
+  return [items, {add}] as const;
 }
