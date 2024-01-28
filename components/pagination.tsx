@@ -2,10 +2,10 @@
 
 import {cva} from '@/styled-system/css';
 import {styled} from '@/styled-system/jsx';
-import {Pagination as parts} from '@ark-ui/react';
+import {Pagination as ArkPagination} from '@ark-ui/react';
 
 export const Pagination = styled(
-  parts.Root,
+  ArkPagination.Root,
   {
     base: {
       display: 'flex',
@@ -20,7 +20,7 @@ export const Pagination = styled(
   },
 );
 
-export const PaginationEllipsis = styled(parts.Ellipsis, {
+export const PaginationEllipsis = styled(ArkPagination.Ellipsis, {
   base: {
     h: 12,
     w: 12,
@@ -68,6 +68,6 @@ const button = cva({
   },
 });
 
-export const PaginationItem = styled(parts.Item, button);
-export const PaginationNextTrigger = styled(parts.NextTrigger, button);
-export const PaginationPrevTrigger = styled(parts.PrevTrigger, button);
+export const PaginationItem = styled(ArkPagination.Item, button);
+export const PaginationNextTrigger = styled(ArkPagination.NextTrigger, button);
+export const PaginationPrevTrigger = styled(ArkPagination.PrevTrigger, button);

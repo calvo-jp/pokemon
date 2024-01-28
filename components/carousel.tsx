@@ -1,17 +1,17 @@
 'use client';
 
 import {styled} from '@/styled-system/jsx';
-import {Carousel as parts} from '@ark-ui/react';
+import {Carousel as ArkCarousel} from '@ark-ui/react';
 
-export const Carousel = styled(parts.Root);
-export const CarouselControl = styled(parts.Control);
-export const CarouselIndicator = styled(parts.Indicator);
-export const CarouselIndicatorGroup = styled(parts.IndicatorGroup);
-export const CarouselItem = styled(parts.Item);
-export const CarouselItemGroup = styled(parts.ItemGroup);
-export const CarouselNextTrigger = styled(parts.NextTrigger);
-export const CarouselPrevTrigger = styled(parts.PrevTrigger);
-export const CarouselViewport = styled(parts.Viewport, {
+export const Carousel = styled(ArkCarousel.Root);
+export const CarouselControl = styled(ArkCarousel.Control);
+export const CarouselIndicator = styled(ArkCarousel.Indicator);
+export const CarouselIndicatorGroup = styled(ArkCarousel.IndicatorGroup);
+export const CarouselItem = styled(ArkCarousel.Item);
+export const CarouselItemGroup = styled(ArkCarousel.ItemGroup);
+export const CarouselNextTrigger = styled(ArkCarousel.NextTrigger);
+export const CarouselPrevTrigger = styled(ArkCarousel.PrevTrigger);
+export const CarouselViewport = styled(ArkCarousel.Viewport, {
   base: {
     pos: 'relative',
     overflowX: 'hidden',

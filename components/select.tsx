@@ -1,16 +1,16 @@
 'use client';
 
 import {styled} from '@/styled-system/jsx';
-import {Select as parts} from '@ark-ui/react';
+import {Select as ArkSelect} from '@ark-ui/react';
 
-export const Select = styled(parts.Root);
-export const SelectClearTrigger = styled(parts.ClearTrigger, {
+export const Select = styled(ArkSelect.Root);
+export const SelectClearTrigger = styled(ArkSelect.ClearTrigger, {
   base: {
     color: 'neutral.400',
   },
 });
 
-export const SelectContent = styled(parts.Content, {
+export const SelectContent = styled(ArkSelect.Content, {
   base: {
     py: 2,
     bg: 'neutral.700',
@@ -23,7 +23,7 @@ export const SelectContent = styled(parts.Content, {
   },
 });
 
-export const SelectControl = styled(parts.Control, {
+export const SelectControl = styled(ArkSelect.Control, {
   base: {
     h: 14,
     w: 'full',
@@ -32,7 +32,7 @@ export const SelectControl = styled(parts.Control, {
   },
 });
 
-export const SelectIndicator = styled(parts.Indicator, {
+export const SelectIndicator = styled(ArkSelect.Indicator, {
   base: {
     color: 'neutral.400',
     transition: 'transform token(durations.slow)',
@@ -42,7 +42,7 @@ export const SelectIndicator = styled(parts.Indicator, {
   },
 });
 
-export const SelectItem = styled(parts.Item, {
+export const SelectItem = styled(ArkSelect.Item, {
   base: {
     px: 4,
     py: 2,
@@ -56,15 +56,15 @@ export const SelectItem = styled(parts.Item, {
   },
 });
 
-export const SelectItemGroup = styled(parts.ItemGroup);
-export const SelectItemGroupLabel = styled(parts.ItemGroupLabel);
-export const SelectItemIndicator = styled(parts.ItemIndicator, {
+export const SelectItemGroup = styled(ArkSelect.ItemGroup);
+export const SelectItemGroupLabel = styled(ArkSelect.ItemGroupLabel);
+export const SelectItemIndicator = styled(ArkSelect.ItemIndicator, {
   base: {
     color: 'neutral.400',
   },
 });
 
-export const SelectItemText = styled(parts.ItemText, {
+export const SelectItemText = styled(ArkSelect.ItemText, {
   base: {
     flexGrow: 1,
     display: 'flex',
@@ -73,10 +73,10 @@ export const SelectItemText = styled(parts.ItemText, {
   },
 });
 
-export const SelectLabel = styled(parts.Label);
-export const SelectPositioner = styled(parts.Positioner);
-export const SelectValueText = styled(parts.ValueText);
-export const SelectTrigger = styled(parts.Trigger, {
+export const SelectLabel = styled(ArkSelect.Label);
+export const SelectPositioner = styled(ArkSelect.Positioner);
+export const SelectValueText = styled(ArkSelect.ValueText);
+export const SelectTrigger = styled(ArkSelect.Trigger, {
   base: {
     h: 'full',
     px: 5,

@@ -1,8 +1,8 @@
 import {
   Progress,
   ProgressLabel,
-  ProgressValue,
-  ProgressValueText,
+  ProgressRange,
+  ProgressTrack,
 } from '@/components/progress';
 import {Box, VStack, styled} from '@/styled-system/jsx';
 import {capitalize} from '@/utils/capitalize';
@@ -36,10 +36,13 @@ export default async function Statistics({params}: {params: {id: string}}) {
           if (!obj.stat) return null;
 
           return (
-            <Progress key={obj.id} value={obj.base}>
-              <ProgressLabel w={12}>{formatStat(obj.stat.name)}</ProgressLabel>
-              <ProgressValue />
-              <ProgressValueText w={8} textAlign="right" color="neutral.400" />
+            <Progress key={obj.id} value={obj.base} min={0} max={100}>
+              <ProgressTrack>
+                <ProgressRange />
+              </ProgressTrack>
+              <ProgressLabel w={8} textAlign="left">
+                {formatStat(obj.stat.name)}
+              </ProgressLabel>
             </Progress>
           );
         })}
