@@ -8,7 +8,7 @@ export async function PokemonAvatar({id}: {id: number}) {
 
   if (!pokemon) return notFound();
 
-  const sprite = JSON.parse(pokemon.sprites.at(0)?.sprites ?? '{}');
+  const sprite = pokemon.sprites.at(0)?.sprites ?? {};
   const image =
     sprite.other?.dream_world?.front_default ??
     sprite.other?.dream_world?.front_default ??

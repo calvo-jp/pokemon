@@ -68,4 +68,5 @@ export default defineConfig({
   },
   outdir: 'styled-system',
   jsxFramework: 'react',
+  lightningcss: true,
 });

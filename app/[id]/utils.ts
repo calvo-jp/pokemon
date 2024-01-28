@@ -19,7 +19,7 @@ export async function getPokemonImage(id: number): Promise<string | null> {
 
   if (!item) return null;
 
-  const parsed = JSON.parse(item.sprite) as {[key: string]: any};
+  const parsed = item.sprite;
   const image =
     parsed.other?.dream_world?.front_default ??
     parsed.other?.dream_world?.front_default ??

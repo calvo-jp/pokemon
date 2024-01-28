@@ -52,7 +52,7 @@ interface PokemonProps {
 }
 
 function Pokemon({data}: PokemonProps) {
-  const sprite = JSON.parse(data.sprites.at(0)?.sprites ?? '{}');
+  const sprite = data.sprites.at(0)?.sprites ?? {};
   const image =
     sprite.other?.dream_world?.front_default ??
     sprite.other?.dream_world?.front_default ??

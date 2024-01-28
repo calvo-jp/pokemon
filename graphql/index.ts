@@ -1,7 +1,7 @@
 /* eslint-disable */
 // @ts-nocheck
 // Generated file
-// Last modified: Sat, 18 Nov 2023 14:01:34 GMT
+// Last modified: Sun, 28 Jan 2024 07:40:23 GMT
 import {GraphQLClient} from 'graphql-request';
 import {GraphQLClientRequestHeaders} from 'graphql-request/build/cjs/types';
 import {gql} from 'graphql-request';
@@ -27,6 +27,7 @@ export interface Scalars {
   Boolean: {input: boolean; output: boolean};
   Int: {input: number; output: number};
   Float: {input: number; output: number};
+  jsonb: {input: {[key: string]: any}; output: {[key: string]: any}};
 }
 
 export interface BooleanComparisonExp {
@@ -76,6 +77,28 @@ export interface StringComparisonExp {
 }
 
 export type CursorOrdering = 'ASC' | 'DESC';
+
+export interface JsonbCastExp {
+  String?: InputMaybe<StringComparisonExp>;
+}
+
+export interface JsonbComparisonExp {
+  _cast?: InputMaybe<JsonbCastExp>;
+  _contained_in?: InputMaybe<Scalars['jsonb']['input']>;
+  _contains?: InputMaybe<Scalars['jsonb']['input']>;
+  _eq?: InputMaybe<Scalars['jsonb']['input']>;
+  _gt?: InputMaybe<Scalars['jsonb']['input']>;
+  _gte?: InputMaybe<Scalars['jsonb']['input']>;
+  _has_key?: InputMaybe<Scalars['String']['input']>;
+  _has_keys_all?: InputMaybe<Array<Scalars['String']['input']>>;
+  _has_keys_any?: InputMaybe<Array<Scalars['String']['input']>>;
+  _in?: InputMaybe<Array<Scalars['jsonb']['input']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Scalars['jsonb']['input']>;
+  _lte?: InputMaybe<Scalars['jsonb']['input']>;
+  _neq?: InputMaybe<Scalars['jsonb']['input']>;
+  _nin?: InputMaybe<Array<Scalars['jsonb']['input']>>;
+}
 
 export type OrderBy =
   | 'asc'
@@ -2315,6 +2338,7 @@ export interface PokemonV2ContesttypeBoolExp {
   _or?: InputMaybe<Array<PokemonV2ContesttypeBoolExp>>;
   id?: InputMaybe<IntComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
+  pokemon_v2_berryflavor?: InputMaybe<PokemonV2BerryflavorBoolExp>;
   pokemon_v2_berryflavors?: InputMaybe<PokemonV2BerryflavorBoolExp>;
   pokemon_v2_berryflavors_aggregate?: InputMaybe<PokemonV2BerryflavorAggregateBoolExp>;
   pokemon_v2_contesttypenames?: InputMaybe<PokemonV2ContesttypenameBoolExp>;
@@ -2326,6 +2350,7 @@ export interface PokemonV2ContesttypeBoolExp {
 export interface PokemonV2ContesttypeOrderBy {
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
+  pokemon_v2_berryflavor?: InputMaybe<PokemonV2BerryflavorOrderBy>;
   pokemon_v2_berryflavors_aggregate?: InputMaybe<PokemonV2BerryflavorAggregateOrderBy>;
   pokemon_v2_contesttypenames_aggregate?: InputMaybe<PokemonV2ContesttypenameAggregateOrderBy>;
   pokemon_v2_moves_aggregate?: InputMaybe<PokemonV2MoveAggregateOrderBy>;
@@ -6261,19 +6286,17 @@ export interface PokemonV2ItemspritesBoolExp {
   id?: InputMaybe<IntComparisonExp>;
   item_id?: InputMaybe<IntComparisonExp>;
   pokemon_v2_item?: InputMaybe<PokemonV2ItemBoolExp>;
-  sprites?: InputMaybe<StringComparisonExp>;
+  sprites?: InputMaybe<JsonbComparisonExp>;
 }
 
 export interface PokemonV2ItemspritesMaxOrderBy {
   id?: InputMaybe<OrderBy>;
   item_id?: InputMaybe<OrderBy>;
-  sprites?: InputMaybe<OrderBy>;
 }
 
 export interface PokemonV2ItemspritesMinOrderBy {
   id?: InputMaybe<OrderBy>;
   item_id?: InputMaybe<OrderBy>;
-  sprites?: InputMaybe<OrderBy>;
 }
 
 export interface PokemonV2ItemspritesOrderBy {
@@ -6308,7 +6331,7 @@ export interface PokemonV2ItemspritesStreamCursorInput {
 export interface PokemonV2ItemspritesStreamCursorValueInput {
   id?: InputMaybe<Scalars['Int']['input']>;
   item_id?: InputMaybe<Scalars['Int']['input']>;
-  sprites?: InputMaybe<Scalars['String']['input']>;
+  sprites?: InputMaybe<Scalars['jsonb']['input']>;
 }
 
 export interface PokemonV2ItemspritesSumOrderBy {
@@ -14268,19 +14291,17 @@ export interface PokemonV2PokemonformspritesBoolExp {
   id?: InputMaybe<IntComparisonExp>;
   pokemon_form_id?: InputMaybe<IntComparisonExp>;
   pokemon_v2_pokemonform?: InputMaybe<PokemonV2PokemonformBoolExp>;
-  sprites?: InputMaybe<StringComparisonExp>;
+  sprites?: InputMaybe<JsonbComparisonExp>;
 }
 
 export interface PokemonV2PokemonformspritesMaxOrderBy {
   id?: InputMaybe<OrderBy>;
   pokemon_form_id?: InputMaybe<OrderBy>;
-  sprites?: InputMaybe<OrderBy>;
 }
 
 export interface PokemonV2PokemonformspritesMinOrderBy {
   id?: InputMaybe<OrderBy>;
   pokemon_form_id?: InputMaybe<OrderBy>;
-  sprites?: InputMaybe<OrderBy>;
 }
 
 export interface PokemonV2PokemonformspritesOrderBy {
@@ -14318,7 +14339,7 @@ export interface PokemonV2PokemonformspritesStreamCursorInput {
 export interface PokemonV2PokemonformspritesStreamCursorValueInput {
   id?: InputMaybe<Scalars['Int']['input']>;
   pokemon_form_id?: InputMaybe<Scalars['Int']['input']>;
-  sprites?: InputMaybe<Scalars['String']['input']>;
+  sprites?: InputMaybe<Scalars['jsonb']['input']>;
 }
 
 export interface PokemonV2PokemonformspritesSumOrderBy {
@@ -16057,19 +16078,17 @@ export interface PokemonV2PokemonspritesBoolExp {
   id?: InputMaybe<IntComparisonExp>;
   pokemon_id?: InputMaybe<IntComparisonExp>;
   pokemon_v2_pokemon?: InputMaybe<PokemonV2PokemonBoolExp>;
-  sprites?: InputMaybe<StringComparisonExp>;
+  sprites?: InputMaybe<JsonbComparisonExp>;
 }
 
 export interface PokemonV2PokemonspritesMaxOrderBy {
   id?: InputMaybe<OrderBy>;
   pokemon_id?: InputMaybe<OrderBy>;
-  sprites?: InputMaybe<OrderBy>;
 }
 
 export interface PokemonV2PokemonspritesMinOrderBy {
   id?: InputMaybe<OrderBy>;
   pokemon_id?: InputMaybe<OrderBy>;
-  sprites?: InputMaybe<OrderBy>;
 }
 
 export interface PokemonV2PokemonspritesOrderBy {
@@ -16107,7 +16126,7 @@ export interface PokemonV2PokemonspritesStreamCursorInput {
 export interface PokemonV2PokemonspritesStreamCursorValueInput {
   id?: InputMaybe<Scalars['Int']['input']>;
   pokemon_id?: InputMaybe<Scalars['Int']['input']>;
-  sprites?: InputMaybe<Scalars['String']['input']>;
+  sprites?: InputMaybe<Scalars['jsonb']['input']>;
 }
 
 export interface PokemonV2PokemonspritesSumOrderBy {
@@ -16568,6 +16587,7 @@ export interface PokemonV2RegionBoolExp {
   _or?: InputMaybe<Array<PokemonV2RegionBoolExp>>;
   id?: InputMaybe<IntComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
+  pokemon_v2_generation?: InputMaybe<PokemonV2GenerationBoolExp>;
   pokemon_v2_generations?: InputMaybe<PokemonV2GenerationBoolExp>;
   pokemon_v2_generations_aggregate?: InputMaybe<PokemonV2GenerationAggregateBoolExp>;
   pokemon_v2_locations?: InputMaybe<PokemonV2LocationBoolExp>;
@@ -16583,6 +16603,7 @@ export interface PokemonV2RegionBoolExp {
 export interface PokemonV2RegionOrderBy {
   id?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
+  pokemon_v2_generation?: InputMaybe<PokemonV2GenerationOrderBy>;
   pokemon_v2_generations_aggregate?: InputMaybe<PokemonV2GenerationAggregateOrderBy>;
   pokemon_v2_locations_aggregate?: InputMaybe<PokemonV2LocationAggregateOrderBy>;
   pokemon_v2_pokedexes_aggregate?: InputMaybe<PokemonV2PokedexAggregateOrderBy>;
@@ -18530,10 +18551,14 @@ export type PokemonsQuery = {
     id: number;
     name: string;
     types: Array<{id: number; type?: {id: number; name: string} | null}>;
-    sprites: Array<{id: number; sprites: string}>;
+    sprites: Array<{id: number; sprites: {[key: string]: any}}>;
   }>;
   details: {aggregate?: {count: number} | null};
 };
+
+export type PokemonIdsQueryVariables = Exact<{[key: string]: never}>;
+
+export type PokemonIdsQuery = {pokemons: Array<{id: number}>};
 
 export type PokemonTypesQueryVariables = Exact<{[key: string]: never}>;
 
@@ -18549,7 +18574,7 @@ export type PokemonQuery = {
     name: string;
     height?: number | null;
     weight?: number | null;
-    sprites: Array<{id: number; sprites: string}>;
+    sprites: Array<{id: number; sprites: {[key: string]: any}}>;
     types: Array<{id: number; type?: {id: number; name: string} | null}>;
     stats: Array<{
       id: number;
@@ -18598,7 +18623,7 @@ export type PokemonSpritesQueryVariables = Exact<{
 }>;
 
 export type PokemonSpritesQuery = {
-  sprites: Array<{id: number; sprite: string}>;
+  sprites: Array<{id: number; sprite: {[key: string]: any}}>;
 };
 
 export const PokemonsDocument = gql`
@@ -18632,6 +18657,13 @@ export const PokemonsDocument = gql`
       aggregate {
         count
       }
+    }
+  }
+`;
+export const PokemonIdsDocument = gql`
+  query PokemonIds {
+    pokemons: pokemon_v2_pokemon {
+      id
     }
   }
 `;
@@ -18743,12 +18775,14 @@ export type SdkFunctionWrapper = <T>(
   action: (requestHeaders?: Record<string, string>) => Promise<T>,
   operationName: string,
   operationType?: string,
+  variables?: any,
 ) => Promise<T>;
 
 const defaultWrapper: SdkFunctionWrapper = (
   action,
   _operationName,
   _operationType,
+  variables,
 ) => action();
 
 export function getSdk(
@@ -18768,6 +18802,22 @@ export function getSdk(
           }),
         'Pokemons',
         'query',
+        variables,
+      );
+    },
+    PokemonIds(
+      variables?: PokemonIdsQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<PokemonIdsQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<PokemonIdsQuery>(PokemonIdsDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        'PokemonIds',
+        'query',
+        variables,
       );
     },
     PokemonTypes(
@@ -18782,6 +18832,7 @@ export function getSdk(
           }),
         'PokemonTypes',
         'query',
+        variables,
       );
     },
     Pokemon(
@@ -18796,6 +18847,7 @@ export function getSdk(
           }),
         'Pokemon',
         'query',
+        variables,
       );
     },
     PokemonSprites(
@@ -18811,6 +18863,7 @@ export function getSdk(
           ),
         'PokemonSprites',
         'query',
+        variables,
       );
     },
   };

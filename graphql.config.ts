@@ -45,6 +45,9 @@ const config: CodegenConfig = {
           typeNames: 'change-case-all#pascalCase',
           transformUnderscore: true,
         },
+        scalars: {
+          jsonb: '{[key:string]:any}',
+        },
       },
     },
   },
