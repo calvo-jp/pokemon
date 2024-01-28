@@ -52,7 +52,7 @@ export const BreadcrumbItems = forwardRef<
       gap={3}
       {...props}
     >
-      {clones?.map((clone, index, list) => (
+      {clones?.filter(Boolean).map((clone, index, list) => (
         <Fragment key={index}>
           {clone}
           {index + 1 < list.length && (
