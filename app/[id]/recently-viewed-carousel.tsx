@@ -11,7 +11,6 @@ import {Icon} from '@/components/icon';
 import {Image} from '@/components/image';
 import {Link} from '@/components/link';
 import {PokemonQuery} from '@/graphql';
-import {useEffectOnce} from '@/hooks/use-effect-once';
 import {css} from '@/styled-system/css';
 import {Box} from '@/styled-system/jsx';
 import {arrayChunk} from '@/utils/array-chunk';
@@ -29,9 +28,9 @@ interface RecentlyViewedCarouselProps {
 export function RecentlyViewedCarousel(props: RecentlyViewedCarouselProps) {
   const [items, {add}] = useRecentlyViewed();
 
-  useEffectOnce(() => {
+  () => {
     add(props.data);
-  });
+  };
 
   if (items.length <= 0) return null;
 
