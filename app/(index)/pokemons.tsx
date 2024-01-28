@@ -55,8 +55,6 @@ function Pokemon({data}: PokemonProps) {
   const sprite = data.sprites.at(0)?.sprites ?? {};
   const image = sprite.other?.dream_world?.front_default ?? '';
 
-  console.log(sprite);
-
   return (
     <Link
       href={`/${data.id}`}
