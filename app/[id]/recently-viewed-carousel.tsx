@@ -18,6 +18,7 @@ import {arrayUnique} from '@/utils/array-unique';
 import {CarouselControl, CarouselNextTrigger} from '@ark-ui/react';
 import {ChevronLeftIcon, ChevronRightIcon} from 'lucide-react';
 import {useEffect, useState} from 'react';
+import {useEffectOnce} from 'react-use';
 
 type TPokemon = NonNullable<PokemonQuery['pokemon']>;
 
@@ -28,9 +29,9 @@ interface RecentlyViewedCarouselProps {
 export function RecentlyViewedCarousel(props: RecentlyViewedCarouselProps) {
   const [items, {add}] = useRecentlyViewed();
 
-  () => {
+  useEffectOnce(() => {
     add(props.data);
-  };
+  });
 
   if (items.length <= 0) return null;
 
